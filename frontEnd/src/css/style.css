@@ -1,0 +1,188 @@
+.nav-bar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1px 10px;
+    box-shadow: 0px 0px 7px gray;
+    margin-bottom: 30px;
+}
+.nav-bar-name-div > img{
+    width: 60px;
+}
+.nav-bar-name-div{
+    display: flex;
+}
+.nav-bar-link-div{
+    display: flex;
+    justify-content: flex-end;
+}
+.nav-bar-link-div-span{   
+    margin: 1%;
+    padding: 1% 10px;
+}
+.nav-bar-link-div-mobile{
+    display: none;
+    margin: 2%;
+    font-size: 24px;
+    border: 2px solid gray;
+    padding: 2px 8px;
+    border-radius: 5px;
+}
+
+/* .login-div-main{
+    text-align: center;
+    margin-right: 0%;
+    margin-left: 0%;
+    margin-top: 5%;
+    margin-bottom: 1%;
+} */
+.login-div,.signup-div,.forget-div{
+    margin-top: 100px;
+}
+
+.login-container input[type=text],[type=password],[type=email], 
+.contact input[type=text],[type=number],[type=email],
+.contact textarea
+.Signup-container input [type=password],[type=text],[type=email]
+.forget-container input [type=number],[type=email],ul{
+    width: 400px;
+    padding: 12px 20px;
+    margin: 8px 8px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    background-color: white;
+    border-radius: 10px;
+}
+.login-container button,.contact button ,.Signup-container button,.forget-container button{
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 400px;
+    border-radius: 10px;
+}
+.contact textarea,.contact button{
+    width: 815px;
+}
+
+.login-container button:hover,.contact button ,.forget-container button{
+    opacity: 0.8;
+}
+.login-container .signupbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+  }
+
+.login-container,.Signup-container,.forget-container {
+    padding: 16px;
+    text-align: center;
+}
+.forget-psw{
+    font-size: 12px;
+    margin-left: 10px;
+}
+
+
+
+.contact-inner-div{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    margin-bottom: 3%;
+    flex-wrap: wrap;
+}
+.phone, .email, .office{
+    width: 200px;
+    height: 200px;
+    padding:2%;
+    margin: 1%;
+    border: 2px solid gray;
+}
+
+.heading{
+    text-align: center;
+    text-transform: uppercase;
+    padding:1rem;
+  }
+
+
+
+
+.block-div{
+    width: fit-content;
+    display: grid;
+    /* box-shadow: 2px 2px 13px grey; */
+    border: 1px solid lightgrey;
+    margin: 2%;
+    padding-bottom: 2%;
+    font-size: 20px;
+    border-radius: 5px;
+}
+.block-div img{
+    width: 250px;
+}
+.block-value-div{
+    display: grid;
+    justify-content: center;
+    padding: 2px 15px;
+    margin-top: 7px;
+}
+
+.room-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+@media screen and (max-width:831.5px){
+    .contact textarea, .contact button{
+        width: 400px;
+    }
+      
+}
+
+@media screen and (max-width:700px) {
+    .nav-bar-link-div {
+        display: initial;
+        position: absolute;
+        margin: 0px;
+        padding: 0px;
+        font-size: x-large;
+        top: 100%;
+        width: 100%;
+        background-color: #333375;
+        text-align: center;
+        padding-top: 2%;
+        display: none;
+        padding-bottom: 5%;
+    }
+    .nav-bar-link-div-span {
+        padding: 2% 0%;
+        background-color: #ededed;
+        display: block;
+        width: 95%;
+        margin-top: 1%;
+        margin: 2% auto;
+        border-radius: 5px;
+    }
+    .nav-bar{
+        padding: 0px;
+        position: relative;
+        justify-content: start;
+    }
+    .nav-bar-link-div-mobile{
+        display: block;
+    }
+      
+}
+@media screen and (max-width:500px){
+        .login-container input[type=text] ,[type=password],[type=email],.login-container button,.contact input[type=text] ,[type=number],[type=email],.contact textarea, .contact button, .Signup-container input[type=text],[type=password],[type=email],ul,.Signup-container button,
+        .forget-container input [type=number],[type=email] {
+            width: 95%;
+            border-radius: 3px;
+        }
+}
