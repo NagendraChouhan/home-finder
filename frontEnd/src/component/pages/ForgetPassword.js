@@ -1,22 +1,22 @@
 import React from "react";
 
-function ForgetPassword(){
-    const [forgetFormData,setForgetFormData]=React.useState({
-        email:"",
-        otp:"",
-        verifyEmail:false
+const ForgetPassword = () => {
+    const [forgetFormData, setForgetFormData] = React.useState({
+        email: "",
+        otp: "",
+        verifyEmail: false
     })
-    function handleOnChange(event){
-        const {name,value}=event.target
-        setForgetFormData(preFormData=>({
+    function handleOnChange(event) {
+        const { name, value } = event.target
+        setForgetFormData(preFormData => ({
             ...preFormData,
-            [name]:value
+            [name]: value
         }))
     }
-    function handleOnSubmit(event){
+    function handleOnSubmit(event) {
         event.preventDefault();
     }
-    return(
+    return (
         <>
             <div className="forget-div">
                 <h1>Forget Password</h1>
@@ -29,7 +29,7 @@ function ForgetPassword(){
                             onChange={handleOnChange}
                             value={forgetFormData.email}
                             required
-                        /><br/>
+                        /><br />
 
                         {forgetFormData.verifyEmail && <input
                             type="number"
@@ -38,13 +38,13 @@ function ForgetPassword(){
                             onChange={handleOnChange}
                             value={forgetFormData.otp}
                             required
-                        />}<br/>
-                        <button type="submit">{forgetFormData.verifyEmail?"Verify OTP":"Verify Email"}</button>
+                        />}<br />
+                        <button type="submit">{forgetFormData.verifyEmail ? "Verify OTP" : "Verify Email"}</button>
                     </div>
                 </form>
 
             </div>
-            
+
         </>
     )
 }

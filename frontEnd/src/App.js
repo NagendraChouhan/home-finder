@@ -1,12 +1,12 @@
-import logo from './logo.svg';
 import './App.css';
 import './css/style.css'
 import Main from './component/Main';
+import React from 'react';
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      <Main/>
+      <Main />
     </div>
   );
 }

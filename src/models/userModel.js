@@ -1,24 +1,25 @@
-const mongoose=require('mongoose')
-const userSchema=mongoose.Schema({
-    name:{
-        type:String,
-        require:true
+const mongoose = require('mongoose');
+
+const userSchema = mongoose.Schema({
+    name: {
+        type: String,
+        require: true
     },
-    email:{
-        type:String,
-        require:true,
-        unique:true
+    email: {
+        type: String,
+        require: true,
+        unique: true
     },
-    password:{
-        type:Number,
-        require:true
+    password: {
+        type: Number,
+        require: true
     },
-    date:{
-        type:Date,
-        default:Date.now()
+    date: {
+        type: Date,
+        default: Date.now()
     },
-    block:{
-        type:Boolean
+    block: {
+        type: Boolean
     },
     // tokens:[{
     //     token:{
@@ -26,7 +27,7 @@ const userSchema=mongoose.Schema({
     //         require:true
     //     }
     // }]
-})
+});
 
-const userDetails=new mongoose.model("userDtail",userSchema)
-module.exports=userDetails
+const userDetails = new mongoose.model("userDtail", userSchema);
+module.exports = userDetails;

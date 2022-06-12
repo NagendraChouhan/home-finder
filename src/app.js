@@ -1,38 +1,39 @@
-const express=require('express')
-const app=express()
-const cors=require('cors')
-require('./database/connection')
-const userDetails=require('./models/userModel')
+const express = require('express');
+const app = express();
+const cors = require('cors');
+require('./database/connection');
+const userDetails = require('./models/userModel');
 
-const port=process.env.PORT || 8000;
+const port = process.env.PORT || 8000;
 
 app.use(cors());
 app.use(express.json())
 
-app.get('/',(req,res)=>{
+app.get('/', (req, res) => {
     res.send("<h1>From get</h1>");
 })
 
-app.post('/signup',async(req,res)=>{
+app.post('/signup', async (req, res) => {
     try {
-        const {firstName,lastName,email,password}=req.body.signupFormData
-        console.log("from signup url of backend")
-        console.log(`req.body=${firstName}`)
-        const newuserDetails=new userDetails({
-            name:firstName+" "+lastName,
+        const { firstName, lastName, email, password } = req.body.signupFormData;
+        console.log("from signup url of backend");
+        console.log(`req.body=${firstName}`);
+        const newuserDetails = new userDetails({
+            name: firstName + " " + lastName,
             email,
             password
-        })
-        const result=await newuserDetails.save()
-        console.log(result)
-        res.send("from signup url of backend")
-        
+        });
+
+        const result = await newuserDetails.save();
+        console.log(result);
+        res.send("from signup url of backend");
+
     } catch (error) {
-        console.log("error="+error)
+        console.log("error=" + error);
     }
 })
 
-app.listen(port,()=>{
+app.listen(port, () => {
     console.log(`Listing from port ${port}`);
 })
 

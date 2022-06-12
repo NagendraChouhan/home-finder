@@ -1,24 +1,25 @@
 import { NavLink } from 'react-router-dom';
 import logo from '../logo.svg'
+import React from 'react';
 
-function Navbar(){
-    const styles=({isActive})=>{return {color:isActive?'red':''}}
+const Navbar = () => {
+    const styles = ({ isActive }) => { return { color: isActive ? 'red' : '' } }
     function handleDisplayOnCLick() {
         var x = document.getElementsByClassName("nav-bar-link-div")[0];
         if (x.style.display === "block") {
-          x.style.display = "none";
+            x.style.display = "none";
         } else {
-          x.style.display = "block";
+            x.style.display = "block";
         }
-      }
-    return(
+    }
+    return (
         <header>
             <nav className='nav-bar'>
                 <div className='nav-bar-link-div-mobile'>
                     <span onClick={handleDisplayOnCLick}>&#9776;</span>
                 </div>
                 <div className='nav-bar-name-div'>
-                    <img src={logo} alt='company logo'/>
+                    <img src={logo} alt='company logo' />
                     <h2>Room Finding</h2>
                 </div>
                 <div className='nav-bar-link-div'>

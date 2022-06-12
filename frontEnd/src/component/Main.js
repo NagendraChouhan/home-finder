@@ -1,6 +1,8 @@
+import React from 'react';
 import RouterCom from "../routes/RouterCom";
-function Main(){
-    return(
+
+const Main = () => {
+    return (
         <section>
             <RouterCom></RouterCom>
         </section>

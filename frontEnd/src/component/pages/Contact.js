@@ -1,5 +1,7 @@
-function Contact(){
-    return(
+import React from 'react';
+
+const Contact = () => {
+    return (
         <>
             <section className="contact" id="contact">
 
@@ -9,7 +11,7 @@ function Contact(){
                     <div className="phone">
                         <h1>PHONE NUMBER</h1>
                         <p>9587456321</p>
-                        <p>888-555-222 <br />(Tol Free)</p>    
+                        <p>888-555-222 <br />(Tol Free)</p>
                     </div>
                     <div className="email">
                         <h1>EMAIL</h1>
@@ -33,7 +35,7 @@ function Contact(){
                         <input type="text" placeholder="subject" />
                     </div>
 
-                    <textarea placeholder="message" name="" id="" cols="30" rows="10"></textarea><br/>
+                    <textarea placeholder="message" name="" id="" cols="30" rows="10"></textarea><br />
 
                     <button type="submit" className="btn">send message</button>
 
