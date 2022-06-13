@@ -7,7 +7,11 @@
     margin-bottom: 30px;
 }
 .nav-bar-name-div > img{
+    cursor: pointer;
     width: 60px;
+}
+.nav-bar-name-div > h2 {
+    cursor: pointer;
 }
 .nav-bar-name-div{
     display: flex;
@@ -47,7 +51,7 @@
 .forget-container input [type=number],[type=email],ul{
     width: 400px;
     padding: 12px 20px;
-    margin: 8px 8px;
+    margin: 11px 8px;
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
@@ -55,10 +59,10 @@
     border-radius: 10px;
 }
 .login-container button,.contact button ,.Signup-container button,.forget-container button{
-    background-color: #4CAF50;
+    background-color: #17b2e782;
     color: white;
     padding: 14px 20px;
-    margin: 8px 0;
+    margin: 14px 0;
     border: none;
     cursor: pointer;
     width: 400px;
@@ -113,6 +117,7 @@
 
 
 .block-div{
+    cursor: pointer;
     width: fit-content;
     display: grid;
     /* box-shadow: 2px 2px 13px grey; */

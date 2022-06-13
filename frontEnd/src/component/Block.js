@@ -1,7 +1,7 @@
 function Block(props){
     return(
         <>
-            <div className="block-div">
+            <div className="block-div" >
                 <img src={props.img} alt="Room Image"/>
                 <div className="block-value-div">
                     <span><b>Rs-{props.price}</b></span>

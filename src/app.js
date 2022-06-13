@@ -12,7 +12,15 @@ app.use(express.json())
 app.get('/',(req,res)=>{
     res.send("<h1>From get</h1>");
 })
-
+app.post('/login',async(req,res)=>{
+    try {
+        const {email,password}=req.body.loginFormData
+        console.log("from signup url of backend")
+        console.log(`req.body=${firstName}`)        
+    } catch (error) {
+        
+    }
+})
 app.post('/signup',async(req,res)=>{
     try {
         const {firstName,lastName,email,password}=req.body.signupFormData

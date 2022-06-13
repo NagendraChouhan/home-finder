@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 function Login(){
     const [loginFormData,setLOginFormData]=React.useState({
@@ -16,11 +16,26 @@ function Login(){
         console.log(event.target.value);
     }
     let error
-    function handleFormData(event){
+    async function handleFormData(event){
         event.preventDefault()
         if(loginFormData.email!==null){
             if(loginFormData.password!==null){
                 console.log("form is ready to sumbmit")
+                let result= await fetch('/login',{
+                    method:"POST",
+                    body:JSON.stringify({loginFormData}),
+                    headers:{
+                        'content-Type':'application/json'
+                    }
+                })
+                await result
+                console.log(result)
+                if(result){
+                    navigate('/')
+                }
+                else{
+                    error="some err"
+                }
             }
             else{
                 console.log("Type Password")
@@ -53,7 +68,7 @@ function Login(){
                             onChange={handleOnchange}
                             value={loginFormData.password} 
                         /><br/>
-                        
+                        {error && <span>{error}</span>}
                         <button type="submit" >Log In</button><br/>
                         <Link to="/signup"><button type="button" className="signupbtn" >Sign Up</button></Link>
                         <span className="forget-psw">Forgot <Link to='/forgetPassword'>password?</Link></span>

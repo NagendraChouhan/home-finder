@@ -30,7 +30,7 @@ function Signup(){
         signupFormData.lastName.length>0 && signupFormData.password.length>0 && signupFormData.conformPassword .length>0 ){
             if(validate(signupFormData.email)){
                 if(signupFormData.isValidPassWord){
-                    let result=await fetch('http://localhost:8000/signup',{
+                    let result=await fetch('/signup',{
                         method:'post',
                         body:JSON.stringify({signupFormData}),
                         headers:{
