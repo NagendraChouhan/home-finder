@@ -1,25 +1,29 @@
-import React from "react";
-import { Link, Navigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-function Login(){
-    const [loginFormData,setLOginFormData]=React.useState({
-        email:"",
-        password:""
+
+const Login = () => {
+    const navigate = useNavigate()
+
+    const [loginFormData, setLOginFormData] = React.useState({
+        email: "",
+        password: ""
     })
 
-    function handleOnchange(event){
-        const {name,value}=event.target
-        setLOginFormData(preFromData=>({
+    function handleOnchange(event) {
+        const { name, value } = event.target
+        setLOginFormData(preFromData => ({
             ...preFromData,
-            [name]:value
+            [name]: value
         }))
         console.log(event.target.value);
     }
-    let error
-    async function handleFormData(event){
+    const [error,setError]=useState()
+
+    async function handleFormData(event) {
         event.preventDefault()
-        if(loginFormData.email!==null){
-            if(loginFormData.password!==null){
+        if (loginFormData.email !== null) {
+            if (loginFormData.password !== null) {
                 console.log("form is ready to sumbmit")
                 let result= await fetch('/login',{
                     method:"POST",
@@ -28,47 +32,51 @@ function Login(){
                         'content-Type':'application/json'
                     }
                 })
-                await result
-                console.log(result)
-                if(result){
+                result=await result.json()
+                console.log(result.result)
+                console.log(result.err)
+                if(result.result){
+                    console.log(result)
                     navigate('/')
                 }
                 else{
-                    error="some err"
+                    setError(result.err)
                 }
             }
-            else{
+            else {
+                setError("Type Password")
                 console.log("Type Password")
             }
         }
-        else{
+        else {
+            setError("Type Email")
             console.log("Type Email")
         }
     }
-    return(
+    return (
         <>
             <div className="login-div">
                 <h3>Login Page</h3>
-                <form onSubmit={handleFormData}>                
+                <form onSubmit={handleFormData}>
                     <div className="login-container">
-                        <input 
-                            type="email" 
-                            placeholder="Enter email" 
-                            name="email" 
-                            required 
+                        <input
+                            type="email"
+                            placeholder="Enter email"
+                            name="email"
+                            required
                             onChange={handleOnchange}
-                            value={loginFormData.email} 
-                        /><br/>
+                            value={loginFormData.email}
+                        /><br />
 
-                        <input 
-                            type="password" 
-                            placeholder="Password" 
-                            name="password" 
-                            required 
+                        <input
+                            type="password"
+                            placeholder="Password"
+                            name="password"
+                            required
                             onChange={handleOnchange}
                             value={loginFormData.password} 
                         /><br/>
-                        {error && <span>{error}</span>}
+                        {error && <span className="error-span">{error}</span>}
                         <button type="submit" >Log In</button><br/>
                         <Link to="/signup"><button type="button" className="signupbtn" >Sign Up</button></Link>
                         <span className="forget-psw">Forgot <Link to='/forgetPassword'>password?</Link></span>

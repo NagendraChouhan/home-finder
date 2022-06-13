@@ -5,21 +5,23 @@ import Contact from '../component/pages/Contact'
 import Rooms from '../component/pages/Rooms';
 import Signup from '../component/pages/Signup';
 import ForgetPassword from '../component/pages/ForgetPassword';
+import React from 'react';
 
 
-function RouterCom(){
-    return(
+const RouterCom = () => {
+
+    return (
         <>
             <BrowserRouter>
-            <Navbar></Navbar>
+                <Navbar />
                 <Routes>
-                    <Route path='/' element={<Rooms/>}/>
-                    <Route path='/about' element={<h1>hello from About</h1>}/>
-                    <Route path='/contact' element={<Contact/>}/>
-                    <Route path='/login' element={<Login/>}/>
-                    <Route path='/signup' element={<Signup/>}/>
-                    <Route path='/forgetPassword' element={<ForgetPassword/>}/>
-                    <Route path='*' element={<h1>Working On it</h1>}/>
+                    <Route path='/' element={<Rooms />} />
+                    <Route path='/about' element={<h1>hello from About</h1>} />
+                    <Route path='/contact' element={<Contact />} />
+                    <Route path='/login' element={<Login />} />
+                    <Route path='/signup' element={<Signup />} />
+                    <Route path='/forgetPassword' element={<ForgetPassword />} />
+                    <Route path='*' element={<h1>Working On it</h1>} />
                 </Routes>
             </BrowserRouter>
         </>

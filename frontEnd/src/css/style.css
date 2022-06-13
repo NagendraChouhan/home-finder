@@ -32,6 +32,13 @@
     padding: 2px 8px;
     border-radius: 5px;
 }
+.error-span{
+    display: flow-root;
+    color: red;
+    margin-top: 1.5%;
+    font-size: large;
+    font-family: cursive;
+}
 
 /* .login-div-main{
     text-align: center;
