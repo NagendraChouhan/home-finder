@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-password = "2k8VaP2249cdlKhX";
 
-mongoose.connect("mongodb+srv://FIndingRooms:2k8VaP2249cdlKhX@cluster0.4k2d8.mongodb.net/FindingRooms?retryWrites=true&w=majority", {
+
+mongoose.connect(`mongodb+srv://FIndingRooms:${process.env.PASSWORD}@cluster0.4k2d8.mongodb.net/${process.env.DATABASENAME}?retryWrites=true&w=majority`, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
