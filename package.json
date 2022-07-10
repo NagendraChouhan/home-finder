@@ -5,17 +5,23 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon src/app.js"
+    "start": "node src/app.js",
+    "heroku-postbuild":"NPM_CONFIG_PRODUCTION=false npm install--prefix frontEnd npm && run build --prefix frontEnd "
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@sendgrid/mail": "^7.7.0",
     "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
-    "dotenv": "^16.0.0",
+    "dotenv": "^16.0.1",
     "epress": "^0.0.1-security",
     "express": "^4.17.3",
-    "mongoose": "^6.2.9"
+    "firebase": "^9.8.4",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.2.9",
+    "uuid": "^8.3.2"
   }
 }

@@ -1,6 +1,10 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import logo from '../logo.svg'
 import React from 'react';
+import {Cookies } from 'react-cookie';
+import tokenvarify from '../function/function'
+
+
 
 const Navbar = () => {
     const styles = ({ isActive }) => { return { color: isActive ? 'red' : '' } }
@@ -12,6 +16,22 @@ const Navbar = () => {
             x.style.display = "block";
         }
     }
+    const cookies=new Cookies()
+    const token=cookies.get('token')
+    console.log(`Token from navigation ${token}`)
+    const navigate=useNavigate()
+    const logout=async()=>{
+        cookies.remove('token')
+        let result=await fetch('/logout',{
+            method:'delete',
+            body:JSON.stringify({token}),
+            headers:{
+                'content-Type':'application/json'
+            }
+        })
+        navigate('/login')
+    }
+    // tokenvarify('/login')
     return (
         <header>
             <nav className='nav-bar'>
@@ -27,14 +47,30 @@ const Navbar = () => {
                         <NavLink to='/' style={styles}>Home</NavLink>
                     </span>
                     <span className='nav-bar-link-div-span'>
+                        <NavLink to='/rooms' style={styles}>Rooms</NavLink>
+                    </span>
+                    <span className='nav-bar-link-div-span'>
                         <NavLink to='/about' style={styles}>About</NavLink>
                     </span>
                     <span className='nav-bar-link-div-span'>
                         <NavLink to='/contact' style={styles}>Contact</NavLink>
                     </span>
-                    <span className='nav-bar-link-div-span'>
+                    {token &&
+                        <>
+                            <span className='nav-bar-link-div-span'>
+                                <NavLink to='/profile' style={styles}>Profile</NavLink>
+                            </span>
+                            <span className='nav-bar-link-div-span'>
+                                <NavLink to='/dashboard' style={styles}>Dashboard</NavLink>
+                            </span>
+                            <span className='nav-bar-link-div-span'>
+                                <NavLink to='/login' onClick={logout} style={styles}>Logout</NavLink>
+                            </span>
+                        </> 
+                    }
+                    {!token &&<span className='nav-bar-link-div-span'>
                         <NavLink to='/login' style={styles}>Login</NavLink>
-                    </span>
+                    </span>}
                 </div>
             </nav>
         </header>

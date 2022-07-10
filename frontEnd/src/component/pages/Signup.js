@@ -1,11 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PasswordChecklist from "react-password-checklist";
 import { validate } from "react-email-validator";
+import {Cookies } from 'react-cookie';
 import React from "react";
 
 const Signup = () => {
   const navigate = useNavigate();
+  useEffect(()=>{
+    const cookies=new Cookies()
+        const token=cookies.get('token')
+        if(token){
+            navigate('/')
+        }
+  })
 
   const [signupFormData, setSignupFormData] = useState({
     firstName: "",
@@ -26,7 +34,6 @@ const Signup = () => {
   }
 
   const [error, setError] = useState();
-
   async function handleOnSubmit(event) {
     event.preventDefault();
     if (

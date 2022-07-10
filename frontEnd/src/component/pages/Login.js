@@ -1,9 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import {Cookies } from 'react-cookie';
+import tokenvarify from '../../function/function'
+
+
 
 
 const Login = () => {
     const navigate = useNavigate()
+    useEffect(()=>{
+        const cookies=new Cookies()
+        const token=cookies.get('token')
+        if(token){
+            navigate('/')
+        }
+    })
 
     const [loginFormData, setLOginFormData] = React.useState({
         email: "",
@@ -22,8 +33,8 @@ const Login = () => {
 
     async function handleFormData(event) {
         event.preventDefault()
-        if (loginFormData.email !== null) {
-            if (loginFormData.password !== null) {
+        if (loginFormData.email !== "") {
+            if (loginFormData.password !== "") {
                 console.log("form is ready to sumbmit")
                 let result= await fetch('/login',{
                     method:"POST",
@@ -37,6 +48,10 @@ const Login = () => {
                 console.log(result.err)
                 if(result.result){
                     console.log(result)
+                    console.log(result.token)
+                    const cookies=new Cookies()
+                    cookies.set('token',result.token)
+
                     navigate('/')
                 }
                 else{

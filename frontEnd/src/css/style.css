@@ -23,6 +23,7 @@
 .nav-bar-link-div-span{   
     margin: 1%;
     padding: 1% 10px;
+    min-width: max-content;
 }
 .nav-bar-link-div-mobile{
     display: none;
@@ -55,7 +56,10 @@
 .contact input[type=text],[type=number],[type=email],
 .contact textarea
 .Signup-container input [type=password],[type=text],[type=email]
-.forget-container input [type=number],[type=email],ul{
+.forget-container input [type=number],[type=email],ul
+.profile-container input [type=number],[type=text],[type=date],[type=password],[type=email]
+.create-room-main-div>.section-container>.section-div-container>form input [type=number],[type=text],[type=file],select
+{
     width: 400px;
     padding: 12px 20px;
     margin: 11px 8px;
@@ -65,8 +69,8 @@
     background-color: white;
     border-radius: 10px;
 }
-.login-container button,.contact button ,.Signup-container button,.forget-container button{
-    background-color: #17b2e782;
+.login-container button,.contact button ,.Signup-container button,.forget-container button,.profile-container button{
+    background-color: #00beffd1;
     color: white;
     padding: 14px 20px;
     margin: 14px 0;
@@ -79,8 +83,8 @@
     width: 815px;
 }
 
-.login-container button:hover,.contact button ,.forget-container button{
-    opacity: 0.8;
+.login-container button:hover,.contact button:hover ,.forget-container button:hover,.Signup-container button:hover,.profile-container button:hover{
+    opacity: 0.6;
 }
 .login-container .signupbtn {
     width: auto;
@@ -120,7 +124,42 @@
     padding:1rem;
   }
 
+  .heading{
+    font-size: 2rem;
+  }
+  
+  .heading{
+    text-align: center;
+    color:black;
+    text-transform: uppercase;
+    padding:0px;
+    margin: 0px;
+  }
+  
+  .heading span{
+    color:green;
+    text-transform: uppercase;
+  }
 
+/*Profile css start*/
+
+.profile{
+    margin: 0% 1% 1% 8%;
+    background-color: white;
+    padding: 0% 0% 5% 8%;
+    text-align: left;
+}
+.profile-container{
+    text-align: left;
+    margin-left: 15%;
+}
+.label{
+    display: block;
+    text-align: left;
+    margin-left: 20px;
+}
+
+  /*Profile css end*/
 
 
 .block-div{
@@ -133,9 +172,12 @@
     padding-bottom: 2%;
     font-size: 20px;
     border-radius: 5px;
+    min-width: 90%;
+    justify-content: center;
 }
 .block-div img{
     width: 250px;
+    margin: auto;
 }
 .block-value-div{
     display: grid;
@@ -145,10 +187,171 @@
 }
 
 .room-container{
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px,1fr));
+    padding: 1%;
+    overflow: auto;
+    justify-items: center;
+    grid-gap: 5px;
+    gap: 5px;
+    /* display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: center; */
 }
+
+/* css for dashboard start here*/
+
+.ceate-room-main-div >.div-container{
+    display: flex;
+    justify-content: space-between;
+    place-items: baseline;
+    margin-right: 5%;
+}
+.ceate-room-main-div >.div-container>.heading-div{
+    text-align: left;
+    margin: 2% 5%;
+    font-weight: bold;
+    font-size: x-large;
+}
+.ceate-room-main-div >.div-container>.create-div{
+
+    background-color: #e5e5e5;
+    display: flex;
+    place-items: center;
+    padding: 1%;
+    box-shadow: 0px 0px 5px black;
+    font-variant-caps: small-caps;
+    border-radius: 3px;
+}
+.ceate-room-main-div >.div-container>.create-div:hover{
+    cursor: pointer;
+}
+.ceate-room-main-div >.div-container>.create-div:active{
+    box-shadow: none;
+}
+.ceate-room-main-div >.div-container>.create-div>img{
+    width: 25px;
+    margin: 5%;
+}
+.ceate-room-main-div >.section-container{
+    margin: 1%;
+}
+.ceate-room-main-div >.section-container>.section-div-container>table>thead>tr{
+    background-color: #2196F3;
+    padding: 10px;
+}
+.ceate-room-main-div >.section-container>.section-div-container>table{
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.ceate-room-main-div >.section-container>.section-div-container>table>thead>tr>th,tbody>tr>td{
+    /* border: 1px solid rgba(0, 0, 0, 0.8); */
+    padding: 10px;
+    /* font-size: 30px; */
+    text-align: center;
+    font-weight: normal;
+    border: 1px solid #dddddd;
+}
+
+tr:nth-child(even) {
+    background-color: #b6b6b6;
+  }
+
+/* css for dashboard end here*/
+
+/* css for room create start here*/
+
+
+.create-room-main-div>.section-container>.section-div-container>form{
+    display: flex;
+    width: fit-content;
+    flex-direction: column;
+    text-align: start;
+    margin: auto;
+}
+.create-room-main-div>.section-container>.section-div-container>form>.form-div{
+    display: grid;
+    padding: 2px 1px;
+    margin: 5px 10px;
+}
+.address-div label{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+/* css for room create end here*/
+
+
+
+/* css for home create start here*/
+
+.home-main-div>.home-div-container>.img-div{
+    position: relative;
+    text-align: center;
+    color: white;
+    background-color: #f8f8f8;   
+
+}
+.home-main-div>.home-div-container>.img-div>.centered{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: xxx-large;
+    bottom: 40%;
+    color: black;
+    /* text-shadow: 3px -2px 1px red; */
+    font-variant: small-caps;
+    /* color: currentcolor; */
+    border-bottom-style: solid;
+    font-family: -webkit-body;
+    width: auto;
+}
+.home-main-div>.home-div-container>.img-div>img{
+    width: 100%;
+    top: -30px;
+    left: 0px;
+    position: relative;
+    opacity: 0.8;
+}
+.home-main-div>.home-div-container>.img-div>div>span{
+    color: #ffff00;
+}
+/* css for home create end here*/
+/* css for HomeBlock create start here*/
+
+
+.section-container>.section-div{
+    column-span: all;
+    contain: layout;
+    margin-bottom: 10%;
+}
+.section-container>.section-div>.div-container>.img-div{
+    display: flex;
+    margin: 10% 5%;
+    position: relative; 
+}
+.section-container>.section-div>.div-container>.img-div>img{
+    width: 50%;
+    position: absolute;
+    right: 0px;
+}
+.section-container>.section-div>.div-container>.img-div>.about-div{
+    margin-left: 5%;
+    color: #050505;
+    background-color: #ebeaea;
+    padding: 4% 4%;
+    width: 50%;
+    z-index: 99;
+    position: relative;
+    top: 150px;
+    border-left: solid;
+    text-align: justify;
+}
+/* css for HomeBlock create end here*/
+
+
 
 @media screen and (max-width:831.5px){
     .contact textarea, .contact button{
@@ -157,7 +360,7 @@
       
 }
 
-@media screen and (max-width:700px) {
+@media screen and (max-width:808px) {
     .nav-bar-link-div {
         display: initial;
         position: absolute;
@@ -171,6 +374,7 @@
         padding-top: 2%;
         display: none;
         padding-bottom: 5%;
+        z-index: 99;
     }
     .nav-bar-link-div-span {
         padding: 2% 0%;
@@ -189,12 +393,30 @@
     .nav-bar-link-div-mobile{
         display: block;
     }
-      
+    .profile{
+        margin: 0% 1% 1% 0%;
+        padding: 0% 0% 5% 1%;
+        text-align: center;
+    }
+    .profile-container{    
+        text-align: center;
+        margin-left: 0px;
+    }
+    .label{
+        margin-left: 20%;
+    }
 }
 @media screen and (max-width:500px){
-        .login-container input[type=text] ,[type=password],[type=email],.login-container button,.contact input[type=text] ,[type=number],[type=email],.contact textarea, .contact button, .Signup-container input[type=text],[type=password],[type=email],ul,.Signup-container button,
-        .forget-container input [type=number],[type=email] {
-            width: 95%;
+        .login-container input[type=text] ,[type=password],[type=email],.login-container button,.contact input[type=text] ,[type=number],[type=email],.contact textarea, .contact button, .Signup-container input[type=text],[type=password],[type=email],ul,.Signup-container button,.profile-container button,
+        .forget-container input [type=number],[type=email], 
+        .profile-container input [type=number],[type=text],[type=date],[type=password],[type=email],
+        .create-room-main-div>.section-container>.section-div-container>form input [type=number],[type=text],[type=file],select{
+            width: auto;
             border-radius: 3px;
+            
         }
+        .label{
+            margin-left: 20px;
+        }
+       
 }
