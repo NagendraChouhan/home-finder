@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/static/css/main.073f1696.css",
+    "main.js": "/static/js/main.17168def.js",
+    "static/media/christin-hume-hBuwVLcYTnA-unsplash.jpg": "/static/media/christin-hume-hBuwVLcYTnA-unsplash.dade5c6c8bf5de4f3cb4.jpg",
+    "static/media/christin-hume-Hcfwew744z4-unsplash.jpg": "/static/media/christin-hume-Hcfwew744z4-unsplash.2c9f3287fe47b56b6b36.jpg",
+    "static/media/kobu-agency-7okkFhxrxNw-unsplash.jpg": "/static/media/kobu-agency-7okkFhxrxNw-unsplash.d522fa99e0390536455a.jpg",
+    "static/media/olga-serjantu-tqkDGqPW8Vo-unsplash.jpg": "/static/media/olga-serjantu-tqkDGqPW8Vo-unsplash.b817b55b850c3f95d208.jpg",
+    "static/media/john-schnobrich-FlPc9_VocJ4-unsplash.jpg": "/static/media/john-schnobrich-FlPc9_VocJ4-unsplash.d2bfd2d82d90b028541c.jpg",
+    "static/media/add-image.png": "/static/media/add-image.9269fb21d05d0c0ee3aa.png",
+    "static/media/logo.svg": "/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/index.html",
+    "main.073f1696.css.map": "/static/css/main.073f1696.css.map",
+    "main.17168def.js.map": "/static/js/main.17168def.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073f1696.css",
+    "static/js/main.17168def.js"
+  ]
+}
