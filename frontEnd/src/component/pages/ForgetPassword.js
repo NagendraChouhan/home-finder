@@ -21,10 +21,9 @@ const ForgetPassword = () => {
         }))
     }
     
-    const readonlyfun = () => {
-        console.log("readonlyfun")
-        
-    }
+    // const readonlyfun = () => {
+    //     console.log("readonlyfun")   
+    // }
     const [error,setError]=React.useState()
     async function handleOnSubmit(event) {
         event.preventDefault();

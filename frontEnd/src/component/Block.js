@@ -1,5 +1,4 @@
 import React from 'react';
-import BlockDetails from './pages/BlockDetails'
 import { useNavigate } from 'react-router-dom';
 const Block = (props) => {
     const display=props.display===undefined ?true:false
@@ -29,7 +28,7 @@ const Block = (props) => {
     return (
         <>
             <div className="block-div" style={displaycss} onClick={()=>handleOnClick(props.id)}>
-                <img src={props.img} alt="Room Image" style={displaycssimag} />
+                <img src={props.imgValue} alt="Room Image" style={displaycssimag} />
                 <div className="block-value-div">
                     {display &&<span><b>Rs-{props.price}</b></span>}
                     {display &&<span><b>{props.location}</b></span>}

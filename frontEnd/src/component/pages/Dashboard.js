@@ -55,7 +55,7 @@ const Dashboard = () => {
                 {roomData.map((data)=>{
                     return <tr key={data._id}>
                               <td>
-                                <Block img={addImage} price={data.price} id={data._id} border="true" location="Mandsaur"   rating="5" />
+                                <Block imgValue={addImage} price={data.price} id={data._id} border="true" location="Mandsaur"   rating="5" />
                               </td>
                               <td>{data.date}</td>
                               <td></td>

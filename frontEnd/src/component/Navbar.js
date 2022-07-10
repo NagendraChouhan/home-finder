@@ -2,7 +2,6 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import logo from '../logo.svg'
 import React from 'react';
 import {Cookies } from 'react-cookie';
-import tokenvarify from '../function/function'
 
 
 
@@ -30,6 +29,7 @@ const Navbar = () => {
             }
         })
         navigate('/login')
+        console.log(`result from navbar ===${result}`)
     }
     // tokenvarify('/login')
     return (

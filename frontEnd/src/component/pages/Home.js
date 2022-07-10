@@ -32,11 +32,11 @@ const Home = () => {
                       }}
           >
             <div className="room-container" style={roomContainerCSS}>
-              <Block img={img} display="true" texts="Zero Commission" />
+              <Block imgValue={img} display="true" texts="Zero Commission" />
               <Block
-                img={img} display="true"texts="Register Your Room In " texts2="3 Easy Step "
+                imgValue={img} display="true"texts="Register Your Room In " texts2="3 Easy Step "
               />
-              <Block img={img} display="true" texts="Find Rooms Online" />
+              <Block imgValue={img} display="true" texts="Find Rooms Online" />
             </div>
           </div>
         </section>

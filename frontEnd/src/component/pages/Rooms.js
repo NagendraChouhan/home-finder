@@ -30,7 +30,7 @@ const Rooms = () => {
         
             <div className="room-container">
                 {blockData.map((data)=>{
-                    return <Block img={img} price={data.price} id={data._id} key={data._id}location="Mandsaur"   rating="5" />
+                    return <Block imgValue={img} price={data.price} id={data._id} key={data._id}location="Mandsaur"   rating="5" />
                 })}
             </div>
         </>
