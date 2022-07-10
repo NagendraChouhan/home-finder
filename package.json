@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/app.js",
-    "heroku-postbuild":"NPM_CONFIG_PRODUCTION=false npm install--prefix frontEnd npm && run build --prefix frontEnd "
+    "heroku-postbuild":"NPM_CONFIG_PRODUCTION=false npm install --prefix frontEnd npm && run build --prefix frontEnd "
   },
   "keywords": [],
   "author": "",
