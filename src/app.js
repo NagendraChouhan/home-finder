@@ -31,11 +31,6 @@ const port = process.env.PORT || 8000;
 app.use(cors());
 app.use(express.json())
 
-// app.use(express.static(path.join(__dirname, 'public')));
-
-// app.get('*', function(req, res) {
-//   res.sendFile(path.join(__dirname, 'public', 'index.html'));
-// });
 
 app.use('/logout',logout)
 app.use('/login',login)
@@ -48,6 +43,11 @@ app.use('/getData/addressData',getData)
 app.use('/tokenvarify',tokenvarify)
 app.use('/createRoom',createRoom)
 app.use('/',verify)
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.get('*', function(req, res) {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 if(process.env.NODE_ENV=="production"){
     app.use(express.static("frontEnd/build"));
