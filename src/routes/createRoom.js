@@ -17,15 +17,15 @@ Router.post('/',async(req,res)=>{
         const token=req.headers.token
         const { roomtype, otherThingsAvailable, price, securityCharge, numberOfSameRoom,area,country,state,district,houseNo,colony,landmark,pinCode,addressIdRadio, pg, Bed, Table, Almirah, wifi, packing, Ventilation, Boys, Girls, Famaly, images } = req.body.formData
         console.log(`image1`);
-        // for(let i=0;i<images.length;i++){
-        //     const imageRef= ref(storage,`img/${images[i]+v4()}`)
-        //     console.log(`image2  imageRef==${imageRef}`);
+        for(let i=0;i<images.length;i++){
+            const imageRef= ref(storage,`img/${images[i]+v4()}`)
+            console.log(`image2  imageRef==${imageRef}`);
             
-        //     console.log(`image3  images[${i}]==${images[i]}`);
-        //     const uploadImage=await uploadBytes(imageRef,images[i])
+            console.log(`image3  images[${i}]==${images[i]}`);
+            const uploadImage=await uploadBytes(imageRef,images[i])
     
-        //     console.log(`uploadImage====++++++======== ${uploadImage}`)
-        // }
+            console.log(`uploadImage====++++++======== ${uploadImage}`)
+        }
         const tokenvarify=await jwt.verify(token,process.env.JWT_TOKEN);;
         const newCreateRoomDetails= new CreateRoomDetails({
             id:tokenvarify._id,
