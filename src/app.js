@@ -31,9 +31,12 @@ const port = process.env.PORT || 8000;
 app.use(cors());
 app.use(express.json())
 
-app.get('/', (req, res) => {
-    res.send("hello from /");
-})
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.get('*', function(req, res) {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 app.use('/logout',logout)
 app.use('/login',login)
 app.use('/signup',signup)
