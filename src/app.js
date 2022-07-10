@@ -44,11 +44,11 @@ app.use('/tokenvarify',tokenvarify)
 app.use('/createRoom',createRoom)
 app.use('/',verify)
 
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('*', function(req, res) {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
+// app.get('*', function(req, res) {
+//   res.sendFile(path.join(__dirname, 'public', 'index.html'));
+// });
 
 if(process.env.NODE_ENV=="production"){
     app.use(express.static("frontEnd/build"));
