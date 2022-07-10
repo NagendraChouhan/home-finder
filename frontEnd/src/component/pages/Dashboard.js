@@ -16,7 +16,7 @@ const Dashboard = () => {
   const getData=async()=>{
     const cookies=new Cookies()
     const token=cookies.get('token')
-    let data =await fetch('/getData/room',{
+    let data =await fetch('/bgetData/room',{
       method:'GET',
       headers:{
           'content-Type':'application/json',

@@ -18,7 +18,7 @@ const BlockDetails = () => {
      
         console.log(`roomId===${roomId}`)
         console.log(`useEffect`)
-        let data=await fetch(`/getData/roomDetails?roomId=${roomId}`,{
+        let data=await fetch(`/bgetData/roomDetails?roomId=${roomId}`,{
           method:'GET',
           headers:{
               'content-Type':'application/json',
@@ -33,7 +33,7 @@ const BlockDetails = () => {
         const addressIdRadio=data.addressIdRadio
         console.log(`userId====${userId}`)
         console.log(`addressIdRadio====${addressIdRadio}`)
-        let address =await fetch(`/getData/addressData?userId=${userId}&addressIdRadio=${addressIdRadio}`,{
+        let address =await fetch(`/bgetData/addressData?userId=${userId}&addressIdRadio=${addressIdRadio}`,{
           method:'GET',
           headers:{
               'content-Type':'application/json',

@@ -24,7 +24,7 @@ import {Cookies } from 'react-cookie';
         console.log(`useEffect`)
         const cookies=new Cookies()
         const token=cookies.get('token')
-        let data=await fetch('/getData',{
+        let data=await fetch('/bgetData',{
             method:'GET',
             headers:{
                 'content-Type':'application/json',

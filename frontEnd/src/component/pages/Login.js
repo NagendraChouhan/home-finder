@@ -36,7 +36,7 @@ const Login = () => {
         if (loginFormData.email !== "") {
             if (loginFormData.password !== "") {
                 console.log("form is ready to sumbmit")
-                let result= await fetch('/login',{
+                let result= await fetch('/blogin',{
                     method:"POST",
                     body:JSON.stringify({loginFormData}),
                     headers:{

@@ -42,7 +42,7 @@ async function value(){
     console.log(`useEffect`)
     const cookies=new Cookies()
     const token=cookies.get('token')
-    let data=await fetch('/getData?addAddress=true',{
+    let data=await fetch('/bgetData?addAddress=true',{
         method:'GET',
         headers:{
             'content-Type':'application/json',
@@ -119,7 +119,7 @@ async function value(){
 
     const cookies = new Cookies();
     const token = cookies.get("token");
-    let result = await fetch("/createRoom", {
+    let result = await fetch("/bcreateRoom", {
       method: "post",
       body: JSON.stringify({ formData }),
       headers: {

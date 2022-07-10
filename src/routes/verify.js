@@ -9,7 +9,7 @@ const {
     generateotp,
   } = require("../functionFile/functions");
   
-Router.post('/verifyEmail',async(req,res)=>{
+Router.post('/bverifyEmail',async(req,res)=>{
     try {
         const {email}=req.body.forgetFormData
         const result =userDetails.findOne({email})
@@ -49,7 +49,7 @@ Router.post('/verifyEmail',async(req,res)=>{
         res.send({err:"Try After Some Time"})
     }
 })
-Router.post('/verifyotp',async(req,res)=>{
+Router.post('/bverifyotp',async(req,res)=>{
     try {
         const {email,otp}=req.body.forgetFormData
         const result=await verifyuser.findOne({email:email})
@@ -78,7 +78,7 @@ Router.post('/verifyotp',async(req,res)=>{
         res.send({err:"Try After Some Time"})
     }
 })
-Router.patch('/updatePassword',async(req,res)=>{
+Router.patch('/bupdatePassword',async(req,res)=>{
     try {
         const {email,password}=req.body.forgetFormData
         const hash_password=await bcryptjs.hash(password,10)

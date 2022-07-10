@@ -46,7 +46,7 @@ const Signup = () => {
       if (validate(signupFormData.email)) {
         if (signupFormData.password === signupFormData.conformPassword) {
           if (signupFormData.isValidPassWord) {
-            let result = await fetch("/signup", {
+            let result = await fetch("/bsignup", {
               method: "post",
               body: JSON.stringify({ signupFormData }),
               headers: {

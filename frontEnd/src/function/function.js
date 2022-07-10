@@ -9,7 +9,7 @@ const Tokenvarify=async(props)=>{
             const token=cookies.get('token')
 
             console.log(`call api`)
-            let result= await fetch('tokenvarify',{
+            let result= await fetch('btokenvarify',{
                 method:'GET',
                 headers:{
                     'content-Type':'application/json',

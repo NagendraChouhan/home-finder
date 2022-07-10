@@ -33,7 +33,7 @@ const ForgetPassword = () => {
             console.log(`forgetFormData.verifyEmail ${forgetFormData.verifyEmail}`)
             console.log(`forgetFormData.isValidPassWord ${forgetFormData.isValidPassWord}`)
             if(!forgetFormData.isValidPassWord){
-                var result=await fetch(forgetFormData.verifyEmail?'/verifyotp':'/verifyEmail',{
+                var result=await fetch(forgetFormData.verifyEmail?'/bverifyotp':'/bverifyEmail',{
                     method:"POST",
                     body:JSON.stringify({forgetFormData}),
                     headers:{
@@ -64,7 +64,7 @@ const ForgetPassword = () => {
             else{
                 if (forgetFormData.password === forgetFormData.conformPassword) {
                     if (forgetFormData.isValidPassWord) {
-                      let result = await fetch("/updatePassword", {
+                      let result = await fetch("/bupdatePassword", {
                         method: "patch",
                         body: JSON.stringify({ forgetFormData }),
                         headers: {

@@ -10,7 +10,7 @@ const Rooms = () => {
     async function value(){
 
         console.log(`useEffect`)
-        let data=await fetch('/rooms',{
+        let data=await fetch('/brooms',{
             method:'GET',
             headers:{
                 'content-Type':'application/json',
