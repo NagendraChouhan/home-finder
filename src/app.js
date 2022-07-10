@@ -1,6 +1,7 @@
 require('dotenv').config()
 const express = require('express');
 const app = express();
+const path = require('path');
 const cors = require('cors');
 require('./database/connection');
 const bcryptjs = require('bcryptjs');
