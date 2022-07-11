@@ -43,7 +43,7 @@ const userSchema = mongoose.Schema({
 userSchema.methods.generateToten= async function(){
     try {
         console.log("generateToten");
-        const token=jwt.sign({_id:this._id.toString()},process.env.JWT_TOKEN);
+        const token=await jwt.sign({_id:this._id.toString()},process.env.JWT_TOKEN);
         console.log("token==="+token);
 
         this.tokens=this.tokens.concat({token:token});
