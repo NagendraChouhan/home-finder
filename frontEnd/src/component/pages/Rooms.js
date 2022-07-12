@@ -1,6 +1,7 @@
 import Block from "../Block"
 import img from "../../logo.svg";
 import React, { useEffect } from 'react';
+import FilterDiv from '../FilterDiv'
 
 const Rooms = () => {
     useEffect(()=>{
@@ -25,13 +26,32 @@ const Rooms = () => {
         console.log(`data.result.length===${data.length}`)
         
     }
+    let [styleValue,setStyleValue]=React.useState({
+        filterDiv:"none",
+        marginDiv:"10px"
+    })
+    const handleOnClick=()=>{
+    console.log("onClick")
+    styleValue.filterDiv==="none"?setStyleValue((preValue)=>({...preValue,filterDiv:"grid"})):setStyleValue((preValue)=>({...preValue,filterDiv:"none"}))
+    styleValue.marginDiv==="330px"?setStyleValue((preValue)=>({...preValue,marginDiv:"10px"})):setStyleValue((preValue)=>({...preValue,marginDiv:"330px"}))
+
+  }
     return (
         <>
-        
-            <div className="room-container">
-                {blockData.map((data)=>{
-                    return <Block imgValue={img} price={data.price} id={data._id} key={data._id}location="Mandsaur"   rating="5" />
-                })}
+            <div className="room-div-main">
+                <div >
+                <div>
+                    <span className="toggle-button" onClick={handleOnClick}>Filter</span>
+                </div>
+                <div style={{display:styleValue.filterDiv}} className="filter-div">
+                    <FilterDiv/>
+                </div>
+                </div>
+                <div style={{marginLeft:styleValue.marginDiv}}className="room-container">
+                    {blockData.map((data)=>{
+                        return <Block imgValue={img} price={data.price} id={data._id} key={data._id}location="Mandsaur"   rating="5" />
+                    })}
+                </div>
             </div>
         </>
     )

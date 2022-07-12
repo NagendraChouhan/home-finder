@@ -15,18 +15,40 @@ Router.post('/',async(req,res)=>{
     try {
         console.log(`from CreateRoom=====${JSON.stringify(req.body.formData)}`);
         const token=req.headers.token
-        const { roomtype, otherThingsAvailable, price, securityCharge, numberOfSameRoom,area,country,state,district,houseNo,colony,landmark,pinCode,addressIdRadio, pg, Bed, Table, Almirah, wifi, packing, Ventilation, Boys, Girls, Famaly, images } = req.body.formData
+        const { roomtype, otherThingsAvailable, price, securityCharge, numberOfSameRoom,area,country,state,district,houseNo,colony,landmark,pinCode,addressIdRadio, pg, Bed, Table, Almirah, wifi, packing, Ventilation, Boys, Girls, Famaly, images,addAddress } = req.body.formData
         console.log(`image1`);
-        for(let i=0;i<images.length;i++){
-            const imageRef= ref(storage,`img/${images[i]+v4()}`)
-            console.log(`image2  imageRef==${imageRef}`);
+        // for(let i=0;i<images.length;i++){
+        //     const imageRef= ref(storage,`img/${images[i]+v4()}`)
+        //     console.log(`image2  imageRef==${imageRef}`);
             
-            console.log(`image3  images[${i}]==${images[i]}`);
-            const uploadImage=await uploadBytes(imageRef,images[i])
+        //     console.log(`image3  images[${i}]==${images[i]}`);
+        //     const uploadImage=await uploadBytes(imageRef,images[i])
     
-            console.log(`uploadImage====++++++======== ${uploadImage}`)
+        //     console.log(`uploadImage====++++++======== ${uploadImage}`)
+        // }
+        const tokenvarify=await jwt.verify(token,process.env.JWT_TOKEN);
+        let AddressId=addressIdRadio
+        if(addAddress){
+            const addressResult=await userDetails.findOneAndUpdate(
+                { _id: tokenvarify._id, },
+                {
+                    $push : {
+                        address :  {
+                                    country,
+                                    state,
+                                    district,
+                                    houseNo,
+                                    colony,
+                                    landmark,
+                                    pinCode
+                               } 
+                               //inserted data is the object to be inserted 
+                    }
+                }
+            );
+            const user=await userDetails.findOne({ _id: tokenvarify._id,})
+            AddressId=JSON.stringify(user.address[user.address.length-1]._id)
         }
-        const tokenvarify=await jwt.verify(token,process.env.JWT_TOKEN);;
         const newCreateRoomDetails= new CreateRoomDetails({
             id:tokenvarify._id,
             roomtype,
@@ -35,7 +57,7 @@ Router.post('/',async(req,res)=>{
             securityCharge,
             numberOfSameRoom,
             area,
-            addressIdRadio,            
+            addressIdRadio:AddressId,            
             pg,
             Bed,
             Table,
@@ -47,27 +69,10 @@ Router.post('/',async(req,res)=>{
             Girls,
             Famaly,
         })
-        const result= await newCreateRoomDetails.save()
+        // const result= await newCreateRoomDetails.save()
         console.log(`result from createRoom ====######===== ${result}`)
-        const addressResult=await userDetails.updateOne(
-            { _id: tokenvarify._id, },
-            {
-                $push : {
-                    address :  {
-                                country,
-                                state,
-                                district,
-                                houseNo,
-                                colony,
-                                landmark,
-                                pinCode
-                           } //inserted data is the object to be inserted 
-                }
-            }
-        );
-        res.send({result:result})
-
-        
+       
+       res.send({result:result})   
     } catch (error) {
         console.log("error from CreateRoom=" + error);
         res.send({err:"Try After Some Time"});
