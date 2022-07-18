@@ -6,6 +6,8 @@ import aboutImg from "../../olga-serjantu-tqkDGqPW8Vo-unsplash.jpg";
 import aboutImg1 from "../../christin-hume-Hcfwew744z4-unsplash.jpg";
 import aboutImg2 from "../../christin-hume-hBuwVLcYTnA-unsplash.jpg";
 import aboutImg3 from "../../kobu-agency-7okkFhxrxNw-unsplash.jpg";
+import findImage from "../../pexels-cottonbro-4065624.jpg"
+import registerImage from "../../pexels-sevenstorm-juhaszimrus-704767.jpg"
 
 
 const Home = () => {
@@ -22,7 +24,7 @@ const Home = () => {
           <div className="img-div">
             <img src={img} alt="img" />
             <div className="centered">
-              Find Your <span>Dream Room</span>
+              Find Your <span>Dream Home</span>
             </div>
           </div>
         </div>
@@ -34,15 +36,15 @@ const Home = () => {
             <div className="room-container" style={roomContainerCSS}>
               <Block imgValue={img} display="true" texts="Zero Commission" />
               <Block
-                imgValue={img} display="true"texts="Register Your Room In " texts2="3 Easy Step "
+                imgValue={registerImage} display="true"texts="Register Your Home In " texts2="3 Easy Step "
               />
-              <Block imgValue={img} display="true" texts="Find Rooms Online" />
+              <Block imgValue={findImage} display="true" texts="Find Your Home Online" />
             </div>
           </div>
         </section>
         <HomeBlock 
             heading="About" 
-            content="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic provident, necessitatibus nesciunt laudantium nemo praesentium rem iste illum vero cupiditate? Assumenda voluptatem corrupti accusamus eius voluptate quidem molestiae ipsam corporis!"
+            content="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic provident, necessitatibus nesciunt laudantium nemo praesentium rem iste illum vero cupiditate?"
             img={aboutImg}
           />
           <HomeBlock 

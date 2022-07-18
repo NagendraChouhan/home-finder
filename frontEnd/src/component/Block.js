@@ -21,9 +21,10 @@ const Block = (props) => {
     }
     const navigate=useNavigate()
     const handleOnClick=(_id)=>{    
-
-        navigate(`/blockDetails?id=${_id}`)
-        console.log(`onClick==${_id}`)
+        if(_id!==undefined){
+            navigate(`/blockDetails?id=${_id}`)
+            console.log(`onClick==${_id}`)
+        }
     }
     return (
         <>
