@@ -182,7 +182,7 @@ form input [type=number],[type=text],[type=file],select
     display: grid;
     /* box-shadow: 2px 2px 13px grey; */
     border: 1px solid lightgrey;
-    margin: 2%;
+    margin: 6% 3%;
     padding-bottom: 2%;
     font-size: 20px;
     border-radius: 5px;
@@ -190,21 +190,28 @@ form input [type=number],[type=text],[type=file],select
     justify-content: center;
 }
 .block-div img{
-    width: 250px;
-    height: 180px;
+    width: 100%;
+    /* height: 180px; */
     margin: auto;
 }
+.location{
+    font-size: larger;
+    margin: 5% 4% 5% 7%;
+    text-align: left;
+}
 .block-value-div{
-    display: grid;
-    justify-content: center;
-    padding: 2px 15px;
-    margin-top: 7px;
+    display: flex;
+    justify-content: space-between;
+    padding: 3px 3px;
+    margin: 0px 30px;
+    border-top: 1px solid;
+    font-size: xx-large;
 }
 
 .room-container{
     margin-left: 330px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px,1fr));
+    grid-template-columns: repeat(auto-fill, minmax(380px,1fr));
     padding: 1%;
     overflow: auto;
     justify-items: center;
@@ -273,8 +280,80 @@ form input [type=number],[type=text],[type=file],select
 
 tr:nth-child(even) {
     background-color: #b6b6b6;
-  }
+}
 
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  .switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+.edit-div{
+    margin: 13% 5% 10% 10%;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    cursor: pointer;
+    /* border: 2px solid gray; */
+    padding: 5%;
+    box-shadow: 0px 0px 10px blue;
+    border-radius: 30px;
+    width: 50%;
+    content: "Edit"
+}
 /* css for dashboard end here*/
 
 /* css for room create start here*/
@@ -853,7 +932,7 @@ hr{
         border: none;
     }
     
-    .room-container{
+    .room-container-home{
         margin: 10px !important;
     }
     .room-div-main{
@@ -869,12 +948,26 @@ hr{
         display: inline;
     }
 }
-@media screen and (max-width:590px){
-.room-container
+@media screen and (max-width:610px){
+    .room-container-home
     {
         justify-content: flex-start !important;
         display: flex !important;
         flex-wrap: nowrap !important;
+    }
+    .section-container>.section-div>.div-container>.heading-div{
+        margin: 10% 1% 0% 1%;
+    }
+    .section-container>.section-div>.div-container>.img-div{
+        display: flex;
+        margin: 0% 1% 0% 1%;
+        flex-direction: column-reverse !important;
+    }
+    .section-container>.section-div>.div-container>.img-div>.about-div{
+        width:auto;
+    }
+    .section-container>.section-div>.div-container>.img-div>img{
+        width: 100%;
     }
 }
 @media screen and (max-width:500px){
@@ -897,20 +990,6 @@ hr{
             width: 90%;
         }
 
-        .section-container>.section-div>.div-container>.heading-div{
-            margin: 10% 1% 0% 1%;
-        }
-        .section-container>.section-div>.div-container>.img-div{
-            display: flex;
-            margin: 0% 1% 0% 1%;
-            flex-direction: column-reverse !important;
-        }
-        .section-container>.section-div>.div-container>.img-div>.about-div{
-            width:auto;
-        }
-        .section-container>.section-div>.div-container>.img-div>img{
-            width: 100%;
-        }
 }
 @media screen and (max-width:470px) {
     .image{
@@ -925,6 +1004,13 @@ hr{
 @media (max-width:470px){
     .dialog{
         display: none !important;
+    }
+    .room-container{
+        grid-template-columns: repeat(auto-fill, minmax(240px,1fr));
+    }
+    .block-value-div{
+        margin: 0px 12px;
+    font-size: larger;
     }
 }
 

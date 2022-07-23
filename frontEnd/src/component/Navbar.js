@@ -32,6 +32,11 @@ const Navbar = () => {
         console.log(`result from navbar ===${result}`)
     }
     // tokenvarify('/login')
+
+
+  
+        //var w = window.innerWidth;
+  
     return (
         <header>
             <nav className='nav-bar'>

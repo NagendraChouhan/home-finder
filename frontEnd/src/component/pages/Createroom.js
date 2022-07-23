@@ -17,11 +17,14 @@ const CreateRoom = () => {
     colony: "",
     landmark: "",
     pinCode: "",
-    addressIdRadio:"",
+    addressIdRadio: "",
+    Bed: 0,
+    Table: 0,
+    Almirah: 0,
     pg: false,
-    Bed: false,
-    Table: false,
-    Almirah: false,
+    checkboxBed: false,
+    checkboxTable: false,
+    checkboxAlmirah: false,
     wifi: false,
     packing: false,
     Ventilation: false,
@@ -33,29 +36,29 @@ const CreateRoom = () => {
     images: [],
     addAddress: false,
   });
-  const [availableAddress,setAvailableAddress]=React.useState([])
-  useEffect(()=>{
-    value()
-},[])
-async function value(){
-
-    console.log(`useEffect`)
-    const cookies=new Cookies()
-    const token=cookies.get('token')
-    let data=await fetch('/bgetData?addAddress=true',{
-        method:'GET',
-        headers:{
-            'content-Type':'application/json',
-            token:token
-        }
-    })
-    data=await data.json()
+  const [availableAddress, setAvailableAddress] = React.useState([]);
+  useEffect(() => {
+    value();
+  }, []);
+  async function value() {
+    console.log(`useEffect`);
+    const cookies = new Cookies();
+    const token = cookies.get("token");
+    let data = await fetch("/bgetData?addAddress=true", {
+      method: "GET",
+      headers: {
+        "content-Type": "application/json",
+        token: token,
+      },
+    });
+    data = await data.json();
 
     console.log(`data from value=====##########====== ${JSON.stringify(data)}`);
-    setAvailableAddress(data)
-    console.log(`data from availableAddress=====##########====== ${availableAddress}`);
-
-}
+    setAvailableAddress(data);
+    console.log(
+      `data from availableAddress=====##########====== ${availableAddress}`
+    );
+  }
 
   const handelOnChange = (event) => {
     const { name, value, type, checked } = event.target;
@@ -113,7 +116,7 @@ async function value(){
     }));
   };
 
-  const submitForm=async()=>{
+  const submitForm = async () => {
     console.log("Form is ready to submit");
     console.log(`from CreateRoom=====${JSON.stringify(formData)}`);
 
@@ -129,89 +132,88 @@ async function value(){
     });
 
     result = await result.json();
-    console.log(
-      `result from CreateRoom =====##########====== ${result}`
-    );
-  }
+    console.log(`result from CreateRoom =====##########====== ${result}`);
+  };
   const handleOnSubmit = (event) => {
     event.preventDefault();
     console.log(formData);
     console.log(formData.roomtype);
     console.log(typeof formData.roomtype);
     if (formData.roomtype !== "") {
-      if (formData.price !== "") {
-        if (formData.area !== "") {
-          if (formData.images.length >= 3) {
-            if (
-              formData.checkboxSecurityCharge &&
-              formData.securityCharge === ""
-            ) {
-              console.log("Enter Security Charge");
-            } 
-            else {
-              if (
-                formData.checkboxNumberOfSameRoom &&
-                formData.numberOfSameRoom === ""
-              ) {
-                console.log("Enter Number of Same Room You Have");
-              } 
-              else{
-                if(formData.addAddress){
-                  if(formData.country !== ""){
-                    if(formData.state !== ""){
-                      if(formData.district !== ""){
-                        if(formData.houseNo !== ""){
-                          if(formData.colony !== ""){
-                            if(formData.landmark !== ""){
-                              if(formData.pinCode !== ""){
-                                submitForm()
-                              }
-                              else{
-                                console.log("Enter pinCode");
-                              }
-                            }
-                            else{
-                              console.log("Enter landmark");
-                            }
-                          }
-                          else{
-                            console.log("Enter colony");
-                          }
-                        }
-                        else{
-                          console.log("Enter houseNo");
-                        }
-                      }
-                      else{
-                        console.log("Enter district");
-                      }
-                    }
-                    else{
-                      console.log("Enter state");
-                    }
-                  }
-                  else{
-                    console.log("Enter country");
-                  }
-                }
-                else{
-                  if(formData.addressIdRadio !==""){
-                    submitForm()
-                  }
-                  else{
-                    console.log("Select Address");
-                  }
-                }
-              }
-            }
-          } else {
-            console.log("Min 3 images requied");
-          }
-        } else {
-          console.log("Enter Area");
-        }
+      if (formData.checkboxBed && formData.Bed <= 0) {
+        console.log("Bed Value Must Be More Then 0");
       } else {
-        console.log("Enter Price");
+        if (formData.checkboxTable && formData.Table <= 0) {
+          console.log("Table Value Must Be More Then 0");
+        } else {
+          if (formData.checkboxAlmirah && formData.Almirah <= 0) {
+            console.log("Almirah Value Must Be More Then 0");
+          } else {
+            if (formData.price !== "") {
+              if (formData.area !== "") {
+                if (formData.images.length >= 3) {
+                  if (
+                    formData.checkboxSecurityCharge &&
+                    formData.securityCharge === ""
+                  ) {
+                    console.log("Enter Security Charge");
+                  } else {
+                    if (
+                      formData.checkboxNumberOfSameRoom &&
+                      formData.numberOfSameRoom === ""
+                    ) {
+                      console.log("Enter Number of Same Room You Have");
+                    } else {
+                      if (formData.addAddress) {
+                        if (formData.country !== "") {
+                          if (formData.state !== "") {
+                            if (formData.district !== "") {
+                              if (formData.houseNo !== "") {
+                                if (formData.colony !== "") {
+                                  if (formData.landmark !== "") {
+                                    if (formData.pinCode !== "") {
+                                      submitForm();
+                                    } else {
+                                      console.log("Enter pinCode");
+                                    }
+                                  } else {
+                                    console.log("Enter landmark");
+                                  }
+                                } else {
+                                  console.log("Enter colony");
+                                }
+                              } else {
+                                console.log("Enter houseNo");
+                              }
+                            } else {
+                              console.log("Enter district");
+                            }
+                          } else {
+                            console.log("Enter state");
+                          }
+                        } else {
+                          console.log("Enter country");
+                        }
+                      } else {
+                        if (formData.addressIdRadio !== "") {
+                          submitForm();
+                        } else {
+                          console.log("Select Address");
+                        }
+                      }
+                    }
+                  }
+                } else {
+                  console.log("Min 3 images requied");
+                }
+              } else {
+                console.log("Enter Area");
+              }
+            } else {
+              console.log("Enter Price");
+            }
+          }
+        }
       }
     } else {
       console.log("Select Type of Room");
@@ -231,12 +233,12 @@ async function value(){
               >
                 <option value="">Type of Room*</option>
                 <option value="Single Room">Single Room</option>
-                <option value="1 RK">1 RK</option>
-                <option value="1 BHK">1 BHK</option>
-                <option value="2 BHK">2 BHK</option>
-                <option value="2 BHK 2T">2 BHK 2T</option>
-                <option value="3 BHK 2T">3 BHK 2T</option>
-                <option value="3 BHK 3T">3 BHK 3T</option>
+                <option value="1RK">1 RK</option>
+                <option value="1BHK">1 BHK</option>
+                <option value="2BHK">2 BHK</option>
+                <option value="2BHK2T">2 BHK 2T</option>
+                <option value="3BHK2T">3 BHK 2T</option>
+                <option value="3BHK3T">3 BHK 3T</option>
               </select>
               <div className="form-div">
                 <label>
@@ -254,31 +256,58 @@ async function value(){
                 <label>
                   <input
                     type="checkbox"
-                    name="Bed"
-                    checked={formData.Bed}
+                    name="checkboxBed"
+                    checked={formData.checkboxBed}
                     onChange={handelOnChange}
                   />
                   Bed
                 </label>
+                {formData.checkboxBed && (
+                  <input
+                    type="number"
+                    name="Bed"
+                    value={formData.Bed}
+                    placeholder="Enter Number of Bed*"
+                    onChange={handelOnChange}
+                  />
+                )}
 
                 <label>
                   <input
                     type="checkbox"
-                    name="Table"
-                    checked={formData.Table}
+                    name="checkboxTable"
+                    checked={formData.checkboxTable}
                     onChange={handelOnChange}
                   />
                   Table
                 </label>
+                {formData.checkboxTable && (
+                  <input
+                    type="number"
+                    name="Table"
+                    value={formData.Table}
+                    placeholder="Enter Number of Table*"
+                    onChange={handelOnChange}
+                  />
+                )}
                 <label>
                   <input
                     type="checkbox"
-                    name="Almirah"
-                    checked={formData.Almirah}
+                    name="checkboxAlmirah"
+                    checked={formData.checkboxAlmirah}
                     onChange={handelOnChange}
                   />
                   Almirah
                 </label>
+                {formData.checkboxAlmirah && (
+                  <input
+                    type="number"
+                    name="Almirah"
+                    value={formData.Almirah}
+                    placeholder="Enter Number of Almirah*"
+                    onChange={handelOnChange}
+                  />
+                )}
                 <label>
                   <input
                     type="checkbox"
@@ -417,9 +446,11 @@ async function value(){
                 <div>{renderImges(formData.images)}</div>
               </div>
               <button type="button" onClick={handleOnClick}>
-                {formData.addAddress?"Select From Available Address":"Add New Address"}
+                {formData.addAddress
+                  ? "Select From Available Address"
+                  : "Add New Address"}
               </button>
-              {formData.addAddress? 
+              {formData.addAddress ? (
                 <div className="address-div">
                   <label>
                     Country
@@ -428,7 +459,6 @@ async function value(){
                       name="country"
                       placeholder="Enter Country"
                       value={formData.country}
-                      
                       onChange={handelOnChange}
                     />
                   </label>
@@ -439,7 +469,6 @@ async function value(){
                       name="state"
                       placeholder="Enter State"
                       value={formData.state}
-                      
                       onChange={handelOnChange}
                     />
                   </label>
@@ -450,7 +479,6 @@ async function value(){
                       name="district"
                       placeholder="Enter District"
                       value={formData.district}
-                      
                       onChange={handelOnChange}
                     />
                   </label>
@@ -460,7 +488,6 @@ async function value(){
                       type="text"
                       name="houseNo"
                       placeholder="Enter House Number"
-                      
                       value={formData.houseNo}
                       onChange={handelOnChange}
                     />
@@ -471,7 +498,6 @@ async function value(){
                       type="text"
                       name="colony"
                       placeholder="Enter Colony Name"
-                      
                       value={formData.colony}
                       onChange={handelOnChange}
                     />
@@ -482,7 +508,6 @@ async function value(){
                       type="text"
                       name="landmark"
                       placeholder="Ex.- Near to Scholl,Collage,garden, et.c"
-                      
                       value={formData.landmark}
                       onChange={handelOnChange}
                     />
@@ -495,28 +520,44 @@ async function value(){
                       placeholder="Enter Pin Code"
                       title="Only use Number"
                       value={formData.pinCode}
-                      
                       onChange={handelOnChange}
                     />
                   </label>
-                  
+
                   <button id="addsubbtn" type="submit">
                     Add Address
                   </button>
-                </div>:availableAddress.map((data)=>{
-                  return <label key={data._id}><input type="radio" name="addressIdRadio" value={data._id} onChange={handelOnChange}/>
-                    <p>
-                      <span>{data.country}</span><br/>
-                      <span>{data.state}</span><br/>
-                      <span>{data.district}</span><br/>
-                      <span>{data.houseNo}</span><br/>
-                      <span>{data.colony}</span><br/>
-                      <span>{data.landmark}</span><br/>
-                      <span>{data.pinCode}</span><br/>
-                    </p>
-                  </label>
+                </div>
+              ) : (
+                availableAddress.map((data) => {
+                  return (
+                    <label key={data._id}>
+                      <input
+                        type="radio"
+                        name="addressIdRadio"
+                        value={data._id}
+                        onChange={handelOnChange}
+                      />
+                      <p>
+                        <span>{data.country}</span>
+                        <br />
+                        <span>{data.state}</span>
+                        <br />
+                        <span>{data.district}</span>
+                        <br />
+                        <span>{data.houseNo}</span>
+                        <br />
+                        <span>{data.colony}</span>
+                        <br />
+                        <span>{data.landmark}</span>
+                        <br />
+                        <span>{data.pinCode}</span>
+                        <br />
+                      </p>
+                    </label>
+                  );
                 })
-              }
+              )}
               <div className="button-div">
                 <button type="submit">submit</button>
               </div>

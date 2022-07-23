@@ -10,7 +10,15 @@ const CreateRoom= new mongoose.Schema({
     roomtype: {
         type:String,
         require:true
-    },    
+    },  
+    bedrooms : {
+        type:Number,
+        require:true
+    },
+    bathrooms : {
+        type:Number,
+        require:true
+    },  
     price : {
         type:Number,
         require:true
@@ -40,15 +48,15 @@ const CreateRoom= new mongoose.Schema({
         require:true
     },
     Bed: {
-        type:Boolean,
+        type:Number,
         require:true
     },
     Table: {
-        type:Boolean,
+        type:Number,
         require:true
     },
     Almirah: {
-        type:Boolean,
+        type:Number,
         require:true
     },
     Ventilation: {
@@ -83,6 +91,10 @@ const CreateRoom= new mongoose.Schema({
         type:Date,
         default: Date.now
     },
+    roomstatus:{
+        type:Boolean,
+        required:true
+    }
 })
 
 

@@ -1,13 +1,17 @@
 import Block from "../Block"
 import img from "../../logo.svg";
+import img1 from "../../interior-2685521_960_720.jpg";
+
 import React, { useEffect } from 'react';
 import FilterDiv from '../FilterDiv'
 
 const Rooms = () => {
+    
     useEffect(()=>{
         value()
     },[])
     const [blockData,setBlockData]=React.useState([])
+
     async function value(){
 
         console.log(`useEffect`)
@@ -30,6 +34,11 @@ const Rooms = () => {
         filterDiv:"none",
         marginDiv:"10px"
     })
+
+    const setBlockDatafun=(data)=>{
+        setBlockData(data)
+    }
+
     const handleOnClick=()=>{
     console.log("onClick")
     styleValue.filterDiv==="none"?setStyleValue((preValue)=>({...preValue,filterDiv:"grid"})):setStyleValue((preValue)=>({...preValue,filterDiv:"none"}))
@@ -44,12 +53,15 @@ const Rooms = () => {
                     <span className="toggle-button" onClick={handleOnClick}>Filter</span>
                 </div>
                 <div style={{display:styleValue.filterDiv}} className="filter-div">
-                    <FilterDiv/>
+                    <FilterDiv setBlockDatafun={setBlockDatafun}/>
                 </div>
                 </div>
                 <div style={{marginLeft:styleValue.marginDiv}}className="room-container">
                     {blockData.map((data)=>{
-                        return <Block imgValue={img} price={data.price} id={data._id} key={data._id}location="Mandsaur"   rating="5" />
+                        if(data.roomstatus){
+                            return <Block imgValue={img1} price={data.price} id={data._id} key={data._id}location="Mandsaur"   rating="5" />
+                        }
+                        return 
                     })}
                 </div>
             </div>

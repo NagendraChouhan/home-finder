@@ -5,18 +5,50 @@ const Block = (props) => {
     const border=props.border===undefined ?true:false
     let displaycss={}
     let displaycssimag={}
+    let homeTextCSS={}
+    let locationCSS={}
     if(!display){
         displaycss={
             minWidth: "auto",
             boxShadow: "0px 0px 15px grey"
         }
         displaycssimag={
-            margin:"unset"
+            margin:"unset",
+            width:'250px',
+            height:'180px'
+        }
+        homeTextCSS={
+            display: 'grid',
+            justifyContent: 'center',
+            padding: '2px 15px',
+            marginTop: '7px',
+            margin: '0px',
+            borderTop: 'none',
+            fontSize: 'revert'
         }
     }
     if(!border){
         displaycss={
             border:"none"
+        }
+        displaycssimag={
+            margin:"unset",
+            width:'250px',
+            height:'180px'
+        }
+        locationCSS={
+            fontSize: 'large',
+            margin: '5% 0% 0% 0%',
+            textAlign: 'center'
+        }
+        homeTextCSS={
+            display: 'grid',
+            justifyContent: 'center',
+            padding: '2px 15px',
+            marginTop: '7px',
+            margin: '0px',
+            borderTop: 'none',
+            fontSize: 'revert'
         }
     }
     const navigate=useNavigate()
@@ -29,10 +61,10 @@ const Block = (props) => {
     return (
         <>
             <div className="block-div" style={displaycss} onClick={()=>handleOnClick(props.id)}>
-                <img src={props.imgValue} alt="Room Image" style={displaycssimag} />
-                <div className="block-value-div">
+                <img  src={props.imgValue} alt="Room Image" style={displaycssimag} />
+                {display &&<span style={locationCSS} className='location'><b>{props.location}</b></span>}
+                <div className="block-value-div" style={homeTextCSS}>
                     {display &&<span><b>Rs-{props.price}</b></span>}
-                    {display &&<span><b>{props.location}</b></span>}
                     {!display &&<span><b>{props.texts}<br/>{props.texts2}</b></span>}
                     {display &&<span style={{ color: "grey" }}>Rating {props.rating}</span>}
                 </div>

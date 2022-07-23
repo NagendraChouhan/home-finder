@@ -33,7 +33,7 @@ const Home = () => {
                         padding: "5% 0%"
                       }}
           >
-            <div className="room-container" style={roomContainerCSS}>
+            <div className="room-container room-container-home" style={roomContainerCSS}>
               <Block imgValue={img} display="true" texts="Zero Commission" />
               <Block
                 imgValue={registerImage} display="true"texts="Register Your Home In " texts2="3 Easy Step "
@@ -44,7 +44,7 @@ const Home = () => {
         </section>
         <HomeBlock 
             heading="About" 
-            content="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic provident, necessitatibus nesciunt laudantium nemo praesentium rem iste illum vero cupiditate?"
+            content="It is best platform which helps you to find your dream home online by an easy going process and avoiding unnecessary and hactic process to knok each and every door."
             img={aboutImg}
           />
           <HomeBlock 

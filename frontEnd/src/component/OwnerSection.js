@@ -1,11 +1,11 @@
 import React from "react";
 
-const OwnerSection = () => {
+const OwnerSection = (props) => {
   return (
     <section className="owner-section">
       <div className="owner-div-container">
-        <h2>Name</h2>
-        <h1>Number</h1>
+        <h2>{props.name}</h2>
+        <h1>{props.email}</h1>
         <form action="" className="contact-form">
           <div className="contact-form-inputBox">
             <input style={{ width: "280px" }} type="text" placeholder="name" />

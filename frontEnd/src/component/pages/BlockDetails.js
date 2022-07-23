@@ -22,7 +22,9 @@ const BlockDetails = (props) => {
   }, []);
   const roomId = new URLSearchParams(useLocation().search).get("id");
   //roomIs is an createRoomModel _id
-  const [roomData, setRoomData] = React.useState();
+  const [roomData, setRoomData] = React.useState({});
+  const [userDetails, setuserDetails] = React.useState({});
+  
   const getData = async () => {
     console.log(`roomId===${roomId}`);
     console.log(`useEffect`);
@@ -35,12 +37,13 @@ const BlockDetails = (props) => {
     data = await data.json();
 
     setRoomData(data);
-    console.log(`data===== ${JSON.stringify(data)}`);
+    // console.log(`data===== ${JSON.stringify(data)}`);
+    // console.log(`data===== ${JSON.stringify(data)}`);
     const userId = data.id;
     const addressIdRadio = data.addressIdRadio;
-    console.log(`userId====${userId}`);
-    console.log(`addressIdRadio====${addressIdRadio}`);
-    let address = await fetch(
+    // console.log(`userId====${userId}`);
+    // console.log(`addressIdRadio====${addressIdRadio}`);
+    let userDetails = await fetch(
       `/bgetData/addressData?userId=${userId}&addressIdRadio=${addressIdRadio}`,
       {
         method: "GET",
@@ -50,8 +53,9 @@ const BlockDetails = (props) => {
       }
     );
 
-    address = await address.json();
-    console.log(`address from blockDetails====${JSON.stringify(address)}`);
+    userDetails = await userDetails.json();
+    setuserDetails(userDetails)
+    console.log(`userDetails from blockDetails====${JSON.stringify(userDetails)}`);
   };
 
   const mouseover_fun = (e) => {
@@ -139,21 +143,21 @@ const BlockDetails = (props) => {
               <div className="BlockDetails-detail-div">
                 <h1>Name of House</h1>
                 <span>Place Name</span>
-                <h2>Price Of Property</h2>
-                <span>Area Of Property</span>
+                <h2>Rs-{roomData.price}</h2>
+                <span>{roomData.area} sqrt</span>
               </div>
             </div>
             <section className="box-section">
               <div className="box-div-container">
-                <DetailBox icon="LOGO" item="area" value="811sqft" />
-                <DetailBox icon="LOGO" item="Bedrooms" value="3" />
-                <DetailBox icon="LOGO" item="Bathrooms" value="2" />
-                <DetailBox icon="LOGO" item="Beds" value="1" />
+                <DetailBox icon="LOGO" item="area" value={`${roomData.area} sqrt`} />
+                <DetailBox icon="LOGO" item="Bedrooms" value={roomData.bedrooms} />
+                <DetailBox icon="LOGO" item="Bathrooms" value={roomData.bathrooms} />
+                <DetailBox icon="LOGO" item="Beds" value={roomData.Bed} />
               </div>
             </section>
           </div>
           <section className="owner-section-top">
-            <OwnerSection />
+            <OwnerSection name={userDetails.name} email={userDetails.email}/>
           </section>
         </div>
 
@@ -163,37 +167,37 @@ const BlockDetails = (props) => {
               <h2>Details</h2>
               <div className="category top-category">
                 <div className="sub-category">
-                  <CategoryBox item="Property Type:" value="Value" />
-                  <CategoryBox item="price:" value="Value" />
-                  <CategoryBox item="Security Charge:" value="Value" />
-                  <CategoryBox item="PG:" value="Value" />
-                  <CategoryBox item="Area:" value="Value" />
-                  <CategoryBox item="Bed:" value="Value" />
+                  <CategoryBox item="Property Type:" value={roomData.roomtype} />
+                  <CategoryBox item="price:" value={roomData.price} />
+                  <CategoryBox item="Security Charge:" value={roomData.securityCharge==null?"Null":roomData.securityCharge} />
+                  <CategoryBox item="PG:" value={roomData.pg===true?"Yes":"No"} />
+                  <CategoryBox item="Area:" value={`${roomData.area} sqrt`} />
+                  <CategoryBox item="Bed:" value={roomData.Bed} />
                 </div>
                 <div className="sub-category">
-                  <CategoryBox item="Table:" value="Value" />
-                  <CategoryBox item="Almirah:" value="Value" />
+                  <CategoryBox item="Table:" value={roomData.Table} />
+                  <CategoryBox item="Almirah:" value={roomData.Almirah} />
 
-                  <CategoryBox item="Wifi:" value="Value" />
-                  <CategoryBox item="Packing:" value="Value" />
-                  <CategoryBox item="Ventilation:" value="Value" />
+                  <CategoryBox item="Wifi:" value={roomData.wifi===true?"Yes":"No"} />
+                  <CategoryBox item="Packing:" value={roomData.packing===true?"Yes":"No"} />
+                  <CategoryBox item="Ventilation:" value={roomData.Ventilation==true?"Yes":"No"} />
                 </div>
               </div>
               <h2>Available For</h2>
               <div className="category">
-                <CategoryBox item="Boys:" value="Value" />
-                <CategoryBox item="Girls:" value="Value" />
-                <CategoryBox item="Famaly:" value="Value" />
+                <CategoryBox item="Boys:" value={roomData.Boys===true?"Yes, It is available for Boys":"No"} />
+                <CategoryBox item="Girls:" value={roomData.Girls===true?"Yes, It is available for Girls":"No"} />
+                <CategoryBox item="Famaly:" value={roomData.Famaly===true?"Yes, It is available for Famaly":"No"} />
               </div>
               <h2>Location</h2>
               <div className="category">
-                <span>country</span>
-                <span>state</span>
-                <span>district</span>
-                <span>houseNo</span>
-                <span>colony</span>
-                <span>landmark</span>
-                <span>pinCode</span>
+                <span>{userDetails.country}</span>
+                <span>{userDetails.houseNo}</span>
+                <span>{userDetails.colony},</span>
+                <span>{userDetails.district}</span>
+                <span>Near {userDetails.landmark}</span>
+                <span>{userDetails.pinCode}</span>
+                <span>{userDetails.state}</span>
               </div>
             </div>
           </div>
@@ -220,7 +224,7 @@ const BlockDetails = (props) => {
         </div>
       </section>
       <section className="owner-section-down">
-        <OwnerSection />
+        <OwnerSection name={userDetails.name} email={userDetails.email}/>
       </section>
       <section className="section-review">
         <h2>Review</h2>

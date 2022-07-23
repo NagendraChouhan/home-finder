@@ -49,9 +49,44 @@ Router.post('/',async(req,res)=>{
             const user=await userDetails.findOne({ _id: tokenvarify._id,})
             AddressId=JSON.stringify(user.address[user.address.length-1]._id)
         }
+        let bedroomsVlaue=0
+        let bathroomsVlaue=1
+        console.log(`roomtype==${roomtype}`)
+        if(roomtype==='1BHK'){
+            bedroomsVlaue=1
+            console.log(`bedroomsVlaue==${bedroomsVlaue}`)
+            console.log(`bathroomsVlaue==${bathroomsVlaue}`)
+        }
+        else if(roomtype==='2BHK'){
+            bedroomsVlaue=2
+            console.log(`bedroomsVlaue==${bedroomsVlaue}`)
+            console.log(`bathroomsVlaue==${bathroomsVlaue}`)
+        }
+        else if(roomtype==='2BHK2T'){
+            bedroomsVlaue=2
+            bathroomsVlaue=2
+            console.log(`bedroomsVlaue==${bedroomsVlaue}`)
+            console.log(`bathroomsVlaue==${bathroomsVlaue}`)
+        }
+        else if(roomtype==='3BHK2T'){
+            bedroomsVlaue=3
+            bathroomsVlaue=2
+            console.log(`bedroomsVlaue==${bedroomsVlaue}`)
+            console.log(`bathroomsVlaue==${bathroomsVlaue}`)
+        }
+        else if(roomtype==='3BHK3T'){
+            bedroomsVlaue=3
+            bathroomsVlaue=3
+            console.log(`bedroomsVlaue==${bedroomsVlaue}`)
+            console.log(`bathroomsVlaue==${bathroomsVlaue}`)
+        }
+            console.log(`bedroomsVlaue==${bedroomsVlaue}`)
+            console.log(`bathroomsVlaue==${bathroomsVlaue}`)
         const newCreateRoomDetails= new CreateRoomDetails({
             id:tokenvarify._id,
             roomtype,
+            bedrooms:bedroomsVlaue,
+            bathrooms:bathroomsVlaue,
             otherThingsAvailable,
             price,
             securityCharge,
@@ -68,12 +103,39 @@ Router.post('/',async(req,res)=>{
             Boys,
             Girls,
             Famaly,
+            roomstatus:true,
         })
-        // const result= await newCreateRoomDetails.save()
+        const result= await newCreateRoomDetails.save()
         console.log(`result from createRoom ====######===== ${result}`)
        
        res.send({result:result})   
     } catch (error) {
+        console.log("error from CreateRoom=" + error);
+        res.send({err:"Try After Some Time"});
+    }
+})
+Router.put('/update',async(req,res)=>{
+    try {
+        console.log(`from /bcreateRoom/update`)
+        
+        const token=req.headers.token
+        const id=req.query.id
+        const roomstatus=req.query.roomstatus
+        
+        console.log(`token=${token}`)
+        console.log(`roomstatus=${roomstatus}`)
+        console.log(`id=${id}`)
+        const tokenvarify=await jwt.verify(token,process.env.JWT_TOKEN);
+        const updateCreateRoomDetails=await CreateRoomDetails.updateOne(
+            {_id:id},
+            {
+                $set:{roomstatus:roomstatus}
+            }
+        )
+        console.log(`updateCreateRoomDetails=${JSON.stringify(updateCreateRoomDetails)}`)
+        res.send({result:updateCreateRoomDetails})
+    } 
+    catch (error) { 
         console.log("error from CreateRoom=" + error);
         res.send({err:"Try After Some Time"});
     }
