@@ -31,7 +31,7 @@ const RouterCom = () => {
                 <Routes>
                     <Route path='/' element={<Home />} />
                     <Route path='/rooms' element={<Rooms />} />
-                    <Route path='/#about' element={<Home />} />
+                    {/* <Route path='/#about' element={<Home />} /> */}
                     <Route path='/contact' element={<Contact />} />
                     <Route element={<PrivateComponent></PrivateComponent>}>
                         <Route path='/profile' element={<Profile />} />
