@@ -13,6 +13,8 @@ const Signup = () => {
         if(token){
             navigate('/')
         }
+    window.scrollTo(0, 0)
+
   })
 
   const [signupFormData, setSignupFormData] = useState({

@@ -9,6 +9,8 @@ const Rooms = () => {
     
     useEffect(()=>{
         value()
+        window.scrollTo(0, 0)
+
     },[])
     const [blockData,setBlockData]=React.useState([])
 

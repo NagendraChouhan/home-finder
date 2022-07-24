@@ -13,6 +13,8 @@ const Login = () => {
         if(token){
             navigate('/')
         }
+        window.scrollTo(0, 0)
+
     })
 
     const [loginFormData, setLOginFormData] = React.useState({

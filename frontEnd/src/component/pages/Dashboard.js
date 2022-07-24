@@ -13,6 +13,8 @@ const Dashboard = () => {
   const [roomData, setRoomData] = React.useState([]);
   useEffect(() => {
     getData();
+    window.scrollTo(0, 0)
+
   }, []);
   const getData = async () => {
     const cookies = new Cookies();
@@ -59,8 +61,11 @@ const Dashboard = () => {
         getData();
         console.log(`data from dashborad ====${JSON.stringify(data)}`);
   };
-  const handleOnClickEdit=()=>{
-    navigate("/createroom");
+  const handleOnClickEdit=(_id)=>{
+    console.log(`data=${_id}`)
+    // console.log(`_id=${JSON.stringify(data)}`)
+    navigate(`/createroom?id=${_id}`);
+    //send room _id
   }
   return (
     <>
@@ -84,7 +89,6 @@ const Dashboard = () => {
               </thead>
               <tbody>
                 {roomData.map((data) => {
-                  console.log(`data.roomstatus=${data.roomstatus}`)
                   const checked=data.roomstatus
                   return (
                     <tr key={data._id}>
@@ -108,7 +112,7 @@ const Dashboard = () => {
                             />
                           <span className="slider round"></span>
                         </label>
-                        <div className="edit-div" onClick={handleOnClickEdit}>Edit</div>
+                        <div className="edit-div" onClick={()=>handleOnClickEdit(data._id)}>Edit</div>
                       </td>
                     </tr>
                   );

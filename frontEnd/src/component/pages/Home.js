@@ -42,27 +42,31 @@ const Home = () => {
             </div>
           </div>
         </section>
-        <HomeBlock 
+        <HomeBlock id="about"
             heading="About" 
-            content="It is best platform which helps you to find your dream home online by an easy going process and avoiding unnecessary and hactic process to knok each and every door."
+            content="It is best platform which helps you to find your dream home online by an easy going process and<br/>
+            Avoiding unnecessary and hactic process to knok each and every door."
             img={aboutImg}
           />
-          <HomeBlock 
+          {/* <HomeBlock 
             heading="Zero Account Charge" 
             content="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic provident, necessitatibus nesciunt laudantium nemo praesentium rem iste illum vero cupiditate? Assumenda voluptatem corrupti accusamus eius voluptate quidem molestiae ipsam corporis!"
             img={aboutImg1}
-            styleValue={true}
-          />
+            /> */}
           <HomeBlock 
             heading="Quick Account Opening" 
-            content="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic provident, necessitatibus nesciunt laudantium nemo praesentium rem iste illum vero cupiditate? Assumenda voluptatem corrupti accusamus eius voluptate quidem molestiae ipsam corporis!"
+            content="It is so easy to open your account or <br/>
+            Register your account on our platform <br/>
+            In every three easy steps you can register your home on our platform<br/> 
+            So that people can easily find your home."
             img={aboutImg2}
+            styleValue={true}
           />
           <HomeBlock 
             heading="We Are Here To Help You" 
-            content="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic provident, necessitatibus nesciunt laudantium nemo praesentium rem iste illum vero cupiditate? Assumenda voluptatem corrupti accusamus eius voluptate quidem molestiae ipsam corporis!"
+            content="In Register your Home to our Platform <br/>
+            Finding You'r Dream Home "
             img={aboutImg3}
-            styleValue={true}
           />
       </div>
     </>

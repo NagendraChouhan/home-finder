@@ -89,6 +89,7 @@ form input [type=number],[type=text],[type=file],select
     cursor: pointer;
     width: 400px;
     border-radius: 10px;
+    font-size: larger;
 }
 .contact,.login-div,.ceate-room-main-div,.profile-main-div,.create-room-main-div{
     top: 100px;
@@ -826,6 +827,11 @@ hr{
 /*BlockDetails css end here*/
 
 
+@media screen and (max-width: 980px){
+    .home-main-div>.home-div-container>.img-div>.centered{
+        bottom: 20%
+    }
+};
 
 @media screen and (max-width:900px){
     .BlockDetails-container,.review-container,.gallery-section .div_main,.BlockDetails-facility-div{
@@ -970,6 +976,12 @@ hr{
         width: 100%;
     }
 }
+@media screen and (max-width: 580px){
+    .home-main-div>.home-div-container>.img-div>.centered{    
+        font-size: xx-large;
+        font-weight: bold;
+    }
+};
 @media screen and (max-width:500px){
         .login-container input[type=text] ,[type=password],[type=email],.login-container button,.contact input[type=text] ,[type=number],[type=email],.contact textarea, .contact button, .Signup-container input[type=text],[type=password],[type=email],ul,.Signup-container button,.profile-container button,
         .forget-container input [type=number],[type=email], 
@@ -1010,9 +1022,16 @@ hr{
     }
     .block-value-div{
         margin: 0px 12px;
-    font-size: larger;
+        font-size: larger;
     }
 }
+
+@media screen and (max-width: 303px){
+    .home-main-div>.home-div-container>.img-div>.centered{
+        bottom: 15%;
+        font-size: x-large;
+    }
+};
 
 
 

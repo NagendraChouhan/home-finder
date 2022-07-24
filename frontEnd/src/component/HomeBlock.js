@@ -16,7 +16,7 @@ const HomeBlock = (props) => {
                     </div> 
                 <div className="img-div" style={imgDivCSS}>
                     <div className="about-div">
-                        <p>{props.content}</p>
+                        <p dangerouslySetInnerHTML={{__html:props.content}}></p>
                     </div>
                     <img src={props.img} style={imgCSS} alt="aboutImg"/>
                 </div>

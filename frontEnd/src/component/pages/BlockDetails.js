@@ -16,9 +16,11 @@ var BlockDetails_img_div = document.getElementsByClassName(
   "BlockDetails-img-div"
 );
 
-const BlockDetails = (props) => {
+const BlockDetails = () => {
   useEffect(() => {
     getData();
+    window.scrollTo(0, 0)
+    
   }, []);
   const roomId = new URLSearchParams(useLocation().search).get("id");
   //roomIs is an createRoomModel _id

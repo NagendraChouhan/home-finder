@@ -58,6 +58,7 @@ const Block = (props) => {
             console.log(`onClick==${_id}`)
         }
     }
+
     return (
         <>
             <div className="block-div" style={displaycss} onClick={()=>handleOnClick(props.id)}>

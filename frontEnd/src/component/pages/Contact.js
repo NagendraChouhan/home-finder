@@ -1,6 +1,8 @@
 import React from 'react';
 
 const Contact = () => {
+    window.scrollTo(0, 0)
+
     return (
         <>
             <section className="contact" id="contact">

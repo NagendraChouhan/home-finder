@@ -1,8 +1,17 @@
 import React, { useEffect } from "react";
 import addImage from "../../add-image.png";
 import { Cookies } from "react-cookie";
+import {useLocation} from "react-router-dom";
 
 const CreateRoom = () => {
+  // const { data, otherParam } = Route.params;
+  const id = new URLSearchParams(useLocation().search).get("id");
+  
+  let buttonText="Create Room"
+  if(id!==undefined && id!==null){
+    buttonText="Save"
+  }
+  console.log(` id from CreateRoom =${id}`)
   const [formData, setFormData] = React.useState({
     roomtype: "",
     otherThingsAvailable: "",
@@ -39,6 +48,11 @@ const CreateRoom = () => {
   const [availableAddress, setAvailableAddress] = React.useState([]);
   useEffect(() => {
     value();
+    if(id!==undefined && id!==null){
+      getData()
+      buttonText="Save"
+    }
+    window.scrollTo(0, 0)
   }, []);
   async function value() {
     console.log(`useEffect`);
@@ -53,11 +67,48 @@ const CreateRoom = () => {
     });
     data = await data.json();
 
-    console.log(`data from value=====##########====== ${JSON.stringify(data)}`);
+    // console.log(`data from value=====##########====== ${JSON.stringify(data)}`);
     setAvailableAddress(data);
-    console.log(
-      `data from availableAddress=====##########====== ${availableAddress}`
-    );
+    // console.log(`data from availableAddress=====##########====== ${availableAddress}`);
+  }
+  const getData = async () => {
+    console.log(`roomId===${id}`);
+    console.log(`useEffect`);
+    let data = await fetch(`/bgetData/roomDetails?roomId=${id}`, {
+      method: "GET",
+      headers: {
+        "content-Type": "application/json",
+      },
+    });
+    data = await data.json();
+    console.log(`data from getdata of createRoom=${JSON.stringify(data)}`)
+    setFormData((preValue)=>({
+      ...preValue,
+      // "_id":"62c82cc41470f0355bf5e204",
+      // "id":"62a8c4693a09045867968c22",
+      roomtype:data.roomtype,
+      price:data.price,
+      securityCharge:data.securityCharge,
+      checkboxSecurityCharge:data.securityCharge==null?false:true,
+      numberOfSameRoom:data.numberOfSameRoom,
+      checkboxNumberOfSameRoom:data.numberOfSameRoom==null?false:true,
+      area:data.area,
+      addressIdRadio:data.addressIdRadio,
+      pg:data.pg,
+      otherThingsAvailable:data.otherThingsAvailable,
+      Bed:data.Bed,
+      checkboxBed:data.Bed>0?true:false,
+      Table:data.Table,
+      checkboxTable:data.Table>0?true:false,
+      Almirah:data.Almirah,
+      checkboxAlmirah:data.Almirah>0?true:false,
+      Ventilation:data.Ventilation,
+      wifi:data.wifi,
+      packing:data.packing,
+      Boys:data.Boys,
+      Girls:data.Girls,
+      Famaly:data.Famaly,
+    }));
   }
 
   const handelOnChange = (event) => {
@@ -119,17 +170,30 @@ const CreateRoom = () => {
   const submitForm = async () => {
     console.log("Form is ready to submit");
     console.log(`from CreateRoom=====${JSON.stringify(formData)}`);
-
+    let result ;
     const cookies = new Cookies();
     const token = cookies.get("token");
-    let result = await fetch("/bcreateRoom", {
-      method: "post",
-      body: JSON.stringify({ formData }),
-      headers: {
-        "content-Type": "application/json",
-        token: token,
-      },
-    });
+    if(id!==undefined && id!==null){
+      result = await fetch("/upadtef", {
+        method: "post",
+        body: JSON.stringify({ formData }),
+        headers: {
+          "content-Type": "application/json",
+          token: token,
+        },
+      });
+    }
+    else{
+        result = await fetch("/bcreateRoom", {
+        method: "post",
+        body: JSON.stringify({ formData }),
+        headers: {
+          "content-Type": "application/json",
+          token: token,
+        },
+      });
+      
+    }
 
     result = await result.json();
     console.log(`result from CreateRoom =====##########====== ${result}`);
@@ -530,6 +594,13 @@ const CreateRoom = () => {
                 </div>
               ) : (
                 availableAddress.map((data) => {
+                  let checked=false
+                  if(formData.addressIdRadio!==""){
+                    if(data._id==formData.addressIdRadio){
+                      checked=true
+                    }
+
+                  }
                   return (
                     <label key={data._id}>
                       <input
@@ -537,6 +608,7 @@ const CreateRoom = () => {
                         name="addressIdRadio"
                         value={data._id}
                         onChange={handelOnChange}
+                        checked={checked}
                       />
                       <p>
                         <span>{data.country}</span>
@@ -559,7 +631,9 @@ const CreateRoom = () => {
                 })
               )}
               <div className="button-div">
-                <button type="submit">submit</button>
+                
+                <button type="submit">{buttonText}</button>
+                
               </div>
             </form>
           </div>

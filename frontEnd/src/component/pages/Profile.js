@@ -18,6 +18,8 @@ import {Cookies } from 'react-cookie';
     }
     useEffect(()=>{
         value()
+        window.scrollTo(0, 0)
+
     },[])
     async function value(){
 

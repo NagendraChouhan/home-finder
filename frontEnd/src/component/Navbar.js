@@ -55,7 +55,7 @@ const Navbar = () => {
                         <NavLink to='/rooms' style={styles}>Rooms</NavLink>
                     </span>
                     <span className='nav-bar-link-div-span'>
-                        <NavLink to='/about' style={styles}>About</NavLink>
+                        <NavLink to='/#about' style={styles}>About</NavLink>
                     </span>
                     <span className='nav-bar-link-div-span'>
                         <NavLink to='/contact' style={styles}>Contact</NavLink>

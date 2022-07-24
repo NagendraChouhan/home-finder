@@ -20,6 +20,7 @@ const ForgetPassword = () => {
             [name]: value
         }))
     }
+    window.scrollTo(0, 0)
     
     // const readonlyfun = () => {
     //     console.log("readonlyfun")   
