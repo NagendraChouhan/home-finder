@@ -1,4 +1,5 @@
 import Block from "../Block"
+import Footer from "../Footer";
 import img from "../../logo.svg";
 import img1 from "../../interior-2685521_960_720.jpg";
 
@@ -61,12 +62,13 @@ const Rooms = () => {
                 <div style={{marginLeft:styleValue.marginDiv}}className="room-container">
                     {blockData.map((data)=>{
                         if(data.roomstatus){
-                            return <Block imgValue={img1} price={data.price} id={data._id} key={data._id}location="Mandsaur"   rating="5" />
+                            return <Block imgValue={img1} price={data.price} id={data._id} key={data._id} location={data.district}   rating="5" />
                         }
                         return 
                     })}
                 </div>
             </div>
+            <Footer/>
         </>
     )
 }

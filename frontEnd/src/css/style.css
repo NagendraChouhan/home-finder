@@ -437,7 +437,7 @@ form{
 }
 .section-container>.section-div>.div-container>.img-div{
     display: flex;
-    margin: 0% 5% 0% 10%;
+    margin: 0% 5% 0% 5%;
     position: relative; 
     gap: 10px;
     background-color: #003a6d
@@ -450,7 +450,7 @@ form{
     /* height: 100px; */
     display: grid;
     align-items: center;
-    margin: 10% 5% 0% 10%;   
+    margin: 10% 5% 0% 5%;   
      border-bottom: 10px solid #003a6d;
     /* box-shadow: 0px 0px 6px red; */
     z-index: 2;
@@ -826,6 +826,17 @@ hr{
 
 /*BlockDetails css end here*/
 
+/*Footer CSS start here*/
+
+.footer-div{
+    background-color: black;
+    color: white;
+    margin: 20% 0% 0% 0%;
+    padding: 10% 5%;
+}
+
+/*Footer CSS end here*/
+
 
 @media screen and (max-width: 980px){
     .home-main-div>.home-div-container>.img-div>.centered{
@@ -955,6 +966,10 @@ hr{
     }
 }
 @media screen and (max-width:610px){
+    .div-container{
+        border: 1px solid #c4c4c4;
+        margin: 10% 2% 0% 2%;
+    }
     .room-container-home
     {
         justify-content: flex-start !important;
@@ -962,18 +977,26 @@ hr{
         flex-wrap: nowrap !important;
     }
     .section-container>.section-div>.div-container>.heading-div{
-        margin: 10% 1% 0% 1%;
+        margin: 0%;
+        background-color: white;
+        border-bottom: 1px solid #c4c4c4;
     }
     .section-container>.section-div>.div-container>.img-div{
         display: flex;
-        margin: 0% 1% 0% 1%;
+        margin: 3% 0% 0% 0%;
+        gap: 0px;
         flex-direction: column-reverse !important;
+        background-color: white;
     }
     .section-container>.section-div>.div-container>.img-div>.about-div{
         width:auto;
+        background-color: white;
     }
     .section-container>.section-div>.div-container>.img-div>img{
-        width: 100%;
+        width: 96%;
+        /* border:2px solid black; */
+        margin: auto;
+        border-radius: 10px;
     }
 }
 @media screen and (max-width: 580px){

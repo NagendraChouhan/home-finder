@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import logo from "../../logo.svg";
 import { useLocation } from "react-router-dom";
 import DetailBox from "../DetailBox";
+import Footer from "../Footer";
 import CategoryBox from "../CategoryBox";
 import StarRating from "../StarRating";
 import Gallery from "../Gallery";
@@ -19,14 +20,13 @@ var BlockDetails_img_div = document.getElementsByClassName(
 const BlockDetails = () => {
   useEffect(() => {
     getData();
-    window.scrollTo(0, 0)
-    
+    window.scrollTo(0, 0);
   }, []);
   const roomId = new URLSearchParams(useLocation().search).get("id");
   //roomIs is an createRoomModel _id
   const [roomData, setRoomData] = React.useState({});
   const [userDetails, setuserDetails] = React.useState({});
-  
+
   const getData = async () => {
     console.log(`roomId===${roomId}`);
     console.log(`useEffect`);
@@ -56,8 +56,10 @@ const BlockDetails = () => {
     );
 
     userDetails = await userDetails.json();
-    setuserDetails(userDetails)
-    console.log(`userDetails from blockDetails====${JSON.stringify(userDetails)}`);
+    setuserDetails(userDetails);
+    console.log(
+      `userDetails from blockDetails====${JSON.stringify(userDetails)}`
+    );
   };
 
   const mouseover_fun = (e) => {
@@ -95,211 +97,269 @@ const BlockDetails = () => {
   };
 
   return (
-    <div className="BlockDetails-main-div">
-      <div className="BlockDetails-img-main-div">
-        <div
-          className="BlockDetails-img-div"
-          style={{
-            backgroundImage: "url(" + logo + ")",
-          }}
-          onMouseOver={mouseover_fun}
-        ></div>
-        <div
-          className="BlockDetails-img-div"
-          style={{
-            backgroundImage: "url(" + logo + ")",
-          }}
-          onMouseOver={mouseover_fun}
-        ></div>
-        <div
-          className="BlockDetails-img-div"
-          style={{
-            backgroundImage: "url(" + logo + ")",
-            transition: "1.5s ease-in-out",
-            boxShadow: "2px 2px 15px 2px gray",
-            width: "50%",
-            opacity: "1",
-          }}
-          onMouseOver={mouseover_fun}
-        ></div>
-        <div
-          className="BlockDetails-img-div"
-          style={{
-            backgroundImage: "url(" + logo + ")",
-          }}
-          onMouseOver={mouseover_fun}
-        ></div>
-        <div
-          className="BlockDetails-img-div"
-          style={{
-            backgroundImage: "url(" + logo + ")",
-          }}
-          onMouseOver={mouseover_fun}
-        ></div>
-      </div>
-
-      <section className="BlockDetails-section">
-        <div className="BlockDetails-container">
-          <div className="BlockDetails-detail-container">
-            <div className="BlockDetails-detail">
-              <div className="BlockDetails-detail-div">
-                <h1>Name of House</h1>
-                <span>Place Name</span>
-                <h2>Rs-{roomData.price}</h2>
-                <span>{roomData.area} sqrt</span>
-              </div>
-            </div>
-            <section className="box-section">
-              <div className="box-div-container">
-                <DetailBox icon="LOGO" item="area" value={`${roomData.area} sqrt`} />
-                <DetailBox icon="LOGO" item="Bedrooms" value={roomData.bedrooms} />
-                <DetailBox icon="LOGO" item="Bathrooms" value={roomData.bathrooms} />
-                <DetailBox icon="LOGO" item="Beds" value={roomData.Bed} />
-              </div>
-            </section>
-          </div>
-          <section className="owner-section-top">
-            <OwnerSection name={userDetails.name} email={userDetails.email}/>
-          </section>
+    <>
+      <div className="BlockDetails-main-div">
+        <div className="BlockDetails-img-main-div">
+          <div
+            className="BlockDetails-img-div"
+            style={{
+              backgroundImage: "url(" + logo + ")",
+            }}
+            onMouseOver={mouseover_fun}
+          ></div>
+          <div
+            className="BlockDetails-img-div"
+            style={{
+              backgroundImage: "url(" + logo + ")",
+            }}
+            onMouseOver={mouseover_fun}
+          ></div>
+          <div
+            className="BlockDetails-img-div"
+            style={{
+              backgroundImage: "url(" + logo + ")",
+              transition: "1.5s ease-in-out",
+              boxShadow: "2px 2px 15px 2px gray",
+              width: "50%",
+              opacity: "1",
+            }}
+            onMouseOver={mouseover_fun}
+          ></div>
+          <div
+            className="BlockDetails-img-div"
+            style={{
+              backgroundImage: "url(" + logo + ")",
+            }}
+            onMouseOver={mouseover_fun}
+          ></div>
+          <div
+            className="BlockDetails-img-div"
+            style={{
+              backgroundImage: "url(" + logo + ")",
+            }}
+            onMouseOver={mouseover_fun}
+          ></div>
         </div>
 
-        <section className="BlockDetails-facility-section">
-          <div className="facility-container">
-            <div className="BlockDetails-facility-div">
-              <h2>Details</h2>
-              <div className="category top-category">
-                <div className="sub-category">
-                  <CategoryBox item="Property Type:" value={roomData.roomtype} />
-                  <CategoryBox item="price:" value={roomData.price} />
-                  <CategoryBox item="Security Charge:" value={roomData.securityCharge==null?"Null":roomData.securityCharge} />
-                  <CategoryBox item="PG:" value={roomData.pg===true?"Yes":"No"} />
-                  <CategoryBox item="Area:" value={`${roomData.area} sqrt`} />
-                  <CategoryBox item="Bed:" value={roomData.Bed} />
+        <section className="BlockDetails-section">
+          <div className="BlockDetails-container">
+            <div className="BlockDetails-detail-container">
+              <div className="BlockDetails-detail">
+                <div className="BlockDetails-detail-div">
+                  <h1>Name of House</h1>
+                  <span>Place Name</span>
+                  <h2>Rs-{roomData.price}</h2>
+                  <span>{roomData.area} sqrt</span>
                 </div>
-                <div className="sub-category">
-                  <CategoryBox item="Table:" value={roomData.Table} />
-                  <CategoryBox item="Almirah:" value={roomData.Almirah} />
+              </div>
+              <section className="box-section">
+                <div className="box-div-container">
+                  <DetailBox
+                    icon="LOGO"
+                    item="area"
+                    value={`${roomData.area} sqrt`}
+                  />
+                  <DetailBox
+                    icon="LOGO"
+                    item="Bedrooms"
+                    value={roomData.bedrooms}
+                  />
+                  <DetailBox
+                    icon="LOGO"
+                    item="Bathrooms"
+                    value={roomData.bathrooms}
+                  />
+                  <DetailBox icon="LOGO" item="Beds" value={roomData.Bed} />
+                </div>
+              </section>
+            </div>
+            <section className="owner-section-top">
+              <OwnerSection name={userDetails.name} email={userDetails.email} />
+            </section>
+          </div>
 
-                  <CategoryBox item="Wifi:" value={roomData.wifi===true?"Yes":"No"} />
-                  <CategoryBox item="Packing:" value={roomData.packing===true?"Yes":"No"} />
-                  <CategoryBox item="Ventilation:" value={roomData.Ventilation==true?"Yes":"No"} />
+          <section className="BlockDetails-facility-section">
+            <div className="facility-container">
+              <div className="BlockDetails-facility-div">
+                <h2>Details</h2>
+                <div className="category top-category">
+                  <div className="sub-category">
+                    <CategoryBox
+                      item="Property Type:"
+                      value={roomData.roomtype}
+                    />
+                    <CategoryBox item="price:" value={roomData.price} />
+                    <CategoryBox
+                      item="Security Charge:"
+                      value={
+                        roomData.securityCharge == null
+                          ? "Null"
+                          : roomData.securityCharge
+                      }
+                    />
+                    <CategoryBox
+                      item="PG:"
+                      value={roomData.pg === true ? "Yes" : "No"}
+                    />
+                    <CategoryBox item="Area:" value={`${roomData.area} sqrt`} />
+                    <CategoryBox item="Bed:" value={roomData.Bed} />
+                  </div>
+                  <div className="sub-category">
+                    <CategoryBox item="Table:" value={roomData.Table} />
+                    <CategoryBox item="Almirah:" value={roomData.Almirah} />
+
+                    <CategoryBox
+                      item="Wifi:"
+                      value={roomData.wifi === true ? "Yes" : "No"}
+                    />
+                    <CategoryBox
+                      item="Packing:"
+                      value={roomData.packing === true ? "Yes" : "No"}
+                    />
+                    <CategoryBox
+                      item="Ventilation:"
+                      value={roomData.Ventilation == true ? "Yes" : "No"}
+                    />
+                  </div>
+                </div>
+                <h2>Available For</h2>
+                <div className="category">
+                  <CategoryBox
+                    item="Boys:"
+                    value={
+                      roomData.Boys === true
+                        ? "Yes, It is available for Boys"
+                        : "No"
+                    }
+                  />
+                  <CategoryBox
+                    item="Girls:"
+                    value={
+                      roomData.Girls === true
+                        ? "Yes, It is available for Girls"
+                        : "No"
+                    }
+                  />
+                  <CategoryBox
+                    item="Famaly:"
+                    value={
+                      roomData.Famaly === true
+                        ? "Yes, It is available for Famaly"
+                        : "No"
+                    }
+                  />
+                </div>
+                <h2>Location</h2>
+                <div className="category">
+                  <span>{userDetails.country}</span>
+                  <span>{userDetails.houseNo}</span>
+                  <span>{userDetails.colony},</span>
+                  <span>{userDetails.district}</span>
+                  <span>Near {userDetails.landmark}</span>
+                  <span>{userDetails.pinCode}</span>
+                  <span>{userDetails.state}</span>
                 </div>
               </div>
-              <h2>Available For</h2>
-              <div className="category">
-                <CategoryBox item="Boys:" value={roomData.Boys===true?"Yes, It is available for Boys":"No"} />
-                <CategoryBox item="Girls:" value={roomData.Girls===true?"Yes, It is available for Girls":"No"} />
-                <CategoryBox item="Famaly:" value={roomData.Famaly===true?"Yes, It is available for Famaly":"No"} />
+            </div>
+          </section>
+        </section>
+        <section className="gallery-section">
+          <div className="gallery-container">
+            <h2>Gallery</h2>
+            <div className="div_main">
+              <div className="div_image">
+                <Gallery logo={img} />
+                <Gallery logo={aboutImg} />
+                <Gallery logo={aboutImg1} />
+                <Gallery logo={aboutImg2} />
+                <Gallery logo={aboutImg3} />
+                <Gallery logo={logo} />
               </div>
-              <h2>Location</h2>
-              <div className="category">
-                <span>{userDetails.country}</span>
-                <span>{userDetails.houseNo}</span>
-                <span>{userDetails.colony},</span>
-                <span>{userDetails.district}</span>
-                <span>Near {userDetails.landmark}</span>
-                <span>{userDetails.pinCode}</span>
-                <span>{userDetails.state}</span>
-              </div>
+            </div>
+            <div id="dialog" className="dialog">
+              <span id="close">&times;</span>
+              <p>Image</p>
+              <div id="dialog_div" className="modal-content"></div>
             </div>
           </div>
         </section>
-      </section>
-      <section className="gallery-section">
-        <div className="gallery-container">
-          <h2>Gallery</h2>
-          <div className="div_main">
-            <div className="div_image">
-              <Gallery logo={img} />
-              <Gallery logo={aboutImg} />
-              <Gallery logo={aboutImg1} />
-              <Gallery logo={aboutImg2} />
-              <Gallery logo={aboutImg3} />
-              <Gallery logo={logo} />
+        <section className="owner-section-down">
+          <OwnerSection name={userDetails.name} email={userDetails.email} />
+        </section>
+        <section className="section-review">
+          <h2>Review</h2>
+          <div className="review-container">
+            <div>
+              <form>
+                <div className="rating-div-container">
+                  <div className="sub-rating-div">
+                    <StarRating fun={totalRatingfun} text="Service?" />
+                    <StarRating fun={totalRatingfun} text="Price?" />
+                    <StarRating fun={totalRatingfun} text="Quality?" />
+                    <StarRating fun={totalRatingfun} text="Location?" />
+                  </div>
+                  <div className="total-rating-div">
+                    <span className="total-review-value">
+                      {(totalRating.Service +
+                        totalRating.Quality +
+                        totalRating.Price +
+                        totalRating.Location) /
+                        4}
+                    </span>
+                    <span>Average Rating</span>
+                  </div>
+                </div>
+                <div className="inputBox">
+                  <input
+                    style={{ width: "46%" }}
+                    type="text"
+                    name="name"
+                    placeholder="Enter Name"
+                  />
+                  <input
+                    style={{ width: "46%" }}
+                    type="email"
+                    name="email"
+                    placeholder="Enter Email"
+                  />
+                </div>
+                <textarea
+                  placeholder="Message"
+                  name=""
+                  id=""
+                  cols="30"
+                  rows="10"
+                ></textarea>
+                <button type="submit" className="btn">
+                  send message
+                </button>
+              </form>
             </div>
           </div>
-          <div id="dialog" className="dialog">
-            <span id="close">&times;</span>
-            <p>Image</p>
-            <div id="dialog_div" className="modal-content"></div>
+        </section>
+        <section>
+          <div className="rating-div-container">
+            <div className="sub-rating-div">
+              <StarRating fun={totalRatingfun} text="Service?" />
+              <StarRating fun={totalRatingfun} text="Price?" />
+              <StarRating fun={totalRatingfun} text="Quality?" />
+              <StarRating fun={totalRatingfun} text="Location?" />
+            </div>
+            <div className="total-rating-div">
+              <span className="total-review-value">
+                {(totalRating.Service +
+                  totalRating.Quality +
+                  totalRating.Price +
+                  totalRating.Location) /
+                  4}
+              </span>
+              <span>Average Rating</span>
+            </div>
           </div>
-        </div>
-      </section>
-      <section className="owner-section-down">
-        <OwnerSection name={userDetails.name} email={userDetails.email}/>
-      </section>
-      <section className="section-review">
-        <h2>Review</h2>
-        <div className="review-container">
-          <div>
-            <form>
-              <div className="rating-div-container">
-                <div className="sub-rating-div">
-                  <StarRating fun={totalRatingfun} text="Service?" />
-                  <StarRating fun={totalRatingfun} text="Price?" />
-                  <StarRating fun={totalRatingfun} text="Quality?" />
-                  <StarRating fun={totalRatingfun} text="Location?" />
-                </div>
-                <div className="total-rating-div">
-                  <span className="total-review-value">
-                    {(totalRating.Service +
-                      totalRating.Quality +
-                      totalRating.Price +
-                      totalRating.Location) /
-                      4}
-                  </span>
-                  <span>Average Rating</span>
-                </div>
-              </div>
-              <div className="inputBox">
-                <input
-                  style={{ width: "46%" }}
-                  type="text"
-                  name="name"
-                  placeholder="Enter Name"
-                />
-                <input
-                  style={{ width: "46%" }}
-                  type="email"
-                  name="email"
-                  placeholder="Enter Email"
-                />
-              </div>
-              <textarea
-                placeholder="Message"
-                name=""
-                id=""
-                cols="30"
-                rows="10"
-              ></textarea>
-              <button type="submit" className="btn">
-                send message
-              </button>
-            </form>
-          </div>
-        </div>
-      </section>
-      <section>
-        <div className="rating-div-container">
-          <div className="sub-rating-div">
-            <StarRating fun={totalRatingfun} text="Service?" />
-            <StarRating fun={totalRatingfun} text="Price?" />
-            <StarRating fun={totalRatingfun} text="Quality?" />
-            <StarRating fun={totalRatingfun} text="Location?" />
-          </div>
-          <div className="total-rating-div">
-            <span className="total-review-value">
-              {(totalRating.Service +
-                totalRating.Quality +
-                totalRating.Price +
-                totalRating.Location) /
-                4}
-            </span>
-            <span>Average Rating</span>
-          </div>
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
+      <Footer />
+    </>
   );
 };
 

@@ -1,3 +1,4 @@
+import Footer from "../Footer";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PasswordChecklist from "react-password-checklist";
@@ -161,6 +162,7 @@ const Signup = () => {
           </div>
         </form>
       </div>
+      <Footer/>
     </>
   );
 };

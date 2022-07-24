@@ -1,4 +1,5 @@
 import React,{useEffect } from 'react'
+import Footer from "../Footer";
 import {Cookies } from 'react-cookie';
 
  const Profile = () => {
@@ -103,6 +104,7 @@ import {Cookies } from 'react-cookie';
                 </div>
             </div>
         </div>
+        <Footer/>
     </>
   )
 }

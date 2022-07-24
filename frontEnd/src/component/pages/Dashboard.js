@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import tokenvarify from "../../function/function";
 import addImage from "../../add-image.png";
+import Footer from "../Footer";
 import img1 from "../../interior-2685521_960_720.jpg";
 
 import Block from "../Block";
@@ -122,6 +123,7 @@ const Dashboard = () => {
           </div>
         </section>
       </div>
+      <Footer/>
     </>
   );
 };

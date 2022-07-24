@@ -1,6 +1,7 @@
 import React from "react";
 import Block from "../Block";
 import HomeBlock from "../HomeBlock";
+import Footer from "../Footer";
 import img from "../../john-schnobrich-FlPc9_VocJ4-unsplash.jpg";
 import aboutImg from "../../olga-serjantu-tqkDGqPW8Vo-unsplash.jpg";
 import aboutImg1 from "../../christin-hume-Hcfwew744z4-unsplash.jpg";
@@ -69,6 +70,7 @@ const Home = () => {
             img={aboutImg3}
           />
       </div>
+      <Footer/>
     </>
   );
 };

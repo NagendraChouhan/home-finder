@@ -87,6 +87,10 @@ const CreateRoom= new mongoose.Schema({
         type:String,
         require:true
     },
+    district:{
+        type:String,
+        require:true
+    },
     date : {
         type:Date,
         default: Date.now

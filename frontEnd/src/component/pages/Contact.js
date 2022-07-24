@@ -1,4 +1,5 @@
 import React from 'react';
+import Footer from "../Footer";
 
 const Contact = () => {
     window.scrollTo(0, 0)
@@ -44,6 +45,7 @@ const Contact = () => {
                 </form>
 
             </section>
+            <Footer/>
         </>
     )
 }

@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import addImage from "../../add-image.png";
 import { Cookies } from "react-cookie";
 import {useLocation} from "react-router-dom";
+import Footer from "../Footer";
 
 const CreateRoom = () => {
   // const { data, otherParam } = Route.params;
@@ -164,6 +165,13 @@ const CreateRoom = () => {
     setFormData((prevalue) => ({
       ...prevalue,
       addAddress: !prevalue.addAddress,
+      country: "",
+      state: "",
+      district: "",
+      houseNo: "",
+      colony: "",
+      landmark: "",
+      pinCode: "",
     }));
   };
 
@@ -639,6 +647,7 @@ const CreateRoom = () => {
           </div>
         </section>
       </div>
+      <Footer/>
     </>
   );
 };

@@ -26,6 +26,7 @@ Router.post('/',async(req,res)=>{
     
         //     console.log(`uploadImage====++++++======== ${uploadImage}`)
         // }
+        let city=district
         const tokenvarify=await jwt.verify(token,process.env.JWT_TOKEN);
         let AddressId=addressIdRadio
         if(addAddress){
@@ -48,40 +49,47 @@ Router.post('/',async(req,res)=>{
             );
             const user=await userDetails.findOne({ _id: tokenvarify._id,})
             AddressId=JSON.stringify(user.address[user.address.length-1]._id)
+            console.log(`city==${city}`)
+        }
+        else{
+            let addressDetails = await userDetails.findOne(
+                {
+                  $match: {
+                    _id:  tokenvarify._id,
+                    "address._id": AddressId,
+                  },
+                }
+              );
+             
+              let addressValue;
+              for (let i = 0; i < addressDetails.address.length; i++) {
+                if (addressDetails.address[i]._id == AddressId) {
+                  addressValue = addressDetails.address[i];
+                  city= addressValue.district
+                  break;
+                }
+            }
         }
         let bedroomsVlaue=0
         let bathroomsVlaue=1
-        console.log(`roomtype==${roomtype}`)
         if(roomtype==='1BHK'){
             bedroomsVlaue=1
-            console.log(`bedroomsVlaue==${bedroomsVlaue}`)
-            console.log(`bathroomsVlaue==${bathroomsVlaue}`)
         }
         else if(roomtype==='2BHK'){
             bedroomsVlaue=2
-            console.log(`bedroomsVlaue==${bedroomsVlaue}`)
-            console.log(`bathroomsVlaue==${bathroomsVlaue}`)
         }
         else if(roomtype==='2BHK2T'){
             bedroomsVlaue=2
             bathroomsVlaue=2
-            console.log(`bedroomsVlaue==${bedroomsVlaue}`)
-            console.log(`bathroomsVlaue==${bathroomsVlaue}`)
         }
         else if(roomtype==='3BHK2T'){
             bedroomsVlaue=3
             bathroomsVlaue=2
-            console.log(`bedroomsVlaue==${bedroomsVlaue}`)
-            console.log(`bathroomsVlaue==${bathroomsVlaue}`)
         }
         else if(roomtype==='3BHK3T'){
             bedroomsVlaue=3
             bathroomsVlaue=3
-            console.log(`bedroomsVlaue==${bedroomsVlaue}`)
-            console.log(`bathroomsVlaue==${bathroomsVlaue}`)
         }
-            console.log(`bedroomsVlaue==${bedroomsVlaue}`)
-            console.log(`bathroomsVlaue==${bathroomsVlaue}`)
         const newCreateRoomDetails= new CreateRoomDetails({
             id:tokenvarify._id,
             roomtype,
@@ -103,6 +111,7 @@ Router.post('/',async(req,res)=>{
             Boys,
             Girls,
             Famaly,
+            district:city,
             roomstatus:true,
         })
         const result= await newCreateRoomDetails.save()

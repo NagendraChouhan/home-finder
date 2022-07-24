@@ -45,7 +45,7 @@ const Navbar = () => {
                 </div>
                 <div className='nav-bar-name-div'>
                     <img src={logo} alt='company logo' />
-                    <h2>Room Finding</h2>
+                    <h2>Home Finding</h2>
                 </div>
                 <div className='nav-bar-link-div'>
                     <span className='nav-bar-link-div-span'>
