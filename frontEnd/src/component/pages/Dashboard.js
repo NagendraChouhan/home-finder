@@ -99,7 +99,7 @@ const Dashboard = () => {
                           price={data.price}
                           id={data._id}
                           border="true"
-                          location="Mandsaur"
+                          location={data.district}
                           rating="5"
                         />
                       </td>

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import addImage from "../../add-image.png";
 import { Cookies } from "react-cookie";
-import {useLocation} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import Footer from "../Footer";
 
 const CreateRoom = () => {
@@ -55,6 +55,9 @@ const CreateRoom = () => {
     }
     window.scrollTo(0, 0)
   }, []);
+
+  const navigate = useNavigate()
+
   async function value() {
     console.log(`useEffect`);
     const cookies = new Cookies();
@@ -181,18 +184,24 @@ const CreateRoom = () => {
     let result ;
     const cookies = new Cookies();
     const token = cookies.get("token");
-    if(id!==undefined && id!==null){
-      result = await fetch("/upadtef", {
-        method: "post",
+    console.log(`req to /bcreateRoom/updateAllData id=${id}`)
+    if(id!==undefined){
+      console.log(`req to /bcreateRoom/updateAllData`)
+      result = await fetch(`/bcreateRoom/updateAllData?id=${id}`, {
+        method: "put",
         body: JSON.stringify({ formData }),
         headers: {
           "content-Type": "application/json",
           token: token,
         },
       });
+      navigate(`/blockDetails?id=${id}`)
+
     }
     else{
-        result = await fetch("/bcreateRoom", {
+      console.log(`req to /bcreateRoom`)
+
+        result = await fetch("/bcreateRoomjhgjhg", {
         method: "post",
         body: JSON.stringify({ formData }),
         headers: {
@@ -200,6 +209,7 @@ const CreateRoom = () => {
           token: token,
         },
       });
+      navigate(`/dashboard`)
       
     }
 
