@@ -7,6 +7,13 @@ const Block = (props) => {
   let displaycssimag = {};
   let homeTextCSS = {};
   let locationCSS = {};
+  let homeIconCSS = {
+    color: "#d9d9d7",
+    backgroundColor: "#0172b4",
+    borderRadius: "5px",
+    padding: "5px",
+    // verticalAlign: "middle",
+  };
   if (!display) {
     displaycss = {
       minWidth: "auto",
@@ -75,7 +82,7 @@ const Block = (props) => {
         <div className="block-value-div" style={homeTextCSS}>
           {display && (
             <span>
-              <b>Rs-{props.price}</b>
+              <b>₹{props.price}</b>
             </span>
           )}
           {!display && (
@@ -88,7 +95,17 @@ const Block = (props) => {
             </span>
           )}
           {display && (
-            <span style={{ color: "grey" }}>Rating {props.rating}</span>
+            <span>
+              <i style={homeIconCSS} className="fa fa-home"></i>&nbsp;
+              <span
+                style={{
+                  fontFamily: "sans-serif",
+                  textDecoration: "underline",
+                }}
+              >
+                {props.roomtype}
+              </span>
+            </span>
           )}
         </div>
       </div>

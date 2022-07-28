@@ -20,12 +20,24 @@ var BlockDetails_img_div = document.getElementsByClassName(
 const BlockDetails = () => {
   useEffect(() => {
     getData();
+    getReviewData();
     window.scrollTo(0, 0);
   }, []);
   const roomId = new URLSearchParams(useLocation().search).get("id");
   //roomIs is an createRoomModel _id
   const [roomData, setRoomData] = React.useState({});
   const [userDetails, setuserDetails] = React.useState({});
+  const [rating, setRating] = React.useState([]);
+  const [totalRating, setTotalRating] = React.useState({
+    roomId: roomId,
+    name: "",
+    email: "",
+    message: "",
+    Service: 0,
+    Price: 0,
+    Quality: 0,
+    Location: 0,
+  });
 
   const getData = async () => {
     console.log(`roomId===${roomId}`);
@@ -61,6 +73,20 @@ const BlockDetails = () => {
       `userDetails from blockDetails====${JSON.stringify(userDetails)}`
     );
   };
+  const getReviewData = async () => {
+    let reviewData = await fetch(`/broomReview/breviewData?roomId=${roomId}`, {
+      method: "GET",
+      headers: {
+        "content-Type": "application/json",
+      },
+    });
+    reviewData = await reviewData.json();
+    console.log(
+      `Review Data from blockDetails====${JSON.stringify(reviewData)}`
+    );
+
+    setRating(reviewData);
+  };
 
   const mouseover_fun = (e) => {
     var i = 0;
@@ -77,12 +103,6 @@ const BlockDetails = () => {
     e.target.style.opacity = "1";
     e.target.style.width = "50%";
   };
-  const [totalRating, setTotalRating] = React.useState({
-    Service: 0,
-    Price: 0,
-    Quality: 0,
-    Location: 0,
-  });
   const totalRatingfun = (item, data) => {
     console.log(`item===${item}`);
     console.log(`data===${data}`);
@@ -96,6 +116,56 @@ const BlockDetails = () => {
     console.log(`JSON.stringify(totalRating===${JSON.stringify(totalRating)}`);
   };
 
+  const handleOnSubmitReview = async (event) => {
+    event.preventDefault();
+    console.log(`JSON.stringify(totalRating===${JSON.stringify(totalRating)}`);
+    if (totalRating.name !== "") {
+      if (totalRating.email !== "") {
+        if (totalRating.Service > 0) {
+          if (totalRating.Price > 0) {
+            if (totalRating.Quality > 0) {
+              if (totalRating.Location > 0) {
+                let result = await fetch("/broomReview", {
+                  method: "POST",
+                  body: JSON.stringify({ totalRating }),
+                  headers: {
+                    "content-Type": "application/json",
+                  },
+                });
+                result = await result.json();
+                console.log(
+                  `result from /broomReview ${JSON.stringify(result)}`
+                );
+              } else {
+                console.log(`Review for Location`);
+              }
+            } else {
+              console.log(`Review for quality`);
+            }
+          } else {
+            console.log(`Review for price`);
+          }
+        } else {
+          console.log(`Review for service`);
+        }
+      } else {
+        console.log(`Enter email`);
+      }
+    } else {
+      console.log(`Enter name`);
+    }
+  };
+  const handleOnChangeReview = (event) => {
+    const { name, value } = event.target;
+    setTotalRating((preValue) => ({
+      ...preValue,
+      [name]: value,
+    }));
+  };
+  let service = 0;
+  let quality = 0;
+  let price = 0;
+  let location = 0;
   return (
     <>
       <div className="BlockDetails-main-div">
@@ -174,7 +244,11 @@ const BlockDetails = () => {
               </section>
             </div>
             <section className="owner-section-top">
-              <OwnerSection name={userDetails.name} email={userDetails.email} />
+              <OwnerSection
+                name={userDetails.name}
+                email={userDetails.email}
+                ownerId={userDetails._id}
+              />
             </section>
           </div>
 
@@ -249,16 +323,18 @@ const BlockDetails = () => {
                     }
                   />
                 </div>
-                <h2>Location</h2>
-                <div className="category">
-                  <span>{userDetails.country}</span>
-                  <span>{userDetails.houseNo}</span>
-                  <span>{userDetails.colony},</span>
-                  <span>{userDetails.district}</span>
-                  <span>Near {userDetails.landmark}</span>
-                  <span>{userDetails.pinCode}</span>
-                  <span>{userDetails.state}</span>
-                </div>
+                <section>
+                  <h2>Location</h2>
+                  <div className="category">
+                    <span>{userDetails.country}</span>
+                    <span>{userDetails.houseNo}</span>
+                    <span>{userDetails.colony},</span>
+                    <span>{userDetails.district}</span>
+                    <span>Near {userDetails.landmark}</span>
+                    <span>{userDetails.pinCode}</span>
+                    <span>{userDetails.state}</span>
+                  </div>
+                </section>
               </div>
             </div>
           </section>
@@ -284,13 +360,17 @@ const BlockDetails = () => {
           </div>
         </section>
         <section className="owner-section-down">
-          <OwnerSection name={userDetails.name} email={userDetails.email} />
+          <OwnerSection
+            name={userDetails.name}
+            email={userDetails.email}
+            ownerId={userDetails._id}
+          />
         </section>
         <section className="section-review">
           <h2>Review</h2>
           <div className="review-container">
             <div>
-              <form>
+              <form onSubmit={handleOnSubmitReview}>
                 <div className="rating-div-container">
                   <div className="sub-rating-div">
                     <StarRating fun={totalRatingfun} text="Service?" />
@@ -315,20 +395,23 @@ const BlockDetails = () => {
                     type="text"
                     name="name"
                     placeholder="Enter Name"
+                    onChange={handleOnChangeReview}
                   />
                   <input
                     style={{ width: "46%" }}
                     type="email"
                     name="email"
                     placeholder="Enter Email"
+                    onChange={handleOnChangeReview}
                   />
                 </div>
                 <textarea
                   placeholder="Message"
-                  name=""
+                  name="message"
                   id=""
                   cols="30"
                   rows="10"
+                  onChange={handleOnChangeReview}
                 ></textarea>
                 <button type="submit" className="btn">
                   send message
@@ -337,26 +420,87 @@ const BlockDetails = () => {
             </div>
           </div>
         </section>
-        <section>
-          <div className="rating-div-container">
-            <div className="sub-rating-div">
-              <StarRating fun={totalRatingfun} text="Service?" />
-              <StarRating fun={totalRatingfun} text="Price?" />
-              <StarRating fun={totalRatingfun} text="Quality?" />
-              <StarRating fun={totalRatingfun} text="Location?" />
-            </div>
-            <div className="total-rating-div">
-              <span className="total-review-value">
-                {(totalRating.Service +
-                  totalRating.Quality +
-                  totalRating.Price +
-                  totalRating.Location) /
-                  4}
-              </span>
-              <span>Average Rating</span>
-            </div>
-          </div>
-        </section>
+        {rating.length > 0 && (
+          <section className=".section-review,">
+            <h2>Review</h2>
+            <section className="rating-container">
+              <div className="rating-div-container">
+                {rating.map((data) => {
+                  service = service + data.service;
+                  quality = quality + data.quality;
+                  price = price + data.price;
+                  location = location + data.location;
+                })}
+                {rating.length > 0 && (
+                  <div className="sub-rating-div">
+                    <StarRating
+                      value={true}
+                      index={service / rating.length}
+                      text="Service?"
+                    />
+                    <StarRating
+                      value={true}
+                      index={quality / rating.length}
+                      text="Price?"
+                    />
+                    <StarRating
+                      value={true}
+                      index={price / rating.length}
+                      text="Quality?"
+                    />
+                    <StarRating
+                      value={true}
+                      index={location / rating.length}
+                      text="Location?"
+                    />
+                  </div>
+                )}
+                <div className="total-rating-div">
+                  <span className="total-review-value">
+                    {(
+                      (service + quality + price + location) /
+                      4 /
+                      rating.length
+                    ).toFixed(2)}
+                  </span>
+                  <span>Average Rating</span>
+                  {/* <div>{(service / rating.length).toFixed(2)}</div>
+                <div>{(quality / rating.length).toFixed(2)}</div>
+                <div>{(price / rating.length).toFixed(2)}</div>
+                <div>{(location / rating.length).toFixed(2)}</div> */}
+                </div>
+              </div>
+              <div style={{ marginTop: "13%" }}>
+                {rating.map((data) => {
+                  return (
+                    <div className="review-div" key={data._id}>
+                      <div>
+                        <div>
+                          <b>{data.name}</b>
+                        </div>
+                        <span>{data.date}</span>
+                      </div>
+                      <div>
+                        <StarRating
+                          value={true}
+                          index={
+                            (data.service +
+                              data.quality +
+                              data.price +
+                              data.location) /
+                            4
+                          }
+                          textVisible={true}
+                        />
+                      </div>
+                      <div>{data.message}</div>
+                    </div>
+                  );
+                })}
+              </div>
+            </section>
+          </section>
+        )}
       </div>
       <Footer />
     </>

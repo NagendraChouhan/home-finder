@@ -5,7 +5,7 @@ import { Cookies } from "react-cookie";
 
 const Navbar = () => {
   const styles = ({ isActive }) => {
-    return { color: isActive ? "red" : "" };
+    return { width: "97%",display: "block",color: "red",padding: "2% 10px",color: isActive ? "red" : "" };
   };
   function handleDisplayOnCLick() {
     console.log(

@@ -93,7 +93,7 @@ Router.post('/',async(req,res)=>{
             bathroomsVlaue=3
         }
         const newCreateRoomDetails= new CreateRoomDetails({
-            id:tokenvarify._id,
+            id:tokenvarify._id,//user ID
             roomtype,
             bedrooms:bedroomsVlaue,
             bathrooms:bathroomsVlaue,

@@ -25,7 +25,7 @@ Router.get("/", async (req, res) => {
     console.log(`${uservalue} token id varify from getdata`);
     console.log(`${uservalue} ===##########====${user}`);
     res.send({
-      email: user.email,
+      email: user.email.toLowerCase(),
       name: user.name,
       dob: user.dob,
       phone: user.phone,

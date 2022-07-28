@@ -3,7 +3,7 @@ const bcryptjs=require("bcryptjs");
 const jwt=require("jsonwebtoken");
 console.log("mongose="+mongoose);
 const CreateRoom= new mongoose.Schema({
-    id:{
+    id:{//user ID
         type:String,
         require:true
     },

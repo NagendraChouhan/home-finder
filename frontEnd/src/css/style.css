@@ -29,7 +29,6 @@
 }
 .nav-bar-link-div-span{   
     margin: 1%;
-    padding: 1% 10px;
     min-width: max-content;
 }
 .nav-bar-link-div-mobile{
@@ -207,12 +206,13 @@ form input [type=number],[type=text],[type=file],select
     margin: 0px 30px;
     border-top: 1px solid;
     font-size: xx-large;
+    align-items: center;
 }
 
 .room-container{
     margin-left: 330px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(380px,1fr));
+    grid-template-columns: repeat(auto-fill, minmax(383px,1fr));
     padding: 1%;
     overflow: auto;
     justify-items: center;
@@ -558,6 +558,7 @@ hr{
 }
 .BlockDetails-main-div{
     margin-top: 80px;
+    padding-bottom: 5%;
     background-color: #f3f7fd;
 }
 .BlockDetails-img-main-div{
@@ -587,7 +588,7 @@ hr{
 .section-review,.gallery-container{
     margin: 3% 0%;
 }
-.review-container{
+.review-container,.rating-container{
     background-color: white;
     margin: 2% 11%;
     padding: 4% 4%;
@@ -597,7 +598,6 @@ hr{
     gap: 30px;
     flex-wrap: wrap;
     justify-content: space-between;
-    justify-content: center;
 }
 .sub-rating-div, .sub-rating-div label{
     display: grid;
@@ -651,7 +651,7 @@ hr{
 .star-rating label {
     padding: 10px;
     float: right;
-    font-size: 20px;
+    font-size: 16px;
     color: #eee;
 }
 .star-rating input:not(:checked) ~ label:hover,
@@ -823,6 +823,14 @@ hr{
     background-color: #ff000070;
 }
 
+/*Review*/
+.review-div{
+    /* width: 50%; */
+    text-align: left;
+    margin: 2%;
+    padding: 1%;
+}
+
 
 /*BlockDetails css end here*/
 
@@ -845,7 +853,7 @@ hr{
 }
 
 @media screen and (max-width:900px){
-    .BlockDetails-container,.review-container,.gallery-section .div_main,.BlockDetails-facility-div{
+    .BlockDetails-container,.review-container,.gallery-section .div_main,.BlockDetails-facility-div,.rating-container{
         margin-left: 0%;
         margin-right: 0%;
     }
@@ -880,7 +888,6 @@ hr{
         z-index: 99;
     }
     .nav-bar-link-div-span {
-        padding: 2% 0%;
         background-color: #ededed;
         display: block;
         width: 95%;
@@ -931,7 +938,7 @@ hr{
 @media screen and (max-width:700px) {
     .filter-div{
         display: none;
-        top: 115px;
+        top: 105px;
         left: 0px;
         right: 0px;
         bottom: 0px;
@@ -940,7 +947,7 @@ hr{
     .toggle-button,.toggle-button:hover{
         width: auto;
         position: fixed;
-        top: 70px;
+        top: 68px;
         left: 0px;
         right: 0px;
         padding: 1%;
@@ -1004,6 +1011,9 @@ hr{
         font-size: xx-large;
         font-weight: bold;
     }
+    .rating-div-container{
+        justify-content: center;
+    }
 }
 @media screen and (max-width:500px){
         .login-container input[type=text] ,[type=password],[type=email],.login-container button,.contact input[type=text] ,[type=number],[type=email],.contact textarea, .contact button, .Signup-container input[type=text],[type=password],[type=email],ul,.Signup-container button,.profile-container button,
@@ -1055,7 +1065,11 @@ hr{
         font-size: x-large;
     }
 }
-
+@media screen and (max-width:320px) {
+    .block-value-div{
+        font-size: large;
+    }
+}
 
 
 /*min-width css start*/

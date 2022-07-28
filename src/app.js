@@ -21,7 +21,8 @@ const tokenvarify=require('./routes/tokenvarify');
 const verify=require('./routes/verify');
 const createRoom=require('./routes/createRoom');
 const rooms=require('./routes/rooms');
-
+const roomReview=require('./routes/roomReview');
+const ownerCounseling=require('./routes/ownerCounseling');
 const adminDetails = require('./models/adminModel');
 
 //Routes end here
@@ -50,6 +51,10 @@ app.use('/bgetData/addressData',getData)
 app.use('/btokenvarify',tokenvarify)
 app.use('/bcreateRoom',createRoom)
 app.use('/bcreateRoom/update',createRoom)
+app.use('/broomReview',roomReview)
+app.use('/broomReview/breviewData',roomReview)
+app.use('/bownerCounseling',ownerCounseling)
+
 app.use('/',verify)
 
 // app.use(express.static(path.join(__dirname, 'public')));

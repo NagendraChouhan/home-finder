@@ -100,7 +100,7 @@ const Dashboard = () => {
                           id={data._id}
                           border="true"
                           location={data.district}
-                          rating="5"
+                          roomtype={data.roomtype}
                         />
                       </td>
                       <td>{data.date}</td>

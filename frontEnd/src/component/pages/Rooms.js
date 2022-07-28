@@ -62,7 +62,7 @@ const Rooms = () => {
                 <div style={{marginLeft:styleValue.marginDiv}}className="room-container">
                     {blockData.map((data)=>{
                         if(data.roomstatus){
-                            return <Block imgValue={img1} price={data.price} id={data._id} key={data._id} location={data.district}   rating="5" />
+                            return <Block imgValue={img1} price={data.price} id={data._id} key={data._id} location={data.district}   roomtype={data.roomtype} />
                         }
                         return 
                     })}

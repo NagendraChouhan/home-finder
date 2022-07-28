@@ -1,24 +1,39 @@
-import React from 'react'
-import BlockDetails from './pages/BlockDetails'
+import React, { useEffect } from 'react'
 
 const StarRating = (props) => {
     const [clicked, setClicked] = React.useState([false, false, false, false, false]);
+    useEffect(()=>{
+        if(props.value){
+            console.log(`inside for loop of value=${props.index}`)
+            let clickStates = [...clicked];
+            for (let i = 0; i <= props.index-1; i++) {
+                    clickStates[i] = true;
+                }
+            setClicked(clickStates);
+        }
+    },[])
     const handleOnClick=async(e, index)=>{
-          e.preventDefault();
-          let clickStates = [...clicked];
-          for (let i = 0; i < 5; i++) {
-            if (i <= index) {clickStates[i] = true;}
-            else {clickStates[i] = false;}
-          }
-      
-          setClicked(clickStates);
-
-          console.log(JSON.stringify(clicked))
-          props.fun(props.text,index+1)
+        if(props.value){
+            
+        }
+        else{
+            e.preventDefault();
+            let clickStates = [...clicked];
+            for (let i = 0; i < 5; i++) {
+              if (i <= index) {clickStates[i] = true;}
+              else {clickStates[i] = false;}
+            }
+        
+            setClicked(clickStates);
+  
+            console.log(JSON.stringify(clicked))
+            props.fun(props.text,index+1)
+        }
     }
+    
   return (
     <div>
-        <span className='star-text'>{props.text}</span>
+        {props.textVisible?"":<span className='star-text'>{props.text}</span>}
         <div className="star-rating">
         <div className="star-input">
             <input type="radio" name="rating"  />

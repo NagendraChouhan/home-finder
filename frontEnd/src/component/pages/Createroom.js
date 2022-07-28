@@ -47,6 +47,22 @@ const CreateRoom = () => {
     addAddress: false,
   });
   const [availableAddress, setAvailableAddress] = React.useState([]);
+  const [userLocation, setUserLocation] = React.useState({
+    longitude:"",
+    latitude:"",
+  });
+  const setUserLocationFun=()=>{
+    navigator.geolocation.getCurrentPosition((postion)=>{
+      console.log(`user position=${JSON.stringify(postion.coords)}`)
+      setUserLocation({
+        longitude:postion.coords.longitude,
+        latitude:postion.coords.latitude,
+      })
+      console.log(`user longitude:postion.coords.longitude=${useLocation.longitude}`)
+      console.log(`user latitude:postion.coords.latitude=${useLocation.latitude}`)
+    })
+  }
+
   useEffect(() => {
     value();
     if(id!==undefined && id!==null){
@@ -165,6 +181,7 @@ const CreateRoom = () => {
     });
   };
   const handleOnClick = () => {
+    setUserLocationFun();
     setFormData((prevalue) => ({
       ...prevalue,
       addAddress: !prevalue.addAddress,

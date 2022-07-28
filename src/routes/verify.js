@@ -21,16 +21,16 @@ Router.post('/bverifyEmail',async(req,res)=>{
                 console.log("inside delete of user verify");
 
                 const result = await verifyuser.deleteOne({
-                email: useremail.email,
+                email: useremail.email.toLowerCase(),
                 });
                 console.log("result from user verify==" + result);
             }
-            useremail = await verifyuser.findOne({ email: email });
+            useremail = await verifyuser.findOne({ email: email.toLowerCase() });
 
             otpsend = await generateotp();
             console.log("fg after generate otp fun" + otpsend);
             const regverifyuser = new verifyuser({
-                email: email,
+                email: email.toLowerCase(),
                 otp: otpsend,
             });
             const register = await regverifyuser.save();
@@ -52,7 +52,7 @@ Router.post('/bverifyEmail',async(req,res)=>{
 Router.post('/bverifyotp',async(req,res)=>{
     try {
         const {email,otp}=req.body.forgetFormData
-        const result=await verifyuser.findOne({email:email})
+        const result=await verifyuser.findOne({email:email.toLowerCase()})
         if(result!=null){
             console.log(`result===${result}`)
             console.log(`result.otp===${result.otp}`)
@@ -61,7 +61,7 @@ Router.post('/bverifyotp',async(req,res)=>{
             console.log(typeof(otp))
             if(result.otp==otp){
                 console.log("success")
-                res.send({verifypassword:true},{verifyEmail:false},{email:email})
+                res.send({verifypassword:true},{verifyEmail:false},{email:email.toLowerCase()})
             }
             else{
                 console.log("Invalid OTP")
@@ -83,7 +83,7 @@ Router.patch('/bupdatePassword',async(req,res)=>{
         const {email,password}=req.body.forgetFormData
         const hash_password=await bcryptjs.hash(password,10)
         const result=await userDetails.updateOne(
-            {email: email},
+            {email: email.toLowerCase()},
             { $set: { password: hash_password}}
         )
         
