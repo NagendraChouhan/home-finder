@@ -68,7 +68,7 @@
 .Signup-container input [type=password],[type=text],[type=email]
 .forget-container input [type=number],[type=email],ul
 .profile-container input [type=number],[type=text],[type=date],[type=password],[type=email]
-form input [type=number],[type=text],[type=file],select
+form input [type=number],[type=text],[type=file],select,.contact-form textarea,.review-form textarea
 {
     width: 400px;
     padding: 12px 20px;
@@ -79,7 +79,7 @@ form input [type=number],[type=text],[type=file],select
     background-color: white;
     border-radius: 10px;
 }
-.login-container button,.contact button ,.Signup-container button,.forget-container button,.profile-container button,.button-div button{
+.login-container button,.contact button ,.Signup-container button,.forget-container button,.profile-container button,.button-div button,.contact-form button,.review-form button,.address-btn{
     background-color: #00beffd1;
     color: white;
     padding: 14px 20px;
@@ -98,7 +98,7 @@ form input [type=number],[type=text],[type=file],select
     width: 815px;
 }
 
-.login-container button:hover,.contact button:hover ,.forget-container button:hover,.Signup-container button:hover,.profile-container button:hover{
+.login-container button:hover,.contact button:hover ,.forget-container button:hover,.Signup-container button:hover,.profile-container button:hover,.contact-form button:hover,.review-form button:hover,.address-btn:hover{
     opacity: 0.6;
 }
 .login-container .signupbtn {
@@ -107,9 +107,13 @@ form input [type=number],[type=text],[type=file],select
     background-color: #f44336;
   }
 
-.login-container,.Signup-container,.forget-container {
+.Signup-container,.forget-container {
     padding: 16px;
     text-align: center;
+}
+.login-container{
+    text-align: center;
+
 }
 .forget-psw{
     font-size: 12px;
@@ -355,6 +359,12 @@ tr:nth-child(even) {
     width: 50%;
     content: "Edit"
 }
+
+
+.roomCreateForm{
+    width: fit-content;
+    margin: 1% 10%;
+}
 /* css for dashboard end here*/
 
 /* css for room create start here*/
@@ -362,7 +372,7 @@ tr:nth-child(even) {
 
 form{
     display: flex;
-    width: fit-content;
+    /* width: fit-content; */
     flex-direction: column;
     text-align: start;
     margin: auto;
@@ -518,6 +528,7 @@ form{
 
 
 /*BlockDetails css start here*/
+
 hr{
     width: inherit;
     /* background: white; */
@@ -585,8 +596,8 @@ hr{
     width: 300px;
     padding: 1%;
 }
-.section-review,.gallery-container{
-    margin: 3% 0%;
+.section-review,.gallery-container,.owner-section-down{
+    margin: 6% 0%;
 }
 .review-container,.rating-container{
     background-color: white;
@@ -626,17 +637,29 @@ hr{
     font-weight: bolder;
     font-family: cursive;
 }
-.review-container>form>.inputBox{
-    display: flex;
-    flex-wrap: wrap
+form>.inputBox{
+    text-align: center;
+}
+
+.review-form .inputBox input,
+.review-form .inputBox button,
+.review-form .inputBox textarea{
+    width: 94%;
+    margin: 11px auto;
 }
 .review-container form{
     width: auto;
 }
-.review-container>form>.inputBox >input{
-    width:"46%"
+.review-form input,.review-form textarea,.review-form button{
+    border-radius: 0px;
+    width: 94%;
 }
-
+.contact-form{
+    width: fit-content;
+}
+.owner-div-container{
+    margin: auto;
+}
 
 /*star rating*/
 
@@ -707,7 +730,7 @@ hr{
     cursor: pointer;
 }
 
-.BlockDetails-img-div
+.BlockDetails-img-div,.BlockDetails-img-div-alter
 {
     opacity: 0.5;
     margin: 10px;
@@ -719,13 +742,15 @@ hr{
     background-position: center;
     flex:0.1;
     transition: flex 0.7s ease-in;
-    display: inline;
+    display: none;
     overflow: auto;
     box-sizing: border-box;
     display: inline-block;
     background-color: black;
 }
-
+.BlockDetails-img-div-alter{
+    display: none;
+}
 .BlockDetails-detail{
     text-align: left;
     padding: 10px;
@@ -839,8 +864,14 @@ hr{
 .footer-div{
     background-color: black;
     color: white;
-    margin: 20% 0% 0% 0%;
+    /* margin: 30% 0% 0% 0%; */
     padding: 10% 5%;
+    bottom: 0px;
+    position: relative;
+    top: 150px;
+    right: 0px;
+    left: 0px;
+    /* width: 100%;*/
 }
 
 /*Footer CSS end here*/
@@ -862,7 +893,7 @@ hr{
     .contact textarea, .contact button{
         width: 400px;
     }
-    .contact-form{
+    .contact-form,.review-form{
         text-align: center;
         display: block;
     }
@@ -930,9 +961,7 @@ hr{
         display: flex;
         width: 98%;
     }
-    .contact-form-inputBox input,.contact-form textarea ,.contact-form button {
-        width: 400px !important;
-    }
+    
 }
 
 @media screen and (max-width:700px) {
@@ -972,6 +1001,11 @@ hr{
         display: inline;
     }
 }
+@media screen and (max-width:620px) {
+    .BlockDetails-img-div{
+        display: inline;
+    }   
+}
 @media screen and (max-width:611px){
     .div-container{
         border: 1px solid #c4c4c4;
@@ -1006,6 +1040,11 @@ hr{
         border-radius: 10px;
     }
 }
+@media screen and (max-width:605px) {
+    .image{
+        width: 100%;
+        height: 300px;
+    }
 @media screen and (max-width: 580px){
     .home-main-div>.home-div-container>.img-div>.centered{    
         font-size: xx-large;
@@ -1019,31 +1058,27 @@ hr{
         .login-container input[type=text] ,[type=password],[type=email],.login-container button,.contact input[type=text] ,[type=number],[type=email],.contact textarea, .contact button, .Signup-container input[type=text],[type=password],[type=email],ul,.Signup-container button,.profile-container button,
         .forget-container input [type=number],[type=email], 
         .profile-container input [type=number],[type=text],[type=date],[type=password],[type=email],
-        form input [type=number],[type=text],[type=file],select{
+        form input [type=number],[type=text],[type=file],select,.contact-form button,.contact-form textarea ,.review-form button,.review-form textarea,.address-btn{
             
             border-radius: 3px;
-            
+            width: 85%;
+            margin: 12px 0px;            
+        }
+        .login-div{
+            top:20px;
         }
         .label{
             margin-left: 20px;
         }
-        .profile-main-div,.contact{
-            width: fit-content;
-        }
+        
         
         .phone, .email, .office{
             width: 90%;
         }
+        
 
 }
-@media screen and (max-width:605px) {
-    .image{
-        width: 100%;
-        height: 300px;
-    }
-    .contact-form-inputBox input,.contact-form textarea ,.contact-form button {
-        width: 90% !important;
-    }
+   
 }
 
 @media (max-width:470px){
@@ -1073,6 +1108,18 @@ hr{
 
 
 /*min-width css start*/
+
+
+@media (max-width:620px) {
+    .BlockDetails-img-div-alter{
+        display: flex;
+        opacity: 1;
+        margin: auto;
+        width: 90%;
+        height: 290px;
+    }   
+    
+}
 @media (min-width:470px)
 {
     .dialog
@@ -1153,5 +1200,4 @@ hr{
         cursor: pointer;
     }
 }
-
 /*min-width css end */

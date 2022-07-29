@@ -13,7 +13,7 @@ const OwnerSection = (props) => {
   },[])
   const [ownerFormData, setOwnerFormData] = React.useState({
     roomId:"",
-    ownerId:"hi",
+    ownerId:"",
     name:"",
     email:"",
     number:"",
@@ -23,7 +23,8 @@ const OwnerSection = (props) => {
     const {name,value}=event.target
     setOwnerFormData((preValue)=>({
       ...preValue,
-      [name]:value
+      [name]:value,
+      ownerId:props.ownerId
     }))
     // console.log(JSON.stringify(ownerFormData))
   }
@@ -34,7 +35,7 @@ const OwnerSection = (props) => {
       if(ownerFormData.email!==""){
         if(ownerFormData.number!=="" && ownerFormData.number.length>=10){
           if(ownerFormData.message!==""){
-            let result = await fetch(`/bownerCounseling`,
+            let result = await fetch(`/bcounseling/owner`,
               {
                 method: "POST",
                 body:JSON.stringify({ownerFormData}),
@@ -48,7 +49,7 @@ const OwnerSection = (props) => {
               `result from blockDetails====${JSON.stringify(result)}`
             );
             if(result.result){
-              alert("Your Message is send successfully")
+              alert("Your Message is send successfully\nFor more information check your Gmail")
             }
             else{
               alert(result.err)
@@ -75,10 +76,9 @@ const OwnerSection = (props) => {
       <div className="owner-div-container">
         <h2>{props.name}</h2>
         <h1>{props.email}</h1>
-        <form action="" onSubmit={handleOnSubmit} className="contact-form">
+        <form  onSubmit={handleOnSubmit} className="contact-form review-form">
           <div className="contact-form-inputBox">
             <input 
-              style={{ width: "280px" }} 
               type="text" 
               placeholder="name" 
               name="name"
@@ -86,7 +86,6 @@ const OwnerSection = (props) => {
               value={ownerFormData.name}
             />
             <input
-              style={{ width: "280px" }}
               type="email"
               placeholder="email"
               name="email"
@@ -94,7 +93,6 @@ const OwnerSection = (props) => {
               value={ownerFormData.email}
             />
             <input
-              style={{ width: "280px" }}
               type="number"
               placeholder="number"
               name="number"
@@ -104,8 +102,7 @@ const OwnerSection = (props) => {
           </div>
 
           <textarea
-            style={{ width: "280px" }}
-            placeholder="message"
+            placeholder="I'am Interested in this House"
             name="message"
             id=""
             cols="30"
@@ -115,7 +112,7 @@ const OwnerSection = (props) => {
           ></textarea>
           <br />
 
-          <button style={{ width: "280px" }} type="submit" className="btn">
+          <button type="submit" className="btn">
             send message
           </button>
         </form>

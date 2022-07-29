@@ -209,6 +209,13 @@ const BlockDetails = () => {
             }}
             onMouseOver={mouseover_fun}
           ></div>
+          <div
+            className="BlockDetails-img-div-alter"
+            style={{
+              backgroundImage: "url(" + logo + ")",
+            }}
+            onMouseOver={mouseover_fun}
+          ></div>
         </div>
 
         <section className="BlockDetails-section">
@@ -247,7 +254,7 @@ const BlockDetails = () => {
               <OwnerSection
                 name={userDetails.name}
                 email={userDetails.email}
-                ownerId={userDetails._id}
+                ownerId={userDetails.ownerId}
               />
             </section>
           </div>
@@ -360,17 +367,18 @@ const BlockDetails = () => {
           </div>
         </section>
         <section className="owner-section-down">
+          <h2>Counselling</h2>
           <OwnerSection
             name={userDetails.name}
             email={userDetails.email}
-            ownerId={userDetails._id}
+            ownerId={userDetails.ownerId}
           />
         </section>
         <section className="section-review">
           <h2>Review</h2>
           <div className="review-container">
             <div>
-              <form onSubmit={handleOnSubmitReview}>
+              <form className="review-form" onSubmit={handleOnSubmitReview}>
                 <div className="rating-div-container">
                   <div className="sub-rating-div">
                     <StarRating fun={totalRatingfun} text="Service?" />
@@ -391,31 +399,30 @@ const BlockDetails = () => {
                 </div>
                 <div className="inputBox">
                   <input
-                    style={{ width: "46%" }}
                     type="text"
                     name="name"
                     placeholder="Enter Name"
                     onChange={handleOnChangeReview}
                   />
                   <input
-                    style={{ width: "46%" }}
                     type="email"
                     name="email"
                     placeholder="Enter Email"
                     onChange={handleOnChangeReview}
                   />
+
+                  <textarea
+                    placeholder="Message"
+                    name="message"
+                    id=""
+                    cols="30"
+                    rows="10"
+                    onChange={handleOnChangeReview}
+                  ></textarea>
+                  <button type="submit" className="btn">
+                    send message
+                  </button>
                 </div>
-                <textarea
-                  placeholder="Message"
-                  name="message"
-                  id=""
-                  cols="30"
-                  rows="10"
-                  onChange={handleOnChangeReview}
-                ></textarea>
-                <button type="submit" className="btn">
-                  send message
-                </button>
               </form>
             </div>
           </div>

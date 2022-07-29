@@ -3,20 +3,19 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PasswordChecklist from "react-password-checklist";
 import { validate } from "react-email-validator";
-import {Cookies } from 'react-cookie';
+import { Cookies } from "react-cookie";
 import React from "react";
 
 const Signup = () => {
   const navigate = useNavigate();
-  useEffect(()=>{
-    const cookies=new Cookies()
-        const token=cookies.get('token')
-        if(token){
-            navigate('/')
-        }
-    window.scrollTo(0, 0)
-
-  })
+  useEffect(() => {
+    const cookies = new Cookies();
+    const token = cookies.get("token");
+    if (token) {
+      navigate("/");
+    }
+    window.scrollTo(0, 0);
+  });
 
   const [signupFormData, setSignupFormData] = useState({
     firstName: "",
@@ -27,6 +26,12 @@ const Signup = () => {
     isValidPassWord: false,
   });
 
+  //CSS
+  let passsvalidCSS = {
+    display: "grid",
+    justifyContent: "center",
+    margin: "auto",
+  };
   function handleOnChange(event) {
     const { name, value } = event.target;
 
@@ -135,7 +140,7 @@ const Signup = () => {
               value={signupFormData.conformPassword}
             />
             <br />
-            <PasswordChecklist
+            <PasswordChecklist style={passsvalidCSS}
               rules={["minLength", "specialChar", "number", "capital", "match"]}
               minLength={8}
               value={signupFormData.password}
@@ -162,7 +167,7 @@ const Signup = () => {
           </div>
         </form>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 };

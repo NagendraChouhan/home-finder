@@ -1,18 +1,18 @@
 import React, { useEffect } from "react";
 import addImage from "../../add-image.png";
 import { Cookies } from "react-cookie";
-import {useLocation, useNavigate} from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Footer from "../Footer";
 
 const CreateRoom = () => {
   // const { data, otherParam } = Route.params;
   const id = new URLSearchParams(useLocation().search).get("id");
-  
-  let buttonText="Create Room"
-  if(id!==undefined && id!==null){
-    buttonText="Save"
+
+  let buttonText = "Create Room";
+  if (id !== undefined && id !== null) {
+    buttonText = "Save";
   }
-  console.log(` id from CreateRoom =${id}`)
+  console.log(` id from CreateRoom =${id}`);
   const [formData, setFormData] = React.useState({
     roomtype: "",
     otherThingsAvailable: "",
@@ -48,31 +48,35 @@ const CreateRoom = () => {
   });
   const [availableAddress, setAvailableAddress] = React.useState([]);
   const [userLocation, setUserLocation] = React.useState({
-    longitude:"",
-    latitude:"",
+    longitude: "",
+    latitude: "",
   });
-  const setUserLocationFun=()=>{
-    navigator.geolocation.getCurrentPosition((postion)=>{
-      console.log(`user position=${JSON.stringify(postion.coords)}`)
+  const setUserLocationFun = () => {
+    navigator.geolocation.getCurrentPosition((postion) => {
+      console.log(`user position=${JSON.stringify(postion.coords)}`);
       setUserLocation({
-        longitude:postion.coords.longitude,
-        latitude:postion.coords.latitude,
-      })
-      console.log(`user longitude:postion.coords.longitude=${useLocation.longitude}`)
-      console.log(`user latitude:postion.coords.latitude=${useLocation.latitude}`)
-    })
-  }
+        longitude: postion.coords.longitude,
+        latitude: postion.coords.latitude,
+      });
+      console.log(
+        `user longitude:postion.coords.longitude=${useLocation.longitude}`
+      );
+      console.log(
+        `user latitude:postion.coords.latitude=${useLocation.latitude}`
+      );
+    });
+  };
 
   useEffect(() => {
     value();
-    if(id!==undefined && id!==null){
-      getData()
-      buttonText="Save"
+    if (id !== undefined && id !== null) {
+      getData();
+      buttonText = "Save";
     }
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
   }, []);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   async function value() {
     console.log(`useEffect`);
@@ -101,35 +105,35 @@ const CreateRoom = () => {
       },
     });
     data = await data.json();
-    console.log(`data from getdata of createRoom=${JSON.stringify(data)}`)
-    setFormData((preValue)=>({
+    console.log(`data from getdata of createRoom=${JSON.stringify(data)}`);
+    setFormData((preValue) => ({
       ...preValue,
       // "_id":"62c82cc41470f0355bf5e204",
       // "id":"62a8c4693a09045867968c22",
-      roomtype:data.roomtype,
-      price:data.price,
-      securityCharge:data.securityCharge,
-      checkboxSecurityCharge:data.securityCharge==null?false:true,
-      numberOfSameRoom:data.numberOfSameRoom,
-      checkboxNumberOfSameRoom:data.numberOfSameRoom==null?false:true,
-      area:data.area,
-      addressIdRadio:data.addressIdRadio,
-      pg:data.pg,
-      otherThingsAvailable:data.otherThingsAvailable,
-      Bed:data.Bed,
-      checkboxBed:data.Bed>0?true:false,
-      Table:data.Table,
-      checkboxTable:data.Table>0?true:false,
-      Almirah:data.Almirah,
-      checkboxAlmirah:data.Almirah>0?true:false,
-      Ventilation:data.Ventilation,
-      wifi:data.wifi,
-      packing:data.packing,
-      Boys:data.Boys,
-      Girls:data.Girls,
-      Famaly:data.Famaly,
+      roomtype: data.roomtype,
+      price: data.price,
+      securityCharge: data.securityCharge,
+      checkboxSecurityCharge: data.securityCharge == null ? false : true,
+      numberOfSameRoom: data.numberOfSameRoom,
+      checkboxNumberOfSameRoom: data.numberOfSameRoom == null ? false : true,
+      area: data.area,
+      addressIdRadio: data.addressIdRadio,
+      pg: data.pg,
+      otherThingsAvailable: data.otherThingsAvailable,
+      Bed: data.Bed,
+      checkboxBed: data.Bed > 0 ? true : false,
+      Table: data.Table,
+      checkboxTable: data.Table > 0 ? true : false,
+      Almirah: data.Almirah,
+      checkboxAlmirah: data.Almirah > 0 ? true : false,
+      Ventilation: data.Ventilation,
+      wifi: data.wifi,
+      packing: data.packing,
+      Boys: data.Boys,
+      Girls: data.Girls,
+      Famaly: data.Famaly,
     }));
-  }
+  };
 
   const handelOnChange = (event) => {
     const { name, value, type, checked } = event.target;
@@ -198,12 +202,12 @@ const CreateRoom = () => {
   const submitForm = async () => {
     console.log("Form is ready to submit");
     console.log(`from CreateRoom=====${JSON.stringify(formData)}`);
-    let result ;
+    let result;
     const cookies = new Cookies();
     const token = cookies.get("token");
-    console.log(`req to /bcreateRoom/updateAllData id=${id}`)
-    if(id!==undefined){
-      console.log(`req to /bcreateRoom/updateAllData`)
+    console.log(`req to /bcreateRoom/updateAllData id=${id}`);
+    if (id !== undefined) {
+      console.log(`req to /bcreateRoom/updateAllData`);
       result = await fetch(`/bcreateRoom/updateAllData?id=${id}`, {
         method: "put",
         body: JSON.stringify({ formData }),
@@ -212,13 +216,11 @@ const CreateRoom = () => {
           token: token,
         },
       });
-      navigate(`/blockDetails?id=${id}`)
+      navigate(`/blockDetails?id=${id}`);
+    } else {
+      console.log(`req to /bcreateRoom`);
 
-    }
-    else{
-      console.log(`req to /bcreateRoom`)
-
-        result = await fetch("/bcreateRoomjhgjhg", {
+      result = await fetch("/bcreateRoomjhgjhg", {
         method: "post",
         body: JSON.stringify({ formData }),
         headers: {
@@ -226,8 +228,7 @@ const CreateRoom = () => {
           token: token,
         },
       });
-      navigate(`/dashboard`)
-      
+      navigate(`/dashboard`);
     }
 
     result = await result.json();
@@ -324,7 +325,7 @@ const CreateRoom = () => {
         <div>Create Room</div>
         <section className="section-container">
           <div className="section-div-container">
-            <form onSubmit={handleOnSubmit}>
+            <form className="roomCreateForm" onSubmit={handleOnSubmit}>
               <select
                 name="roomtype"
                 value={formData.roomtype}
@@ -544,7 +545,11 @@ const CreateRoom = () => {
                 </label>
                 <div>{renderImges(formData.images)}</div>
               </div>
-              <button type="button" onClick={handleOnClick}>
+              <button
+                type="button"
+                className="address-btn"
+                onClick={handleOnClick}
+              >
                 {formData.addAddress
                   ? "Select From Available Address"
                   : "Add New Address"}
@@ -622,59 +627,54 @@ const CreateRoom = () => {
                       onChange={handelOnChange}
                     />
                   </label>
-
-                  <button id="addsubbtn" type="submit">
-                    Add Address
-                  </button>
                 </div>
               ) : (
-                availableAddress.map((data) => {
-                  let checked=false
-                  if(formData.addressIdRadio!==""){
-                    if(data._id==formData.addressIdRadio){
-                      checked=true
+                <div>
+                  {availableAddress.map((data) => {
+                    let checked = false;
+                    if (formData.addressIdRadio !== "") {
+                      if (data._id == formData.addressIdRadio) {
+                        checked = true;
+                      }
                     }
-
-                  }
-                  return (
-                    <label key={data._id}>
-                      <input
-                        type="radio"
-                        name="addressIdRadio"
-                        value={data._id}
-                        onChange={handelOnChange}
-                        checked={checked}
-                      />
-                      <p>
-                        <span>{data.country}</span>
-                        <br />
-                        <span>{data.state}</span>
-                        <br />
-                        <span>{data.district}</span>
-                        <br />
-                        <span>{data.houseNo}</span>
-                        <br />
-                        <span>{data.colony}</span>
-                        <br />
-                        <span>{data.landmark}</span>
-                        <br />
-                        <span>{data.pinCode}</span>
-                        <br />
-                      </p>
-                    </label>
-                  );
-                })
+                    return (
+                      <label>
+                        <input
+                          type="radio"
+                          name="addressIdRadio"
+                          value={data._id}
+                          onChange={handelOnChange}
+                          checked={checked}
+                        />
+                        <p>
+                          <span>{data.country}</span>
+                          <br />
+                          <span>{data.state}</span>
+                          <br />
+                          <span>{data.district}</span>
+                          <br />
+                          <span>{data.houseNo}</span>
+                          <br />
+                          <span>{data.colony}</span>
+                          <br />
+                          <span>{data.landmark}</span>
+                          <br />
+                          <span>{data.pinCode}</span>
+                          <br />
+                        </p>
+                      </label>
+                    );
+                  })}
+                </div>
               )}
               <div className="button-div">
-                
                 <button type="submit">{buttonText}</button>
-                
               </div>
             </form>
           </div>
         </section>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 };

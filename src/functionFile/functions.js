@@ -17,9 +17,8 @@ function otpsendfunction(username,uname,uotp){
         console.log('Email sent')
     })
     .catch((error) => {
-        console.error("err from send email=="+error)
         
-        res.status(400).send("Error =="+error);
+        console.log("Error otpsendfunction from  =="+error);
     })
 }
 
@@ -38,8 +37,31 @@ function generateotp(){
     }
     return otpsend;
 }
-
+function counselingFunction(email,name,textmessage,subject){
+    sgMail.setApiKey(process.env.SENDEMAIL_API_KEY);
+    console.log(process.env.SENDEMAIL_API_KEY);
+    const msg = {
+    to: email, // EMAIL SEND TO
+    from: 'nikku200109@gmail.com', // EMAIL SEND BY
+    subject: subject,
+    text: `Hello ${name},\n 
+    ${textmessage}\n
+    ThankYou,\n
+    Team HF`,
+    html: `Hello ${name}, </br>${textmessage}</br> ThankYou,</br>Team HF`,
+    }
+    sgMail
+    .send(msg)
+    .then(() => {
+        console.log('Email sent')
+    })
+    .catch((error) => {
+        console.error("err from counselingFunction =="+error)
+        
+    })
+}
 module.exports={
     otpsendfunction,
-    generateotp
+    generateotp,
+    counselingFunction
 }

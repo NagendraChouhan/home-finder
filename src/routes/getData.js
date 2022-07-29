@@ -84,6 +84,7 @@ Router.get("/addressData", async (req, res) => {
       res.send({
         name: addressDetails.name,
         email: addressDetails.email,
+        ownerId:addressDetails._id,
         country: addressValue.country,
         state: addressValue.state,
         district: addressValue.district,

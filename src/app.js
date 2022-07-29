@@ -22,7 +22,7 @@ const verify=require('./routes/verify');
 const createRoom=require('./routes/createRoom');
 const rooms=require('./routes/rooms');
 const roomReview=require('./routes/roomReview');
-const ownerCounseling=require('./routes/ownerCounseling');
+const counseling=require('./routes/counseling');
 const adminDetails = require('./models/adminModel');
 
 //Routes end here
@@ -53,7 +53,7 @@ app.use('/bcreateRoom',createRoom)
 app.use('/bcreateRoom/update',createRoom)
 app.use('/broomReview',roomReview)
 app.use('/broomReview/breviewData',roomReview)
-app.use('/bownerCounseling',ownerCounseling)
+app.use('/bcounseling',counseling)
 
 app.use('/',verify)
 

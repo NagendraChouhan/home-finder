@@ -3,16 +3,10 @@ const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 console.log("mongose=" + mongoose);
 
-const CreateownerCounseling = new mongoose.Schema({
+const createContactCounseling = new mongoose.Schema({
   ownerId: {
     //owner ID
     type: String,
-    require: true,
-  },
-  roomId: {
-    //room ID
-    type: String,
-    require: true,
   },
   name: {
     type: String,
@@ -26,6 +20,10 @@ const CreateownerCounseling = new mongoose.Schema({
     type: Number,
     require: true,
   },
+  subject:{
+    type:String,
+    require:true
+  },
   message: {
     type: String,
   },
@@ -35,5 +33,5 @@ const CreateownerCounseling = new mongoose.Schema({
   }
 });
 
-const ownerCounselingDetails = new mongoose.model("ownerCounseling", CreateownerCounseling);
-module.exports = ownerCounselingDetails;
+const contactCounselingDetails = new mongoose.model("contactCounseling", createContactCounseling);
+module.exports = contactCounselingDetails;
