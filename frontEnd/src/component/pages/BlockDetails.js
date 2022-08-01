@@ -223,30 +223,72 @@ const BlockDetails = () => {
             <div className="BlockDetails-detail-container">
               <div className="BlockDetails-detail">
                 <div className="BlockDetails-detail-div">
-                  <h1>Name of House</h1>
-                  <span>Place Name</span>
-                  <h2>Rs-{roomData.price}</h2>
-                  <span>{roomData.area} sqrt</span>
+                  <h1>
+                    <span
+                      style={{ verticalAlign: "top" }}
+                      className="material-symbols-outlined"
+                    >
+                      other_houses
+                    </span>
+                    <span> {roomData.roomtype}</span>
+                  </h1>
+                  <span>
+                    <span
+                      style={{ verticalAlign: "sub" }}
+                      className="material-symbols-outlined"
+                    >
+                      location_on
+                    </span>
+                    <span>{userDetails.houseNo} </span>
+                    <span>{userDetails.colony}, </span>
+                    <span>{userDetails.district} </span>
+                  </span>
+                  <h2>
+                    <span
+                      style={{ verticalAlign: "sub" }}
+                      className="material-symbols-outlined"
+                    >
+                      currency_rupee
+                    </span>
+                    <span>{roomData.price}</span>
+                  </h2>
+                  <span>
+                    <span
+                      style={{ verticalAlign: "sub" }}
+                      className="material-symbols-outlined"
+                    >
+                      villa
+                    </span>
+                    <span> {roomData.area} sqrt</span>
+                  </span>
                 </div>
               </div>
               <section className="box-section">
                 <div className="box-div-container">
                   <DetailBox
-                    icon="LOGO"
+                    iconClass="material-symbols-outlined"
+                    iconText="villa"
                     item="area"
                     value={`${roomData.area} sqrt`}
                   />
                   <DetailBox
-                    icon="LOGO"
+                    iconClass="material-symbols-outlined"
+                    iconText="meeting_room"
                     item="Bedrooms"
                     value={roomData.bedrooms}
                   />
                   <DetailBox
-                    icon="LOGO"
+                    iconClass="material-symbols-outlined"
+                    iconText="bathtub"
                     item="Bathrooms"
                     value={roomData.bathrooms}
                   />
-                  <DetailBox icon="LOGO" item="Beds" value={roomData.Bed} />
+                  <DetailBox
+                    iconClass="material-symbols-outlined"
+                    iconText="king_bed"
+                    item="Beds"
+                    value={roomData.Bed}
+                  />
                 </div>
               </section>
             </div>
@@ -269,36 +311,40 @@ const BlockDetails = () => {
                       item="Property Type:"
                       value={roomData.roomtype}
                     />
-                    <CategoryBox item="price:" value={roomData.price} />
+                    <CategoryBox item="price:" value={`₹${roomData.price}`} />
                     <CategoryBox
                       item="Security Charge:"
                       value={
                         roomData.securityCharge == null
                           ? "Null"
-                          : roomData.securityCharge
+                          : `₹${roomData.securityCharge}`
                       }
                     />
-                    <CategoryBox
-                      item="PG:"
-                      value={roomData.pg === true ? "Yes" : "No"}
-                    />
+
                     <CategoryBox item="Area:" value={`${roomData.area} sqrt`} />
                     <CategoryBox item="Bed:" value={roomData.Bed} />
+                    <CategoryBox item="Table:" value={roomData.Table} />
                   </div>
                   <div className="sub-category">
-                    <CategoryBox item="Table:" value={roomData.Table} />
                     <CategoryBox item="Almirah:" value={roomData.Almirah} />
-
+                    <CategoryBox
+                      item="PG:"
+                      cssValue={roomData.pg}
+                      value={roomData.pg === true ? "Yes" : "No"}
+                    />
                     <CategoryBox
                       item="Wifi:"
+                      cssValue={roomData.wifi}
                       value={roomData.wifi === true ? "Yes" : "No"}
                     />
                     <CategoryBox
                       item="Packing:"
+                      cssValue={roomData.packing}
                       value={roomData.packing === true ? "Yes" : "No"}
                     />
                     <CategoryBox
                       item="Ventilation:"
+                      cssValue={roomData.Ventilation}
                       value={roomData.Ventilation == true ? "Yes" : "No"}
                     />
                   </div>
@@ -307,6 +353,7 @@ const BlockDetails = () => {
                 <div className="category">
                   <CategoryBox
                     item="Boys:"
+                    cssValue={roomData.Boys}
                     value={
                       roomData.Boys === true
                         ? "Yes, It is available for Boys"
@@ -315,6 +362,7 @@ const BlockDetails = () => {
                   />
                   <CategoryBox
                     item="Girls:"
+                    cssValue={roomData.Girls}
                     value={
                       roomData.Girls === true
                         ? "Yes, It is available for Girls"
@@ -323,6 +371,7 @@ const BlockDetails = () => {
                   />
                   <CategoryBox
                     item="Famaly:"
+                    cssValue={roomData.Famaly}
                     value={
                       roomData.Famaly === true
                         ? "Yes, It is available for Famaly"

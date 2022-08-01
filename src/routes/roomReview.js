@@ -31,13 +31,19 @@ Router.post("/", async (req, res) => {
   }
 });
 Router.get("/breviewData", async (req, res) => {
-  const roomId=req.query.roomId
-  console.log(`get dat a from breviewData roomId==${roomId}`);
-
-  let reviewData = await createRoomReviewDetails.find({roomId:roomId});
+  try {
+    const roomId=req.query.roomId
+    console.log(`get data from breviewData roomId==${roomId}`);
   
-  console.log(`get dat a from breviewData==${reviewData}`);
-  res.send(reviewData);
+    let reviewData = await createRoomReviewDetails.find({roomId:roomId});
+    
+    console.log(`get data from breviewData==${reviewData}`);
+    res.send(reviewData);
+    
+  } catch (error) {
+    console.log(`Error from breviewData==${error}`);
+    res.send("Try After Saome Time");
+  }
 });
 
 module.exports = Router;

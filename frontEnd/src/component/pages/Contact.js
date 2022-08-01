@@ -47,7 +47,9 @@ const Contact = () => {
                 `result from blockDetails====${JSON.stringify(result)}`
               );
               if (result.result) {
-                alert("Your Message is send successfully\nFor more information check your Gmail");
+                alert(
+                  "Your Message is send successfully\nFor more information check your Gmail"
+                );
               } else {
                 alert(result.err);
               }
@@ -79,6 +81,12 @@ const Contact = () => {
         <div className="contact-inner-div">
           <div className="phone">
             <h1>PHONE NUMBER</h1>
+            <span
+              style={{ fontSize: "xxx-large", lineHeight: "0.5",color:"#00beffd1" }}
+              className="material-symbols-outlined"
+            >
+              call
+            </span>
             <p>9587456321</p>
             <p>
               888-555-222 <br />
@@ -87,10 +95,22 @@ const Contact = () => {
           </div>
           <div className="email">
             <h1>EMAIL</h1>
+            <span
+              style={{ fontSize: "xxx-large", lineHeight: "0.5",color:"#00beffd1" }}
+              className="material-symbols-outlined"
+            >
+              mail
+            </span>
             <p>abc@1234gmail.com</p>
           </div>
           <div className="office">
             <h1>OUR OFFICE</h1>
+            <span
+              style={{ fontSize: "xxx-large", lineHeight: "0.5",color:"#00beffd1" }}
+              className="material-symbols-outlined"
+            >
+              apartment
+            </span>
             <p>adress of office</p>
           </div>
         </div>

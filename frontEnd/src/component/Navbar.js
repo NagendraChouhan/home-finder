@@ -5,7 +5,13 @@ import { Cookies } from "react-cookie";
 
 const Navbar = () => {
   const styles = ({ isActive }) => {
-    return { width: "97%",display: "block",color: "red",padding: "2% 10px",color: isActive ? "red" : "" };
+    return {
+      width: "97%",
+      display: "block",
+      color: "red",
+      padding: "2% 10px",
+      color: isActive ? "red" : "",
+    };
   };
   function handleDisplayOnCLick() {
     console.log(
@@ -47,8 +53,17 @@ const Navbar = () => {
           <span onClick={handleDisplayOnCLick}>&#9776;</span>
         </div>
         <div className="nav-bar-name-div">
-          <img src={logo} alt="company logo" />
-          <h2>Home Finding</h2>
+          <span onClick={()=>{navigate('/')}}
+            style={{
+              alignSelf: "center",
+              fontSize: "xxx-large",
+              color: "#00beffd1",
+            }}
+            className="material-symbols-outlined"
+          >
+            other_houses
+          </span>
+          <h2> Home Finding</h2>
         </div>
         <div className="nav-bar-link-div">
           <span
