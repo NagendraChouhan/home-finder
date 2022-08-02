@@ -35,7 +35,7 @@ Router.post('/bverifyEmail',async(req,res)=>{
             });
             const register = await regverifyuser.save();
 
-            // otpsendfunction(email, result.name, otpsend);
+            otpsendfunction(email, result.name, otpsend);
             
             res.send({result:true})
 
@@ -78,7 +78,7 @@ Router.post('/bverifyotp',async(req,res)=>{
         res.send({err:"Try After Some Time"})
     }
 })
-Router.patch('/bupdatePassword',async(req,res)=>{
+Router.put('/bupdatePassword',async(req,res)=>{
     try {
         const {email,password}=req.body.forgetFormData
         const hash_password=await bcryptjs.hash(password,10)

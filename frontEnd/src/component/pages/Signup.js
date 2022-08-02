@@ -6,6 +6,8 @@ import { validate } from "react-email-validator";
 import { Cookies } from "react-cookie";
 import React from "react";
 
+import AlertBlock from "../AlertBlock";
+
 const Signup = () => {
   const navigate = useNavigate();
   useEffect(() => {
@@ -14,7 +16,6 @@ const Signup = () => {
     if (token) {
       navigate("/");
     }
-    window.scrollTo(0, 0);
   });
 
   const [signupFormData, setSignupFormData] = useState({
@@ -25,6 +26,11 @@ const Signup = () => {
     conformPassword: "",
     isValidPassWord: false,
   });
+
+  const [consoleErr, setConsoleErr] = React.useState();
+  const showErrFunc = () => {
+    setConsoleErr(null);
+  };
 
   //CSS
   let passsvalidCSS = {
@@ -41,7 +47,6 @@ const Signup = () => {
     }));
   }
 
-  const [error, setError] = useState();
   async function handleOnSubmit(event) {
     event.preventDefault();
     if (
@@ -68,28 +73,32 @@ const Signup = () => {
               navigate("/login");
             } else {
               console.log(result.err);
-              setError(result.err);
+              setConsoleErr(result.err);
             }
           } else {
-            setError("Password is not Stong");
-            console.log(error + "==Password is not Stong");
+            console.log("==Password is not Stong");
+            setConsoleErr("Please Enter Stong Password");
           }
         } else {
-          setError("Password are not Same");
-          console.log(error + "==Password are not Same");
+          console.log("==Password are not Same");
+          setConsoleErr("Please Enter Same Password");
         }
       } else {
-        setError("Email is not Valid");
-        console.log(error + "==Email is not Valid");
+        console.log("==Email is not Valid");
+        setConsoleErr("Please Enter Valid Email Address");
       }
     } else {
-      setError("All field are Required");
-      console.log(error + "==All field are Required");
+      console.log("==All field are Required");
+
+      setConsoleErr("All field are Required");
     }
   }
 
   return (
     <>
+      {consoleErr && (
+        <AlertBlock consoleErr={consoleErr} showErrFunc={showErrFunc} />
+      )}
       <div className="signup-div">
         <h1>Signup</h1>
 
@@ -140,7 +149,8 @@ const Signup = () => {
               value={signupFormData.conformPassword}
             />
             <br />
-            <PasswordChecklist style={passsvalidCSS}
+            <PasswordChecklist
+              style={passsvalidCSS}
               rules={["minLength", "specialChar", "number", "capital", "match"]}
               minLength={8}
               value={signupFormData.password}
@@ -162,7 +172,6 @@ const Signup = () => {
               }
             />
             <br />
-            {error && <span className="error-span">{error}</span>}
             <button type="submit">Sign Up</button>
           </div>
         </form>

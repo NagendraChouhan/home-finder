@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import addImage from "../../add-image.png";
 import { Cookies } from "react-cookie";
 import { useLocation, useNavigate } from "react-router-dom";
+
+import AlertBlock from "../AlertBlock";
 import Footer from "../Footer";
 
 const CreateRoom = () => {
@@ -51,6 +53,11 @@ const CreateRoom = () => {
     longitude: "",
     latitude: "",
   });
+
+  const [consoleErr, setConsoleErr] = React.useState();
+  const showErrFunc = () => {
+    setConsoleErr(null);
+  };
   const setUserLocationFun = () => {
     navigator.geolocation.getCurrentPosition((postion) => {
       console.log(`user position=${JSON.stringify(postion.coords)}`);
@@ -274,53 +281,68 @@ const CreateRoom = () => {
                                     if (formData.pinCode !== "") {
                                       submitForm();
                                     } else {
+                                      setConsoleErr("Please Enter pinCode");
                                       console.log("Enter pinCode");
                                     }
                                   } else {
+                                    setConsoleErr("Please Enter landmark");
                                     console.log("Enter landmark");
                                   }
                                 } else {
+                                  setConsoleErr("Please Enter colony");
                                   console.log("Enter colony");
                                 }
                               } else {
+                                setConsoleErr("Please Enter houseNo");
                                 console.log("Enter houseNo");
                               }
                             } else {
+                              setConsoleErr("Please Enter district");
                               console.log("Enter district");
                             }
                           } else {
+                            setConsoleErr("Please Enter state");
                             console.log("Enter state");
                           }
                         } else {
+                          setConsoleErr("Please Enter country");
                           console.log("Enter country");
                         }
                       } else {
                         if (formData.addressIdRadio !== "") {
                           submitForm();
                         } else {
+                          setConsoleErr("Please Select Address");
                           console.log("Select Address");
                         }
                       }
                     }
                   }
                 } else {
+                  setConsoleErr("Please Select Min 3 images requied");
                   console.log("Min 3 images requied");
                 }
               } else {
+                setConsoleErr("Please Enter Area");
                 console.log("Enter Area");
               }
             } else {
+              setConsoleErr("Please Enter Price");
               console.log("Enter Price");
             }
           }
         }
       }
     } else {
+      setConsoleErr("Please Select Type of Room");
       console.log("Select Type of Room");
     }
   };
   return (
     <>
+      {consoleErr && (
+        <AlertBlock consoleErr={consoleErr} showErrFunc={showErrFunc} />
+      )}
       <div className="create-room-main-div">
         <div>Create Room</div>
         <section className="section-container">

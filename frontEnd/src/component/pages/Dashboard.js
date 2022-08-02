@@ -123,7 +123,7 @@ const Dashboard = () => {
           </div>
         </section>
       </div>
-      <Footer/>
+      {/* <Footer/> */}
     </>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import Footer from "../Footer";
+import AlertBlock from "../AlertBlock";
 import { Cookies } from "react-cookie";
 
 const Contact = () => {
@@ -13,6 +14,10 @@ const Contact = () => {
     subject: "",
     message: "",
   });
+  const [consoleErr, setConsoleErr] = React.useState();
+  const showErrFunc = () => {
+    setConsoleErr(null);
+  };
   const handleOnChange = (event) => {
     const { name, value } = event.target;
     setContactFormData((preValue) => ({
@@ -55,23 +60,31 @@ const Contact = () => {
               }
             } else {
               console.log("Enter Message");
+              setConsoleErr("Please Enter Message");
             }
           } else {
             console.log("Enter Subject");
+            setConsoleErr("Please Enter Subject");
           }
         } else {
           console.log("Enter Valid  Number");
+          setConsoleErr("Please Enter Valid  Number");
         }
       } else {
         console.log("Enter Email");
+        setConsoleErr("Please Enter Email");
       }
     } else {
       console.log("Enter Name");
+      setConsoleErr("Please Enter Name");
     }
   };
 
   return (
     <>
+      {consoleErr && (
+        <AlertBlock consoleErr={consoleErr} showErrFunc={showErrFunc} />
+      )}
       <section className="contact" id="contact">
         <h1 className="heading">
           {" "}
@@ -82,7 +95,11 @@ const Contact = () => {
           <div className="phone">
             <h1>PHONE NUMBER</h1>
             <span
-              style={{ fontSize: "xxx-large", lineHeight: "0.5",color:"#00beffd1" }}
+              style={{
+                fontSize: "xxx-large",
+                lineHeight: "0.5",
+                color: "#00beffd1",
+              }}
               className="material-symbols-outlined"
             >
               call
@@ -96,7 +113,11 @@ const Contact = () => {
           <div className="email">
             <h1>EMAIL</h1>
             <span
-              style={{ fontSize: "xxx-large", lineHeight: "0.5",color:"#00beffd1" }}
+              style={{
+                fontSize: "xxx-large",
+                lineHeight: "0.5",
+                color: "#00beffd1",
+              }}
               className="material-symbols-outlined"
             >
               mail
@@ -106,7 +127,11 @@ const Contact = () => {
           <div className="office">
             <h1>OUR OFFICE</h1>
             <span
-              style={{ fontSize: "xxx-large", lineHeight: "0.5",color:"#00beffd1" }}
+              style={{
+                fontSize: "xxx-large",
+                lineHeight: "0.5",
+                color: "#00beffd1",
+              }}
               className="material-symbols-outlined"
             >
               apartment

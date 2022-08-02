@@ -3,6 +3,8 @@ import Footer from "../Footer";
 import PasswordChecklist from "react-password-checklist";
 import { useNavigate } from "react-router-dom";
 
+import AlertBlock from "../AlertBlock";
+
 const ForgetPassword = () => {
   const navigate = useNavigate();
   const [forgetFormData, setForgetFormData] = React.useState({
@@ -14,6 +16,11 @@ const ForgetPassword = () => {
     isValidPassWord: false,
     verifypassword: false,
   });
+
+  const [consoleErr, setConsoleErr] = React.useState();
+  const showErrFunc = () => {
+    setConsoleErr(null);
+  };
   function handleOnChange(event) {
     const { name, value } = event.target;
     setForgetFormData((preFormData) => ({
@@ -26,7 +33,6 @@ const ForgetPassword = () => {
   // const readonlyfun = () => {
   //     console.log("readonlyfun")
   // }
-  const [error, setError] = React.useState();
   async function handleOnSubmit(event) {
     event.preventDefault();
     if (forgetFormData.email != null || forgetFormData.otp != null) {
@@ -64,13 +70,13 @@ const ForgetPassword = () => {
           }));
         }
         if (result.err) {
-          setError(result.err);
+          setConsoleErr(result.err);
         }
       } else {
         if (forgetFormData.password === forgetFormData.conformPassword) {
           if (forgetFormData.isValidPassWord) {
             let result = await fetch("/bupdatePassword", {
-              method: "patch",
+              method: "put",
               body: JSON.stringify({ forgetFormData }),
               headers: {
                 "content-Type": "application/json",
@@ -83,23 +89,27 @@ const ForgetPassword = () => {
               navigate("/");
             } else {
               console.log(result.err);
-              setError(result.err);
+              setConsoleErr(result.err);
             }
           } else {
-            setError("Password is not Stong");
-            console.log(error + "==Password is not Stong");
+            console.log("==Password is not Stong");
+            setConsoleErr("Please Enter Stong Password");
           }
         } else {
-          setError("Password are not Same");
-          console.log(error + "==Password are not Same");
+          console.log("==Password are not Same");
+          setConsoleErr("Please Enter Same Password");
         }
       }
     } else {
-      setError("Please Enter Email");
+      console.log("==Please Enter Email");
+      setConsoleErr("Please Enter Email");
     }
   }
   return (
     <>
+      {consoleErr && (
+        <AlertBlock consoleErr={consoleErr} showErrFunc={showErrFunc} />
+      )}
       <div className="forget-div">
         <h1>Forget Password</h1>
         <form onSubmit={handleOnSubmit}>
@@ -177,7 +187,6 @@ const ForgetPassword = () => {
                 }
               />
             )}
-            {error && <span>{error}</span>}
             <br />
             <button type="submit">
               {forgetFormData.verifyEmail ? "Verify OTP" : "Verify Email"}

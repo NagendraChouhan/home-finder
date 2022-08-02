@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import logo from "../../logo.svg";
 import { useLocation } from "react-router-dom";
 import DetailBox from "../DetailBox";
+import AlertBlock from "../AlertBlock";
 import Footer from "../Footer";
 import CategoryBox from "../CategoryBox";
 import StarRating from "../StarRating";
@@ -38,6 +39,10 @@ const BlockDetails = () => {
     Quality: 0,
     Location: 0,
   });
+  const [consoleErr, setConsoleErr] = React.useState();
+  const showErrFunc = () => {
+    setConsoleErr(null);
+  };
 
   const getData = async () => {
     console.log(`roomId===${roomId}`);
@@ -136,23 +141,30 @@ const BlockDetails = () => {
                 console.log(
                   `result from /broomReview ${JSON.stringify(result)}`
                 );
+                setConsoleErr(JSON.stringify(result.result));
               } else {
                 console.log(`Review for Location`);
+                setConsoleErr("Please Review for Location");
               }
             } else {
               console.log(`Review for quality`);
+              setConsoleErr("Please Review for Quality");
             }
           } else {
             console.log(`Review for price`);
+            setConsoleErr("Please Review for Price");
           }
         } else {
-          console.log(`Review for service`);
+          console.log(`Review for Service`);
+          setConsoleErr("Please Review for service");
         }
       } else {
         console.log(`Enter email`);
+        setConsoleErr("Please Enter Email");
       }
     } else {
       console.log(`Enter name`);
+      setConsoleErr("Please Enter Name");
     }
   };
   const handleOnChangeReview = (event) => {
@@ -168,6 +180,9 @@ const BlockDetails = () => {
   let location = 0;
   return (
     <>
+      {consoleErr && (
+        <AlertBlock consoleErr={consoleErr} showErrFunc={showErrFunc} />
+      )}
       <div className="BlockDetails-main-div">
         <div className="BlockDetails-img-main-div">
           <div
