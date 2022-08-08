@@ -186,7 +186,7 @@ const CreateRoom = () => {
           src={photo}
           key={photo}
           alt={photo}
-          width={300}
+          style={{width: "230px",height: "180px",margin: "5px"}}
         />
       );
     });
@@ -347,7 +347,7 @@ const CreateRoom = () => {
         <div>Create Room</div>
         <section className="section-container">
           <div className="section-div-container">
-            <form className="roomCreateForm" onSubmit={handleOnSubmit}>
+            <form className="roomCreateForm" onSubmit={handleOnSubmit} style={{width:"90%", margin: "auto"}}>
               <select
                 name="roomtype"
                 value={formData.roomtype}
@@ -651,7 +651,7 @@ const CreateRoom = () => {
                   </label>
                 </div>
               ) : (
-                <div>
+                <div className="address-div">
                   {availableAddress.map((data) => {
                     let checked = false;
                     if (formData.addressIdRadio !== "") {
@@ -660,7 +660,7 @@ const CreateRoom = () => {
                       }
                     }
                     return (
-                      <label>
+                      <label style={{display: "flex"}}>
                         <input
                           type="radio"
                           name="addressIdRadio"

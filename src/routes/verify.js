@@ -81,6 +81,7 @@ Router.post('/bverifyotp',async(req,res)=>{
 Router.put('/bupdatePassword',async(req,res)=>{
     try {
         const {email,password}=req.body.forgetFormData
+        console.log(`email=${email},,pass=${password}`)
         const hash_password=await bcryptjs.hash(password,10)
         const result=await userDetails.updateOne(
             {email: email.toLowerCase()},

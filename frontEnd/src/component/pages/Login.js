@@ -52,7 +52,7 @@ const Login = () => {
         console.log(result.err);
         if (result.result) {
           console.log(result);
-          console.log(result.token);
+          console.log(`result.token==${result.token}`);
           const cookies = new Cookies();
           cookies.set("token", result.token);
 
@@ -76,7 +76,10 @@ const Login = () => {
         <AlertBlock consoleErr={consoleErr} showErrFunc={showErrFunc} />
       )}
       <div className="login-div">
-        <h3>Login Page</h3>
+        <h1 className="heading">
+          <span>Log</span>in
+        </h1>
+        
         <form onSubmit={handleFormData}>
           <div className="login-container">
             <input

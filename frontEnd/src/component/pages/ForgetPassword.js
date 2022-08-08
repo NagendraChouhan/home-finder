@@ -37,6 +37,7 @@ const ForgetPassword = () => {
     event.preventDefault();
     if (forgetFormData.email != null || forgetFormData.otp != null) {
       console.log("forgetpassword form is ready to sumbmit");
+      console.log(`forgetFormData.email ${forgetFormData.email}`);
       console.log(`forgetFormData.verifyEmail ${forgetFormData.verifyEmail}`);
       console.log(
         `forgetFormData.isValidPassWord ${forgetFormData.isValidPassWord}`
@@ -66,7 +67,7 @@ const ForgetPassword = () => {
             ...preFormData,
             verifypassword: result.verifypassword,
             verifyEmail: result.verifyEmail,
-            email: result.email,
+            
           }));
         }
         if (result.err) {
@@ -86,7 +87,8 @@ const ForgetPassword = () => {
             console.log(result.result);
             if (result.result) {
               console.log("done");
-              navigate("/");
+              alert("You'r Password is Updated")
+              navigate("/login");
             } else {
               console.log(result.err);
               setConsoleErr(result.err);
@@ -101,17 +103,26 @@ const ForgetPassword = () => {
         }
       }
     } else {
-      console.log("==Please Enter Email");
+      console.log("Please Enter Email");
       setConsoleErr("Please Enter Email");
     }
   }
+
+  let passsvalidCSS = {
+    display: "grid",
+    justifyContent: "center",
+    margin: "auto",
+  };
+  
   return (
     <>
       {consoleErr && (
         <AlertBlock consoleErr={consoleErr} showErrFunc={showErrFunc} />
       )}
       <div className="forget-div">
-        <h1>Forget Password</h1>
+        <h1 className="heading">
+          <>Forget </><span>Password</span>
+        </h1>
         <form onSubmit={handleOnSubmit}>
           <div className="forget-container">
             <input
@@ -121,9 +132,7 @@ const ForgetPassword = () => {
               onChange={handleOnChange}
               value={forgetFormData.email}
               required
-              id="email_input"
             />
-            <br />
 
             {forgetFormData.verifyEmail && (
               <input
@@ -135,7 +144,6 @@ const ForgetPassword = () => {
                 required
               />
             )}
-            <br />
             {forgetFormData.verifypassword && (
               <input
                 type="password"
@@ -146,7 +154,6 @@ const ForgetPassword = () => {
                 value={forgetFormData.password}
               />
             )}
-            <br />
             {forgetFormData.verifypassword && (
               <input
                 type="password"
@@ -157,9 +164,9 @@ const ForgetPassword = () => {
                 value={forgetFormData.conformPassword}
               />
             )}
-            <br />
             {forgetFormData.verifypassword && (
-              <PasswordChecklist
+              <PasswordChecklist 
+              style={passsvalidCSS}
                 rules={[
                   "minLength",
                   "specialChar",
@@ -187,9 +194,8 @@ const ForgetPassword = () => {
                 }
               />
             )}
-            <br />
             <button type="submit">
-              {forgetFormData.verifyEmail ? "Verify OTP" : "Verify Email"}
+              {forgetFormData.verifyEmail ? "Verify OTP" : forgetFormData.verifypassword?"New Password" :"Verify Email"}
             </button>
           </div>
         </form>

@@ -105,7 +105,7 @@ form input [type=number],[type=text],[type=file],select,.contact-form textarea,.
     width: 815px;
 }
 
-.login-container button:hover,.contact button:hover ,.forget-container button:hover,.Signup-container button:hover,.profile-container button:hover,.contact-form button:hover,.review-form button:hover,.address-btn:hover{
+.login-container button:hover,.contact button:hover ,.forget-container button:hover,.Signup-container button:hover,.profile-container button:hover,.contact-form button:hover,.review-form button:hover,.address-btn:hover,.button-div button:hover{
     opacity: 0.6;
 }
 .login-container .signupbtn {
@@ -152,7 +152,7 @@ form input [type=number],[type=text],[type=file],select,.contact-form textarea,.
   }
 
   .heading{
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
   
   .heading{
@@ -164,7 +164,7 @@ form input [type=number],[type=text],[type=file],select,.contact-form textarea,.
   }
   
   .heading span{
-    color:green;
+    color:#00beffd1;
     text-transform: uppercase;
   }
 
@@ -208,13 +208,13 @@ form input [type=number],[type=text],[type=file],select,.contact-form textarea,.
 }
 .location{
     font-size: larger;
-    margin: 5% 4% 5% 7%;
+    margin: 5% 4% 2% 7%;
     text-align: left;
 }
 .block-value-div{
     display: flex;
     justify-content: space-between;
-    padding: 3px 3px;
+    padding: 15px 3px 3px 3px;
     margin: 0px 30px;
     border-top: 1px solid;
     font-size: xx-large;
@@ -392,14 +392,17 @@ form{
 }
 .address-div label{
     display: flex;
-    justify-content: space-between;
-    align-items: baseline;
+    /* justify-content: space-between; */
+    /* align-items: baseline; */
 }
 
 .price-range{
     width: 260px;
     margin: 11px 8px;
     box-sizing: border-box;
+}
+.address-div label {
+    display: grid;
 }
 /* css for room create end here*/
 
@@ -997,16 +1000,7 @@ form>.inputBox{
     }
     
 }
-
-@media screen and (max-width:700px) {
-    .filter-div{
-        display: none;
-        top: 105px;
-        left: 0px;
-        right: 0px;
-        bottom: 0px;
-        width: auto;
-    }
+@media screen and (max-width:795px){
     .toggle-button,.toggle-button:hover{
         width: auto;
         position: fixed;
@@ -1017,6 +1011,21 @@ form>.inputBox{
         box-shadow: 0px 3px 5px #bcbcbc;
         background: #e7e7e7;
         border: none;
+    }
+    
+}
+
+@media screen and (max-width:700px) {
+    .filter-div{
+        display: none;
+        top: 105px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        width: auto;
+    }
+    .roomCreateForm{
+        width: 95% !important;
     }
     
     .room-container-home{
@@ -1092,11 +1101,11 @@ form>.inputBox{
         .login-container input[type=text] ,[type=password],[type=email],.login-container button,.contact input[type=text] ,[type=number],[type=email],.contact textarea, .contact button, .Signup-container input[type=text],[type=password],[type=email],ul,.Signup-container button,.profile-container button,
         .forget-container input [type=number],[type=email], 
         .profile-container input [type=number],[type=text],[type=date],[type=password],[type=email],
-        form input [type=number],[type=text],[type=file],select,.contact-form button,.contact-form textarea ,.review-form button,.review-form textarea,.address-btn{
+        form input [type=number],[type=text],[type=file],select,.contact-form button,.contact-form textarea ,.review-form button,.review-form textarea,.address-btn,.button-div button,.address-div{
             
             border-radius: 3px;
             width: 85%;
-            margin: 12px 0px;            
+            margin: 12px auto;            
         }
         .login-div{
             top:20px;

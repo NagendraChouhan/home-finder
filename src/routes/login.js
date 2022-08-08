@@ -18,12 +18,12 @@ Router.post('/',async(req,res)=>{
             
             if(await bcryptjs.compare(password,adminresult.password)){
                 const token= await adminresult.generateToten();
-                        res.cookie("token",token,{
-                            expires:new Date(Date.now()+6000000000),
-                            httpOnly:true,
-                            // secure:true
-                        });
-                res.send({result:adminresult})
+                        // res.cookie("token",token,{
+                        //     expires:new Date(Date.now()+6000000000),
+                        //     httpOnly:true,
+                        //     // secure:true
+                        // });
+                res.send({result:adminresult,token:token})
             }
             else{
                 console.log("admin password are not match")

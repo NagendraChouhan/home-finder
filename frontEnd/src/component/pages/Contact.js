@@ -139,7 +139,9 @@ const Contact = () => {
             <p>adress of office</p>
           </div>
         </div>
-        <h1 className="heading">enquiry</h1>
+        <h1 className="heading">
+          <span>en</span>quiry
+        </h1>
         <form onSubmit={handleOnSubmit} className="contact-form">
           <div className="contact-form-inputBox">
             <input

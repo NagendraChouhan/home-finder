@@ -100,7 +100,9 @@ const Signup = () => {
         <AlertBlock consoleErr={consoleErr} showErrFunc={showErrFunc} />
       )}
       <div className="signup-div">
-        <h1>Signup</h1>
+        <h1 className="heading">
+          <span>Sign</span>up
+        </h1>
 
         <form onSubmit={handleOnSubmit}>
           <div className="Signup-container">
