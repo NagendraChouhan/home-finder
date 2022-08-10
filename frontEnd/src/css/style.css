@@ -913,6 +913,39 @@ form>.inputBox{
 
 /*alert CSS end here*/
 
+/* .commi{
+    width: 241px;
+    /* border: 2px solid red; 
+    height: 200px;
+    margin: 10%;
+    margin-left: 30%;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px grey;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    content: 0%;
+    font-family: system-ui;
+    font-weight: bolder;
+    font-size: 220px;
+    color: #75adea;
+    padding-bottom: 25px;
+    padding-left: 10px;
+    text-shadow: 6px 8px 10px grey;
+    /* opacity: 0.8; 
+    rotate: 10%;
+    text-transform: rotateZ(45deg);
+    /* font-style: italic; 
+}
+
+.per{    
+    font-size: 40px;
+    display: contents;
+    color: #050505;
+    /* font-weight: 900; 
+    font-family: cursive;
+} */
 
 @media screen and (max-width: 980px){
     .home-main-div>.home-div-container>.img-div>.centered{
@@ -1052,7 +1085,7 @@ form>.inputBox{
 @media screen and (max-width:611px){
     .div-container{
         border: 1px solid #c4c4c4;
-        margin: 10% 2% 0% 2%;
+        margin: 55px 2% 0% 2%;
     }
     .room-container-home
     {

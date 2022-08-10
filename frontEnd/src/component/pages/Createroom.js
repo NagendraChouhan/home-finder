@@ -213,7 +213,7 @@ const CreateRoom = () => {
     const cookies = new Cookies();
     const token = cookies.get("token");
     console.log(`req to /bcreateRoom/updateAllData id=${id}`);
-    if (id !== undefined) {
+    if (id !== null) {
       console.log(`req to /bcreateRoom/updateAllData`);
       result = await fetch(`/bcreateRoom/updateAllData?id=${id}`, {
         method: "put",
@@ -227,7 +227,7 @@ const CreateRoom = () => {
     } else {
       console.log(`req to /bcreateRoom`);
 
-      result = await fetch("/bcreateRoomjhgjhg", {
+      result = await fetch("/bcreateRoom", {
         method: "post",
         body: JSON.stringify({ formData }),
         headers: {

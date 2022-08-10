@@ -46,8 +46,8 @@ const Dashboard = () => {
       updateFun(id,true)
     }
   }
+  const cookies = new Cookies();
   const updateFun = async(id,roomstatus) => {
-    const cookies = new Cookies();
         const token = cookies.get("token");
       
         console.log(`id==${id}`)

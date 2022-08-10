@@ -41,6 +41,10 @@ const Home = () => {
               />
               <Block imgValue={findImage} display="true" texts="Find Your Home Online" />
             </div>
+            {/* <span className="commi">
+              <span>0</span>
+              <span className="per">%</span>
+            </span> */}
           </div>
         </section>
         <HomeBlock id="about"
