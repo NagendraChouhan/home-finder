@@ -9,7 +9,7 @@ const AlertBlock = (props) => {
       alertId.style.display = "none";
       console.log("setTimeout");
       props.showErrFunc()
-    }, 2000);
+    }, 3000);
   });
   return (
     <>

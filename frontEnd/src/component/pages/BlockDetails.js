@@ -27,6 +27,7 @@ const BlockDetails = () => {
   const roomId = new URLSearchParams(useLocation().search).get("id");
   //roomIs is an createRoomModel _id
   const [roomData, setRoomData] = React.useState({});
+  const [images, setImages] = React.useState([]);
   const [userDetails, setuserDetails] = React.useState({});
   const [rating, setRating] = React.useState([]);
   const [totalRating, setTotalRating] = React.useState({
@@ -55,11 +56,13 @@ const BlockDetails = () => {
     });
     data = await data.json();
 
-    setRoomData(data);
+    setRoomData(data.roomDetail);
+    setImages(data.images);
+    console.log(`data===== ${JSON.stringify(data.roomDetail)}`);
+    console.log(`data.images===== ${JSON.stringify(data.images)}`);
     // console.log(`data===== ${JSON.stringify(data)}`);
-    // console.log(`data===== ${JSON.stringify(data)}`);
-    const userId = data.id;
-    const addressIdRadio = data.addressIdRadio;
+    const userId = data.roomDetail.id;
+    const addressIdRadio = data.roomDetail.addressIdRadio;
     // console.log(`userId====${userId}`);
     // console.log(`addressIdRadio====${addressIdRadio}`);
     let userDetails = await fetch(
@@ -99,7 +102,7 @@ const BlockDetails = () => {
       if (BlockDetails_img_div[i] !== e.target) {
         BlockDetails_img_div[i].style.width = "5%";
         BlockDetails_img_div[i].style.boxShadow = "none";
-        BlockDetails_img_div[i].style.opacity = "0.5";
+        BlockDetails_img_div[i].style.opacity = "0.8";
       }
       i++;
     }
@@ -188,21 +191,21 @@ const BlockDetails = () => {
           <div
             className="BlockDetails-img-div"
             style={{
-              backgroundImage: "url(" + logo + ")",
+              backgroundImage: "url(" + images[1] + ")",
             }}
             onMouseOver={mouseover_fun}
           ></div>
           <div
             className="BlockDetails-img-div"
             style={{
-              backgroundImage: "url(" + logo + ")",
+              backgroundImage: "url(" + images[2] + ")",
             }}
             onMouseOver={mouseover_fun}
           ></div>
           <div
             className="BlockDetails-img-div"
             style={{
-              backgroundImage: "url(" + logo + ")",
+              backgroundImage: "url(" + images[0] + ")",
               transition: "1.5s ease-in-out",
               boxShadow: "2px 2px 15px 2px gray",
               width: "50%",
@@ -213,21 +216,21 @@ const BlockDetails = () => {
           <div
             className="BlockDetails-img-div"
             style={{
-              backgroundImage: "url(" + logo + ")",
+              backgroundImage: "url(" + images[3] + ")",
             }}
             onMouseOver={mouseover_fun}
           ></div>
           <div
             className="BlockDetails-img-div"
             style={{
-              backgroundImage: "url(" + logo + ")",
+              backgroundImage: "url(" + images[4] + ")",
             }}
             onMouseOver={mouseover_fun}
           ></div>
           <div
             className="BlockDetails-img-div-alter"
             style={{
-              backgroundImage: "url(" + logo + ")",
+              backgroundImage: "url(" + images[0] + ")",
             }}
             onMouseOver={mouseover_fun}
           ></div>
@@ -415,12 +418,9 @@ const BlockDetails = () => {
             <h2>Gallery</h2>
             <div className="div_main">
               <div className="div_image">
-                <Gallery logo={img} />
-                <Gallery logo={aboutImg} />
-                <Gallery logo={aboutImg1} />
-                <Gallery logo={aboutImg2} />
-                <Gallery logo={aboutImg3} />
-                <Gallery logo={logo} />
+                {images.map((imageData) => {
+                  return <Gallery logo={imageData} />;
+                })}
               </div>
             </div>
             <div id="dialog" className="dialog">

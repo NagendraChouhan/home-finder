@@ -68,7 +68,8 @@ const Rooms = () => {
             if (data.roomstatus) {
               return (
                 <Block
-                  imgValue={img1}
+                  imageKey={data.roomImagesKey[0]}
+                  roomId={data.id}
                   price={data.price}
                   id={data._id}
                   key={data._id}

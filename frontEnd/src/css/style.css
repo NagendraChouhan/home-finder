@@ -203,7 +203,7 @@ form input [type=number],[type=text],[type=file],select,.contact-form textarea,.
 }
 .block-div img{
     width: 100%;
-    /* height: 180px; */
+    height: 290px;
     margin: auto;
 }
 .location{
@@ -743,7 +743,7 @@ form>.inputBox{
 
 .BlockDetails-img-div,.BlockDetails-img-div-alter
 {
-    opacity: 0.5;
+    opacity: 0.8;
     margin: 10px;
     width: 5%;
     height: 400px;

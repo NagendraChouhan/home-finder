@@ -95,7 +95,8 @@ const Dashboard = () => {
                     <tr key={data._id}>
                       <td>
                         <Block
-                          imgValue={img1}
+                          imageKey={data.roomImagesKey[0]}
+                          roomId={data.id}
                           price={data.price}
                           id={data._id}
                           border="true"
