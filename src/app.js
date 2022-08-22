@@ -39,7 +39,7 @@ app.use(express.json())
 // app.use(express.static(path.join(__dirname, '../frontEnd/public')))
 console.log("app.get('*')")
 app.get('*', function(req, res) {
-  res.sendFile(path.join(__dirname, '../frontEnd/public', 'index.html'),function(err){
+  res.sendFile(path.join(__dirname, '../frontEnd/build', 'index.html'),function(err){
     console.log("app.get in function('*')")
 
     if(err){
@@ -84,7 +84,7 @@ if(process.env.NODE_ENV=="production"){
 
 app.listen(port, () => {
     console.log(`path${__dirname}`)
-    console.log(`path${path.join(__dirname, '../frontEnd/public', 'index.html')}`)
+    console.log(`path${path.join(__dirname, '../frontEnd/build', 'index.html')}`)
     console.log(`Listing from port ${port}`);
 })
 
