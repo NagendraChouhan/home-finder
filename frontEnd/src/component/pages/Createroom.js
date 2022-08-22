@@ -719,7 +719,7 @@ const CreateRoom = () => {
                 />
               )}
               <div className="form-div">
-                <span>Add Photos Minimum 3</span>
+                <span>Add Photos Minimum 5</span>
                 <label>
                   Select images
                   <img src={addImage} alt="add-image" width={30} />

@@ -119,9 +119,12 @@ Router.get("/addressData", async (req, res) => {
     let flag=true;
     for (let i = 0; i < addressDetails.address.length; i++) {
     console.log(`addressDetails for i==== ${i}`);
+    console.log(`addressDetails.address[i] if i==== ${addressDetails.address[i]._id}`);
 
       if (addressDetails.address[i]._id == addressId) {
         console.log(`addressDetails if i==== ${i}`);
+        console.log(`addressDetails if i==== ${addressDetails}`);
+        console.log(`addressValue if i==== ${addressValue}`);
         flag=false
         addressValue = addressDetails.address[i];
         res.send({
@@ -137,10 +140,11 @@ Router.get("/addressData", async (req, res) => {
           pinCode: addressValue.pinCode,
           _id: addressValue._id,
         });
-        break;
       }
     }
     console.log(`addressValue =${addressValue}`);
+    console.log(`addressDetails if i==== ${addressDetails}`);
+
     if(flag){
       res.send({ result: 'Succses' });    
     }

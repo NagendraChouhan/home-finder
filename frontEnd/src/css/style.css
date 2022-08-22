@@ -118,6 +118,11 @@ form input [type=number],[type=text],[type=file],select,.contact-form textarea,.
     padding: 16px;
     text-align: center;
 }
+.forget-container{
+    
+    display: grid;
+    justify-content: center;
+}
 .login-container{
     text-align: center;
 
@@ -1134,7 +1139,7 @@ form>.inputBox{
         .login-container input[type=text] ,[type=password],[type=email],.login-container button,.contact input[type=text] ,[type=number],[type=email],.contact textarea, .contact button, .Signup-container input[type=text],[type=password],[type=email],ul,.Signup-container button,.profile-container button,
         .forget-container input [type=number],[type=email], 
         .profile-container input [type=number],[type=text],[type=date],[type=password],[type=email],
-        form input [type=number],[type=text],[type=file],select,.contact-form button,.contact-form textarea ,.review-form button,.review-form textarea,.address-btn,.button-div button,.address-div{
+        form input [type=number],[type=text],[type=file],select,.contact-form button,.contact-form textarea ,.review-form button,.review-form textarea,.address-btn,.button-div button,.address-div,.forget-container button{
             
             border-radius: 3px;
             width: 85%;
