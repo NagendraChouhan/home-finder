@@ -37,14 +37,20 @@ app.use(express.json())
 // const fileUpload = require('express-fileupload');
 // app.use(fileUpload());
 // app.use(express.static(path.join(__dirname, '../frontEnd/public')))
-
+console.log("app.get('*')")
 app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, '../frontEnd/public', 'index.html'),function(err){
+    console.log("app.get in function('*')")
+
     if(err){
+    console.log("app.get in function if('*')")
+
         res.status(500).send(err)
     }
   })
 })
+console.log("app.get1('*')")
+
 
 app.use('/blogout',logout)
 app.use('/blogin',login)
