@@ -37,19 +37,6 @@ app.use(express.json())
 // const fileUpload = require('express-fileupload');
 // app.use(fileUpload());
 // app.use(express.static(path.join(__dirname, '../frontEnd/public')))
-console.log("app.get('*')")
-app.get('*', function(req, res) {
-  res.sendFile(path.join(__dirname, '../frontEnd/build', 'index.html'),function(err){
-    console.log("app.get in function('*')")
-
-    if(err){
-    console.log("app.get in function if('*')")
-
-        res.status(500).send(err)
-    }
-  })
-})
-console.log("app.get1('*')")
 
 
 app.use('/blogout',logout)
@@ -75,16 +62,29 @@ app.use('/',verify)
 // app.use(express.static(path.join(__dirname, 'public')));
 
 // app.get('*', function(req, res) {
-//   res.sendFile(path.join(__dirname, 'public', 'index.html'));
-// });
-
-if(process.env.NODE_ENV=="production"){
-    app.use(express.static("frontEnd/build"));
-}
-
-app.listen(port, () => {
-    console.log(`path${__dirname}`)
-    console.log(`path${path.join(__dirname, '../frontEnd/build', 'index.html')}`)
-    console.log(`Listing from port ${port}`);
+    //   res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    // });
+    
+    if(process.env.NODE_ENV=="production"){
+        app.use(express.static("frontEnd/build"));
+    }
+    console.log("app.get('*')")
+    app.get('*', function(req, res) {
+      res.sendFile(path.join(__dirname, '../frontEnd/build', 'index.html'),function(err){
+        console.log("app.get in function('*')")
+    
+        if(err){
+        console.log("app.get in function if('*')")
+    
+            res.status(500).send(err)
+        }
+      })
+    })
+    console.log("app.get1('*')")
+    
+    app.listen(port, () => {
+        console.log(`path${__dirname}`)
+        console.log(`path${path.join(__dirname, '../frontEnd/build', 'index.html')}`)
+        console.log(`Listing from port ${port}`);
 })
 
