@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Block from "../Block";
 import HomeBlock from "../HomeBlock";
 import Footer from "../Footer";
@@ -11,13 +11,21 @@ import findImage from "../../pexels-cottonbro-4065624.jpg"
 import registerImage from "../../pexels-sevenstorm-juhaszimrus-704767.jpg"
 
 
-const Home = () => {
+const Home = (props) => {
   const roomContainerCSS = {
     justifyContent: "center",
     display: "flex",
     flexWrap: "wrap",
     margin: "0px 10%",
   };
+  useEffect(()=>{
+    props.setLoderfun("100%")
+    setTimeout(
+      function(){
+    props.setLoderfun("100%",true)
+      },1000)
+
+  },[])
   return (
     <>
       <div className="home-main-div">

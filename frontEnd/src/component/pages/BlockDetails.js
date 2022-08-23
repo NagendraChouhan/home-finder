@@ -18,8 +18,9 @@ var BlockDetails_img_div = document.getElementsByClassName(
   "BlockDetails-img-div"
 );
 
-const BlockDetails = () => {
+const BlockDetails = (props) => {
   useEffect(() => {
+    props.setLoderfun("30%")
     getData();
     getReviewData();
     window.scrollTo(0, 0);
@@ -46,6 +47,7 @@ const BlockDetails = () => {
   };
 
   const getData = async () => {
+    props.setLoderfun("50%")
     console.log(`roomId===${roomId}`);
     console.log(`useEffect`);
     let data = await fetch(`/bgetData/roomDetails?roomId=${roomId}`, {
@@ -54,10 +56,21 @@ const BlockDetails = () => {
         "content-Type": "application/json",
       },
     });
+
+    props.setLoderfun("70%")
     data = await data.json();
+    props.setLoderfun("80%")
 
     setRoomData(data.roomDetail);
+    props.setLoderfun("100%")
+
     setImages(data.images);
+    setTimeout(
+      function(){
+        
+        props.setLoderfun("100%",true)
+      },2000)
+
     console.log(`data===== ${JSON.stringify(data.roomDetail)}`);
     console.log(`data.images===== ${JSON.stringify(data.images)}`);
     // console.log(`data===== ${JSON.stringify(data)}`);
@@ -92,8 +105,10 @@ const BlockDetails = () => {
     console.log(
       `Review Data from blockDetails====${JSON.stringify(reviewData)}`
     );
+    
 
     setRating(reviewData);
+   
   };
 
   const mouseover_fun = (e) => {

@@ -2,28 +2,39 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 const Block = (props) => {
   useEffect(() => {
-    console.log(`inside useEffect`)
-    if(props.imageKey!==undefined){
-      getData()   
+    console.log(`inside useEffect`);
+    if (props.imageKey !== undefined) {
+      getData();
     }
   }, []);
-  const[imageUrl,setImageUrl]=React.useState()
-  async function getData(){
-      console.log(`roomId===${props.roomId}`);
-      console.log(`useEffect`);
-      let data = await fetch(`/bgetData/roomDetails?roomId=${props.roomId}&imageKey=${props.imageKey}`, {
-        method: "GET",
-        headers: {
-          "content-Type": "application/json",
-        },
-      });
+  const [imageUrl, setImageUrl] = React.useState();
+  async function getData() {
+    console.log(`roomId===${props.roomId}`);
+    console.log(`useEffect`);
+    console.log(`window.sessionStorage.getItem(props.imageKey)${window.sessionStorage.getItem(props.imageKey)}`)
+    const sessionStorageuImageUrl=window.sessionStorage.getItem(props.imageKey)
+    // if (sessionStorageuImageUrl=== undefined ||sessionStorageuImageUrl==="" || sessionStorageuImageUrl===null) {
+    console.log(`useEffect datadata`);
+
+      let data = await fetch(
+        `/bgetData/roomDetails?roomId=${props.roomId}&imageKey=${props.imageKey}`,
+        {
+          method: "GET",
+          headers: {
+            "content-Type": "application/json",
+          },
+        }
+      );
       console.log(`data`);
 
-      data=await data.json()
-      console.log(
-        `data from getdata of block=${JSON.stringify(data)}`
-      );
-      setImageUrl(data.imagesUrl)
+      data = await data.json();
+      console.log(`data from getdata of block=${JSON.stringify(data)}`);
+      setImageUrl(data.imagesUrl);
+      window.sessionStorage.setItem(props.imageKey, data.imagesUrl);
+    // }
+    // else{
+    //   setImageUrl(sessionStorageuImageUrl);
+    // }
   }
   const display = props.display === undefined ? true : false;
   const border = props.border === undefined ? true : false;
@@ -97,7 +108,11 @@ const Block = (props) => {
         style={displaycss}
         onClick={() => handleOnClick(props.id)}
       >
-        <img src={props.imgValue===undefined?imageUrl:props.imgValue} alt="Room Image" style={displaycssimag} />
+        <img
+          src={props.imgValue === undefined ? imageUrl : props.imgValue}
+          alt="Room Image"
+          style={displaycssimag}
+        />
         {display && (
           <span style={locationCSS} className="location">
             <b style={{ textTransform: "capitalize" }}>{props.location}</b>

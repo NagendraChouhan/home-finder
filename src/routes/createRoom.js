@@ -150,10 +150,10 @@ Router.post("/", async (req, res) => {
       //finding city of an address
 
       let addressDetails = await userDetails.findOne({
-        $match: {
-          _id: tokenvarify._id,
-          "address._id": AddressId,
-        },
+        _id: tokenvarify._id,
+        // $match: {
+        //   "address._id": AddressId,
+        // },
       });
 
       let addressValue;
@@ -304,10 +304,10 @@ Router.put("/updateAllData", async (req, res) => {
     } else {
       //finding city of an address
       let addressDetails = await userDetails.findOne({
-        $match: {
-          _id: tokenvarify._id,
-          "address._id": AddressId,
-        },
+        _id: tokenvarify._id,
+        // $match: {
+        //   "address._id": AddressId,
+        // },
       });
 
       let addressValue;

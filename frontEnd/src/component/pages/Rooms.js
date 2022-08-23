@@ -1,19 +1,24 @@
 import Block from "../Block";
 import Footer from "../Footer";
-import img from "../../logo.svg";
-import img1 from "../../interior-2685521_960_720.jpg";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import FilterDiv from "../FilterDiv";
+import SkeletonBar from "../SkeletonBar";
 
-const Rooms = () => {
+const Rooms = (props) => {
+  
   useEffect(() => {
+    props.setLoderfun("30%")
     value();
     window.scrollTo(0, 0);
   }, []);
-  const [blockData, setBlockData] = React.useState([]);
+  const [blockData, setBlockData] = useState([]);
+  
+  const [isLoading, setIsLoading] = useState(true);
 
   async function value() {
+    props.setLoderfun("60%")
+
     console.log(`useEffect`);
     let data = await fetch("/brooms", {
       method: "GET",
@@ -21,9 +26,20 @@ const Rooms = () => {
         "content-Type": "application/json",
       },
     });
+    props.setLoderfun("70%")
     data = await data.json();
+    props.setLoderfun("80%")
 
     setBlockData(data);
+    props.setLoderfun("100%")
+
+    setIsLoading(false);
+    setTimeout(
+      function(){
+        console.log(`setTimeout`)
+          props.setLoderfun("100%",true)
+      },3000)
+
     console.log(`data===== ${JSON.stringify(data)}`);
     console.log(`data===== ${JSON.stringify(data[0]._id)}`);
     console.log(`blockData===== ${blockData.length}`);
@@ -47,6 +63,7 @@ const Rooms = () => {
       ? setStyleValue((preValue) => ({ ...preValue, marginDiv: "10px" }))
       : setStyleValue((preValue) => ({ ...preValue, marginDiv: "330px" }));
   };
+  
   return (
     <>
       <div className="room-div-main">
@@ -64,6 +81,8 @@ const Rooms = () => {
           style={{ marginLeft: styleValue.marginDiv }}
           className="room-container"
         >
+          {isLoading && <SkeletonBar index={10}/>}
+
           {blockData.map((data) => {
             if (data.roomstatus) {
               return (
@@ -81,8 +100,11 @@ const Rooms = () => {
             return;
           })}
         </div>
+        {
+
+        }
       </div>
-      
+
       <Footer />
     </>
   );

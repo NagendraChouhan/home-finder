@@ -7,7 +7,7 @@ import axios from "axios";
 import AlertBlock from "../AlertBlock";
 import Footer from "../Footer";
 
-const CreateRoom = () => {
+const CreateRoom = (props) => {
   // const { data, otherParam } = Route.params;
   const id = new URLSearchParams(useLocation().search).get("id");
   //this id is an room _id
@@ -84,6 +84,8 @@ const CreateRoom = () => {
   };
 
   useEffect(() => {
+    props.setLoderfun("60%")
+
     value();
     if (id !== undefined && id !== null) {
       getData();
@@ -95,6 +97,10 @@ const CreateRoom = () => {
   const navigate = useNavigate();
 
   async function value() {
+    if (id === undefined || id === null) {
+      props.setLoderfun("80%")
+    }
+
     console.log(`useEffect`);
     const cookies = new Cookies();
     const token = cookies.get("token");
@@ -105,13 +111,28 @@ const CreateRoom = () => {
         token: token,
       },
     });
+    if (id === undefined || id === null) {
+      props.setLoderfun("100%")
+    }
+    else(
+      props.setLoderfun("70%")
+    )
     data = await data.json();
-
+  
     // console.log(`data from value=====##########====== ${JSON.stringify(data)}`);
+    
     setAvailableAddress(data);
+    if (id === undefined || id === null) {
+      props.setLoderfun("100%",true)
+    }
+    else(
+      props.setLoderfun("80%")
+    )
     // console.log(`data from availableAddress=====##########====== ${availableAddress}`);
   }
   const getData = async () => {
+    props.setLoderfun("90%")
+
     console.log(`roomId===${id}`);
     console.log(`useEffect`);
     let data = await fetch(`/bgetData/roomDetails?roomId=${id}`, {
@@ -120,10 +141,13 @@ const CreateRoom = () => {
         "content-Type": "application/json",
       },
     });
+    props.setLoderfun("100%")
     data = await data.json();
+
     console.log(
       `data from getdata of createRoom=${JSON.stringify(data.images)}`
     );
+
     setFormData((preValue) => ({
       ...preValue,
       roomtype: data.roomDetail.roomtype,
@@ -155,6 +179,7 @@ const CreateRoom = () => {
       updateFlag: true,
       imageFileFlag: true,
     }));
+    props.setLoderfun("100%",true)
   };
 
   const handelOnChange = (event) => {

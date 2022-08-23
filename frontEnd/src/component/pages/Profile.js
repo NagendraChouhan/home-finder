@@ -2,7 +2,7 @@ import React,{useEffect } from 'react'
 import Footer from "../Footer";
 import {Cookies } from 'react-cookie';
 
- const Profile = () => {
+ const Profile = (props) => {
     const [profileData,setprofileData]=React.useState({
         name:"",
         phone_no:"",
@@ -18,11 +18,13 @@ import {Cookies } from 'react-cookie';
         }))
     }
     useEffect(()=>{
+    props.setLoderfun("80%")
         value()
         window.scrollTo(0, 0)
 
     },[])
     async function value(){
+        props.setLoderfun("90%")
 
         console.log(`useEffect`)
         const cookies=new Cookies()
@@ -34,6 +36,8 @@ import {Cookies } from 'react-cookie';
                 token:token
             }
         })
+    props.setLoderfun("100%")
+
         data=await data.json()
         setprofileData((prevalue)=>({
             ...prevalue,
@@ -42,6 +46,8 @@ import {Cookies } from 'react-cookie';
             email:data.email,
             dob:data.dob
         }))
+    props.setLoderfun("100%",true)
+
     }
     return (
     <>

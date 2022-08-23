@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.28fdaac0.css",
-    "main.js": "/static/js/main.7cdf5b04.js",
+    "main.css": "/static/css/main.0682f735.css",
+    "main.js": "/static/js/main.0a3ad2a8.js",
     "static/media/christin-hume-hBuwVLcYTnA-unsplash.jpg": "/static/media/christin-hume-hBuwVLcYTnA-unsplash.dade5c6c8bf5de4f3cb4.jpg",
     "static/media/christin-hume-Hcfwew744z4-unsplash.jpg": "/static/media/christin-hume-Hcfwew744z4-unsplash.2c9f3287fe47b56b6b36.jpg",
     "static/media/kobu-agency-7okkFhxrxNw-unsplash.jpg": "/static/media/kobu-agency-7okkFhxrxNw-unsplash.d522fa99e0390536455a.jpg",
@@ -13,11 +13,11 @@
     "static/media/add-image.png": "/static/media/add-image.9269fb21d05d0c0ee3aa.png",
     "static/media/logo.svg": "/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/index.html",
-    "main.28fdaac0.css.map": "/static/css/main.28fdaac0.css.map",
-    "main.7cdf5b04.js.map": "/static/js/main.7cdf5b04.js.map"
+    "main.0682f735.css.map": "/static/css/main.0682f735.css.map",
+    "main.0a3ad2a8.js.map": "/static/js/main.0a3ad2a8.js.map"
   },
   "entrypoints": [
-    "static/css/main.28fdaac0.css",
-    "static/js/main.7cdf5b04.js"
+    "static/css/main.0682f735.css",
+    "static/js/main.0a3ad2a8.js"
   ]
 }

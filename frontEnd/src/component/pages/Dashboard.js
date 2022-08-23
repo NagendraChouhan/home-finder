@@ -8,16 +8,20 @@ import Block from "../Block";
 import { useNavigate } from "react-router-dom";
 import { Cookies } from "react-cookie";
 
-const Dashboard = () => {
+const Dashboard = (props) => {
   const navigate = useNavigate();
   tokenvarify("/login");
   const [roomData, setRoomData] = React.useState([]);
   useEffect(() => {
+    props.setLoderfun("60%")
+
     getData();
     window.scrollTo(0, 0)
 
   }, []);
   const getData = async () => {
+    props.setLoderfun("80%")
+
     const cookies = new Cookies();
     const token = cookies.get("token");
     let data = await fetch("/bgetData/room", {
@@ -27,9 +31,15 @@ const Dashboard = () => {
         token: token,
       },
     });
+    props.setLoderfun("90%")
+
     data = await data.json();
+    props.setLoderfun("100%")
+
     console.log(`data from dashborad ====${JSON.stringify(data)}`);
     setRoomData(data);
+    props.setLoderfun("100%",true)
+
   };
   const handleOnClick = () => {
     navigate("/createroom");
