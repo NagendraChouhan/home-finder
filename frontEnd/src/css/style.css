@@ -1353,6 +1353,9 @@ form>.inputBox {
         width: 100%;
         height: 300px;
     }
+    .loding-bar{
+        height: 4px;
+    }
 
     @media screen and (max-width: 580px) {
         .home-main-div>.home-div-container>.img-div>.centered {
