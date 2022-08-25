@@ -84,7 +84,7 @@ const CreateRoom = (props) => {
   };
 
   useEffect(() => {
-    props.setLoderfun("60%")
+    props.setLoderfun("60%");
 
     value();
     if (id !== undefined && id !== null) {
@@ -98,7 +98,7 @@ const CreateRoom = (props) => {
 
   async function value() {
     if (id === undefined || id === null) {
-      props.setLoderfun("80%")
+      props.setLoderfun("80%");
     }
 
     console.log(`useEffect`);
@@ -112,26 +112,20 @@ const CreateRoom = (props) => {
       },
     });
     if (id === undefined || id === null) {
-      props.setLoderfun("100%")
-    }
-    else(
-      props.setLoderfun("70%")
-    )
+      props.setLoderfun("100%");
+    } else props.setLoderfun("70%");
     data = await data.json();
-  
+
     // console.log(`data from value=====##########====== ${JSON.stringify(data)}`);
-    
+
     setAvailableAddress(data);
     if (id === undefined || id === null) {
-      props.setLoderfun("100%",true)
-    }
-    else(
-      props.setLoderfun("80%")
-    )
+      props.setLoderfun("100%", true);
+    } else props.setLoderfun("80%");
     // console.log(`data from availableAddress=====##########====== ${availableAddress}`);
   }
   const getData = async () => {
-    props.setLoderfun("90%")
+    props.setLoderfun("90%");
 
     console.log(`roomId===${id}`);
     console.log(`useEffect`);
@@ -141,7 +135,7 @@ const CreateRoom = (props) => {
         "content-Type": "application/json",
       },
     });
-    props.setLoderfun("100%")
+    props.setLoderfun("100%");
     data = await data.json();
 
     console.log(
@@ -179,7 +173,7 @@ const CreateRoom = (props) => {
       updateFlag: true,
       imageFileFlag: true,
     }));
-    props.setLoderfun("100%",true)
+    props.setLoderfun("100%", true);
   };
 
   const handelOnChange = (event) => {
@@ -301,6 +295,9 @@ const CreateRoom = (props) => {
 
   const submitForm = async () => {
     setDisabledButton(true);
+    props.setLoderfun("50%");
+
+
     console.log("Form is ready to submit");
     console.log(`from CreateRoom=====${JSON.stringify(formData)}`);
     let result;
@@ -312,6 +309,7 @@ const CreateRoom = (props) => {
       //this id we send is an an room _id
 
       //send req to /bcreateRoom/updateAllData for update the room data and save to the Data base
+    props.setLoderfun("60%");
 
       console.log(`req to /bcreateRoom/updateAllData`);
       result = await fetch(`/bcreateRoom/updateAllData?id=${id}`, {
@@ -322,7 +320,11 @@ const CreateRoom = (props) => {
           token: token,
         },
       });
+    props.setLoderfun("70%");
+
       result = await result.json();
+    props.setLoderfun("80%");
+
       console.log(`req to /bcreateRoom/image id=${JSON.stringify(result)}`);
       console.log(
         `formData.imageFile.length=${JSON.stringify(formData.imageFile)}`
@@ -332,8 +334,11 @@ const CreateRoom = (props) => {
       );
 
       if (Object.keys(formData.imageFile).length === 0) {
+    props.setLoderfun("100%");
+
         console.log(`formData.imageFile length=${formData.imageFile.length}`);
         console.log(`navigate`);
+        props.setLoderfun("100%",true);
 
         navigate(`/blockDetails?id=${id}`);
       }
@@ -346,6 +351,7 @@ const CreateRoom = (props) => {
       console.log(`req to /bcreateRoom`);
 
       //send req to /bcreateRoom for create and save the room data to the Data base
+      props.setLoderfun("60%");
 
       result = await fetch("/bcreateRoom", {
         method: "post",
@@ -355,8 +361,11 @@ const CreateRoom = (props) => {
           token: token,
         },
       });
+    props.setLoderfun("70%");
+
       result = await result.json();
       console.log(`req to /bcreateRoom id=${result.result._id}`);
+      props.setLoderfun("80%");
 
       roomId = result.result._id;
     }
@@ -367,6 +376,7 @@ const CreateRoom = (props) => {
       console.log(
         `Images saving formData.imageFile ${JSON.stringify(formData.imageFile)}`
       );
+      props.setLoderfun("90%");
 
       if (Object.keys(formData.imageFile).length > 0) {
         //send req to /bcreateRoom/image for uploading images to bucket  and save the key/image Name in Data base
@@ -385,6 +395,8 @@ const CreateRoom = (props) => {
           }
         );
       }
+    props.setLoderfun("100%");
+
       if (id !== null && formData.updateFlag) {
         //send req to /bcreateRoom/deleteImages for deleting images to bucket  and update the in Data base
         console.log(`deleteImages`);
@@ -408,6 +420,8 @@ const CreateRoom = (props) => {
         );
       }
       console.log(`navigate1`);
+      props.setLoderfun("100%",true);
+
       navigate(`/blockDetails?id=${roomId}`);
 
       // navigate(`/dashboard`);
@@ -496,10 +510,13 @@ const CreateRoom = (props) => {
                             }
                           }
                         }
-                      }
-                      else{
-                        setConsoleErr("Please Select Atleast One Option of Room is Available");
-                        console.log("Please Select Atleast One Option of Room is Available");
+                      } else {
+                        setConsoleErr(
+                          "Please Select Atleast One Option of Room is Available"
+                        );
+                        console.log(
+                          "Please Select Atleast One Option of Room is Available"
+                        );
                       }
                     }
                   } else {
@@ -577,13 +594,16 @@ const CreateRoom = (props) => {
                   Bed
                 </label>
                 {formData.checkboxBed && (
-                  <input
-                    type="number"
-                    name="Bed"
-                    value={formData.Bed}
-                    placeholder="Enter Number of Bed*"
-                    onChange={handelOnChange}
-                  />
+                  <label style={{ display: "grid" }}>
+                    Number Of Beds*
+                    <input
+                      type="number"
+                      name="Bed"
+                      value={formData.Bed}
+                      placeholder="Enter Number of Bed*"
+                      onChange={handelOnChange}
+                    />
+                  </label>
                 )}
 
                 <label>
@@ -596,13 +616,16 @@ const CreateRoom = (props) => {
                   Table
                 </label>
                 {formData.checkboxTable && (
-                  <input
-                    type="number"
-                    name="Table"
-                    value={formData.Table}
-                    placeholder="Enter Number of Table*"
-                    onChange={handelOnChange}
-                  />
+                  <label style={{ display: "grid" }}>
+                    Number Of Table*
+                    <input
+                      type="number"
+                      name="Table"
+                      value={formData.Table}
+                      placeholder="Enter Number of Table*"
+                      onChange={handelOnChange}
+                    />{" "}
+                  </label>
                 )}
                 <label>
                   <input
@@ -614,13 +637,16 @@ const CreateRoom = (props) => {
                   Almirah
                 </label>
                 {formData.checkboxAlmirah && (
-                  <input
-                    type="number"
-                    name="Almirah"
-                    value={formData.Almirah}
-                    placeholder="Enter Number of Almirah*"
-                    onChange={handelOnChange}
-                  />
+                  <label style={{ display: "grid" }}>
+                    Number Of Almirah*
+                    <input
+                      type="number"
+                      name="Almirah"
+                      value={formData.Almirah}
+                      placeholder="Enter Number of Almirah*"
+                      onChange={handelOnChange}
+                    />
+                  </label>
                 )}
                 <label>
                   <input
@@ -651,20 +677,40 @@ const CreateRoom = (props) => {
                   Ventilation in Room
                 </label>
               </div>
+              {/* <label>
+              Other
               <input
                 type="text"
                 name="otherThingsAvailable"
                 value={formData.otherThingsAvailable}
                 placeholder="Other"
                 onChange={handelOnChange}
-              />
-              <input
-                type="number"
-                name="price"
-                value={formData.price}
-                placeholder="Enter Price Of Room*"
-                onChange={handelOnChange}
-              />
+                />
+                </label> */}
+              <div className="form-div">
+                <label style={{ display: "grid" }}>
+                  Price*
+                  <input
+                    type="number"
+                    name="price"
+                    value={formData.price}
+                    placeholder="Enter Price Of Room*"
+                    onChange={handelOnChange}
+                  />
+                </label>
+              </div>
+              <div className="form-div">
+                <label style={{ display: "grid" }}>
+                  Area* (In Aquare Foot (sq ft))
+                  <input
+                    type="number"
+                    name="area"
+                    value={formData.area}
+                    placeholder="Enter Area of Room*"
+                    onChange={handelOnChange}
+                  />
+                </label>{" "}
+              </div>
               <div className="form-div">
                 <label>
                   <input
@@ -677,23 +723,21 @@ const CreateRoom = (props) => {
                 </label>
               </div>
               {formData.checkboxSecurityCharge && (
-                <input
-                  type="number"
-                  name="securityCharge"
-                  value={formData.securityCharge}
-                  placeholder="Enter Security Charge*"
-                  onChange={handelOnChange}
-                />
-              )}
-              <input
-                type="number"
-                name="area"
-                value={formData.area}
-                placeholder="Enter Area of Room*"
-                onChange={handelOnChange}
-              />
+                <div className="form-div">
+                  <label style={{ display: "grid" }}>
+                    Security Charge*
+                    <input
+                      type="number"
+                      name="securityCharge"
+                      value={formData.securityCharge}
+                      placeholder="Enter Security Charge*"
+                      onChange={handelOnChange}
+                    />
+                  </label>{" "}
+                </div>
+              )}{" "}
               <div className="form-div">
-                <span>Room is Available</span>
+                <span>Room is Available*</span>
                 <label>
                   <input
                     type="checkbox"
@@ -735,13 +779,18 @@ const CreateRoom = (props) => {
                 </label>
               </div>
               {formData.checkboxNumberOfSameRoom && (
-                <input
-                  type="number"
-                  name="numberOfSameRoom"
-                  value={formData.numberOfSameRoom}
-                  placeholder="Enter no. of Same Room*"
-                  onChange={handelOnChange}
-                />
+                <div className="form-div">
+                  <label style={{ display: "grid" }}>
+                    Enter No. of Same Room*
+                    <input
+                      type="number"
+                      name="numberOfSameRoom"
+                      value={formData.numberOfSameRoom}
+                      placeholder="Enter no. of Same Room*"
+                      onChange={handelOnChange}
+                    />
+                  </label>{" "}
+                </div>
               )}
               <div className="form-div">
                 <span>Add Photos Minimum 5</span>
@@ -852,7 +901,7 @@ const CreateRoom = (props) => {
                       }
                     }
                     return (
-                      <label style={{ display: "flex" }}>
+                      <label style={{ display: "flex" }} key={data._id}>
                         <input
                           type="radio"
                           name="addressIdRadio"

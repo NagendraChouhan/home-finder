@@ -465,11 +465,7 @@ form {
     margin: 5px 10px;
 }
 
-.address-div label {
-    display: flex;
-    /* justify-content: space-between; */
-    /* align-items: baseline; */
-}
+
 
 .price-range {
     width: 260px;
@@ -1130,7 +1126,7 @@ form>.inputBox {
     height: 2px;
     background-color: red;
     z-index: 10;
-    position: absolute;
+    position: fixed;
     width: 0%;
     top:0px;
     animation: mymove 5s 1;
