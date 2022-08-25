@@ -7,7 +7,7 @@ function otpsendfunction(username,uname,uotp){
     const msg = {
     to: username, // EMAIL SEND TO
     from: 'nikku200109@gmail.com', // EMAIL SEND BY
-    subject: 'Baren otp',
+    subject: 'HF OTP',
     text: 'Hello'+uname+' Your otp is-'+uotp,
     html: 'Hello<strong>,'+uname+'</strong> Your otp is-'+uotp,
     }

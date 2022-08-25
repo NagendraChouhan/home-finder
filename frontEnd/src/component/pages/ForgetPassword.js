@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import AlertBlock from "../AlertBlock";
 
-const ForgetPassword = () => {
+const ForgetPassword = (props) => {
   const navigate = useNavigate();
   const [forgetFormData, setForgetFormData] = React.useState({
     email: "",
@@ -16,7 +16,9 @@ const ForgetPassword = () => {
     isValidPassWord: false,
     verifypassword: false,
   });
-
+  if (forgetFormData.verifyEmail) {
+    document.getElementById("email").disabled = true;
+  }
   const [consoleErr, setConsoleErr] = React.useState();
   const showErrFunc = () => {
     setConsoleErr(null);
@@ -42,7 +44,11 @@ const ForgetPassword = () => {
       console.log(
         `forgetFormData.isValidPassWord ${forgetFormData.isValidPassWord}`
       );
+      props.setLoderfun("60%");
+
       if (!forgetFormData.isValidPassWord) {
+        props.setLoderfun("80%");
+
         var result = await fetch(
           forgetFormData.verifyEmail ? "/bverifyotp" : "/bverifyEmail",
           {
@@ -53,7 +59,11 @@ const ForgetPassword = () => {
             },
           }
         );
+        props.setLoderfun("90%");
+
         result = await result.json();
+        props.setLoderfun("100%");
+
         console.log(`result from forgetpassword ${result.result}`);
         if (result.result) {
           setForgetFormData((preFormData) => ({
@@ -67,14 +77,16 @@ const ForgetPassword = () => {
             ...preFormData,
             verifypassword: result.verifypassword,
             verifyEmail: result.verifyEmail,
-            
           }));
         }
         if (result.err) {
           setConsoleErr(result.err);
         }
+        props.setLoderfun("100%", true);
       } else {
         if (forgetFormData.password === forgetFormData.conformPassword) {
+          props.setLoderfun("90%");
+
           if (forgetFormData.isValidPassWord) {
             let result = await fetch("/bupdatePassword", {
               method: "put",
@@ -83,16 +95,19 @@ const ForgetPassword = () => {
                 "content-Type": "application/json",
               },
             });
+            props.setLoderfun("100%");
+
             result = await result.json();
             console.log(result.result);
             if (result.result) {
               console.log("done");
-              alert("You'r Password is Updated")
+              alert("You'r Password is Updated");
               navigate("/login");
             } else {
               console.log(result.err);
               setConsoleErr(result.err);
             }
+            props.setLoderfun("100%", true);
           } else {
             console.log("==Password is not Stong");
             setConsoleErr("Please Enter Stong Password");
@@ -113,7 +128,7 @@ const ForgetPassword = () => {
     justifyContent: "center",
     margin: "auto",
   };
-  
+
   return (
     <>
       {consoleErr && (
@@ -121,13 +136,15 @@ const ForgetPassword = () => {
       )}
       <div className="forget-div">
         <h1 className="heading">
-          <>Forget </><span>Password</span>
+          <>Forget </>
+          <span>Password</span>
         </h1>
         <form onSubmit={handleOnSubmit}>
           <div className="forget-container">
             <input
               type="email"
               name="email"
+              id="email"
               placeholder="Enter Email"
               onChange={handleOnChange}
               value={forgetFormData.email}
@@ -165,8 +182,8 @@ const ForgetPassword = () => {
               />
             )}
             {forgetFormData.verifypassword && (
-              <PasswordChecklist 
-              style={passsvalidCSS}
+              <PasswordChecklist
+                style={passsvalidCSS}
                 rules={[
                   "minLength",
                   "specialChar",
@@ -195,7 +212,11 @@ const ForgetPassword = () => {
               />
             )}
             <button type="submit">
-              {forgetFormData.verifyEmail ? "Verify OTP" : forgetFormData.verifypassword?"New Password" :"Verify Email"}
+              {forgetFormData.verifyEmail
+                ? "Verify OTP"
+                : forgetFormData.verifypassword
+                ? "New Password"
+                : "Verify Email"}
             </button>
           </div>
         </form>

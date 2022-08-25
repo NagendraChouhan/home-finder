@@ -70,7 +70,7 @@ const RouterCom = () => {
           />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/forgetPassword" element={<ForgetPassword />} />
+          <Route path="/forgetPassword" element={<ForgetPassword setLoderfun={setLoder} />} />
           <Route path="*" element={<h1>Working On it</h1>} />
         </Routes>
       </BrowserRouter>

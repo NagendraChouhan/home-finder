@@ -19,6 +19,13 @@ const Navbar = () => {
     );
     if (window.innerWidth < 809) {
       var x = document.getElementsByClassName("nav-bar-link-div")[0];
+      window.addEventListener("click", function (e) {
+        if (!document.getElementsByClassName("nav-bar")[0].contains(e.target)) {
+          if (x.style.display === "block") {
+            x.style.display = "none";
+          }
+        }
+      });
       if (x.style.display === "block") {
         x.style.display = "none";
       } else {
@@ -53,7 +60,13 @@ const Navbar = () => {
           <span onClick={handleDisplayOnCLick}>&#9776;</span>
         </div>
         <div className="nav-bar-name-div">
-          <span onClick={()=>{navigate('/')}}
+          <span
+            onClick={() => {
+              var x = (document.getElementsByClassName(
+                "nav-bar-link-div"
+              )[0].style.display = "none");
+              navigate("/");
+            }}
             style={{
               alignSelf: "center",
               fontSize: "xxx-large",
