@@ -68,16 +68,16 @@ const Home = (props) => {
           <HomeBlock 
             heading="Quick Account Opening" 
             content="It is so easy to open your account or <br/>
-            Register your account on our platform <br/>
-            In every three easy steps you can register your home on our platform<br/> 
-            So that people can easily find your home."
+            Register your account on our platform.<br/>
+            You can register your home on our platform<br/> 
+            so that people can easily find your home."
             img={aboutImg2}
             styleValue={true}
           />
           <HomeBlock 
             heading="We Are Here To Help You" 
-            content="In Register your Home to our Platform <br/>
-            Finding You'r Dream Home "
+            content="Register your Home to our Platform or <br/>
+            Finding Your Dream Home "
             img={aboutImg3}
           />
       </div>

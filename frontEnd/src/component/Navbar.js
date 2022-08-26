@@ -1,6 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import React from "react";
 import { Cookies } from "react-cookie";
+import img from '../pexels-anthony-133372.jpg'
 
 const Navbar = () => {
   const styles = ({ isActive }) => {
@@ -75,7 +76,21 @@ const Navbar = () => {
           >
             other_houses
           </span>
-          <h2> Home Finding</h2>
+
+          <h1
+            className="heading"
+            style={{
+              fontSize: "30px",
+              fontFamily: "fangsong",
+
+              margin: "25px 10px 10px 10px",
+
+              textTransform: "capitalize",
+            }}
+          >
+            BL
+            <span style={{ textTransform: "lowercase" }}>i've</span>S
+          </h1>
         </div>
         <div className="nav-bar-link-div">
           <span

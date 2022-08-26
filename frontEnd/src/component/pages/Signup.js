@@ -23,7 +23,7 @@ const Signup = () => {
     lastName: "",
     email: "",
     password: "",
-    conformPassword: "",
+    ConfirmPassword: "",
     isValidPassWord: false,
   });
 
@@ -54,10 +54,10 @@ const Signup = () => {
       signupFormData.firstName.length > 0 &&
       signupFormData.lastName.length > 0 &&
       signupFormData.password.length > 0 &&
-      signupFormData.conformPassword.length > 0
+      signupFormData.ConfirmPassword.length > 0
     ) {
       if (validate(signupFormData.email)) {
-        if (signupFormData.password === signupFormData.conformPassword) {
+        if (signupFormData.password === signupFormData.ConfirmPassword) {
           if (signupFormData.isValidPassWord) {
             let result = await fetch("/bsignup", {
               method: "post",
@@ -144,11 +144,11 @@ const Signup = () => {
             <br />
             <input
               type="password"
-              name="conformPassword"
-              placeholder="Conform Password"
+              name="ConfirmPassword"
+              placeholder="Confirm Password"
               required
               onChange={handleOnChange}
-              value={signupFormData.conformPassword}
+              value={signupFormData.ConfirmPassword}
             />
             <br />
             <PasswordChecklist
@@ -156,7 +156,7 @@ const Signup = () => {
               rules={["minLength", "specialChar", "number", "capital", "match"]}
               minLength={8}
               value={signupFormData.password}
-              valueAgain={signupFormData.conformPassword}
+              valueAgain={signupFormData.ConfirmPassword}
               messages={{
                 minLength: "Password has more than 8 characters.",
                 specialChar:

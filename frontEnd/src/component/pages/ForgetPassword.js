@@ -12,7 +12,7 @@ const ForgetPassword = (props) => {
     otp: "",
     verifyEmail: false,
     password: "",
-    conformPassword: "",
+    ConfirmPassword: "",
     isValidPassWord: false,
     verifypassword: false,
   });
@@ -84,7 +84,7 @@ const ForgetPassword = (props) => {
         }
         props.setLoderfun("100%", true);
       } else {
-        if (forgetFormData.password === forgetFormData.conformPassword) {
+        if (forgetFormData.password === forgetFormData.ConfirmPassword) {
           props.setLoderfun("90%");
 
           if (forgetFormData.isValidPassWord) {
@@ -174,11 +174,11 @@ const ForgetPassword = (props) => {
             {forgetFormData.verifypassword && (
               <input
                 type="password"
-                name="conformPassword"
-                placeholder="Conform Password"
+                name="ConfirmPassword"
+                placeholder="Confirm Password"
                 required
                 onChange={handleOnChange}
-                value={forgetFormData.conformPassword}
+                value={forgetFormData.ConfirmPassword}
               />
             )}
             {forgetFormData.verifypassword && (
@@ -193,7 +193,7 @@ const ForgetPassword = (props) => {
                 ]}
                 minLength={8}
                 value={forgetFormData.password}
-                valueAgain={forgetFormData.conformPassword}
+                valueAgain={forgetFormData.ConfirmPassword}
                 messages={{
                   minLength: "Password has more than 8 characters.",
                   specialChar:
