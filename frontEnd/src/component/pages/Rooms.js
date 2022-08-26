@@ -1,23 +1,23 @@
 import Block from "../Block";
 
+import Footer from "../src/component/Footer";
 
 import React, { useEffect, useState } from "react";
 import FilterDiv from "../FilterDiv";
 import SkeletonBar from "../SkeletonBar";
 
 const Rooms = (props) => {
-  
   useEffect(() => {
-    props.setLoderfun("30%")
+    props.setLoderfun("30%");
     value();
     window.scrollTo(0, 0);
   }, []);
   const [blockData, setBlockData] = useState([]);
-  
+
   const [isLoading, setIsLoading] = useState(true);
 
   async function value() {
-    props.setLoderfun("60%")
+    props.setLoderfun("60%");
 
     console.log(`useEffect`);
     let data = await fetch("/brooms", {
@@ -26,19 +26,18 @@ const Rooms = (props) => {
         "content-Type": "application/json",
       },
     });
-    props.setLoderfun("70%")
+    props.setLoderfun("70%");
     data = await data.json();
-    props.setLoderfun("80%")
+    props.setLoderfun("80%");
 
     setBlockData(data);
-    props.setLoderfun("100%")
+    props.setLoderfun("100%");
 
     setIsLoading(false);
-    setTimeout(
-      function(){
-        console.log(`setTimeout`)
-          props.setLoderfun("100%",true)
-      },3000)
+    setTimeout(function () {
+      console.log(`setTimeout`);
+      props.setLoderfun("100%", true);
+    }, 3000);
 
     console.log(`data===== ${JSON.stringify(data)}`);
     console.log(`data===== ${JSON.stringify(data[0]._id)}`);
@@ -51,7 +50,7 @@ const Rooms = (props) => {
   });
 
   const setBlockDatafun = (data) => {
-    console.log(`data feom filter=${JSON.stringify(data)}`)
+    console.log(`data feom filter=${JSON.stringify(data)}`);
     setBlockData(data);
   };
 
@@ -64,7 +63,7 @@ const Rooms = (props) => {
       ? setStyleValue((preValue) => ({ ...preValue, marginDiv: "10px" }))
       : setStyleValue((preValue) => ({ ...preValue, marginDiv: "330px" }));
   };
-  
+
   return (
     <>
       <div className="room-div-main">
@@ -82,7 +81,7 @@ const Rooms = (props) => {
           style={{ marginLeft: styleValue.marginDiv }}
           className="room-container"
         >
-          {isLoading && <SkeletonBar index={10}/>}
+          {isLoading && <SkeletonBar index={10} />}
 
           {blockData.map((data) => {
             if (data.roomstatus) {
@@ -101,12 +100,10 @@ const Rooms = (props) => {
             return;
           })}
         </div>
-        {
-
-        }
+        {}
       </div>
 
-      
+      <Footer />
     </>
   );
 };
