@@ -19,7 +19,7 @@ Router.post("/", async (req, res) => {
     });
     const result=await newcreateRoomReview.save()
     console.log(`res from roomReview ${JSON.stringify(req.body.totalRating)}`);
-    res.send({result:result})
+    res.send({result:"Thankyou for your review"})
   } catch (error) {
     console.log(`Error from roomReview===${error}`);
     console.log(`Error from roomReview===${error.code}`);

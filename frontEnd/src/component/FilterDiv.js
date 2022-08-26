@@ -6,15 +6,15 @@ const FilterDiv = (props) => {
     roomtype: "",
     price: 100000,
     pg: false,
-    Bed: false,
-    Table: false,
-    Almirah: false,
-    wifi: false,
-    packing: false,
-    Ventilation: false,
-    Boys: false,
-    Girls: false,
-    Famaly: false,
+    // Bed: false,
+    // Table: false,
+    // Almirah: false,
+    // wifi: false,
+    // packing: false,
+    // Ventilation: false,
+    Boys: true,
+    Girls: true,
+    Famaly: true,
     sortBy:1
   });
   const handelOnChange = (event) => {
@@ -43,6 +43,7 @@ const FilterDiv = (props) => {
   const handleOnSubmit = (event) => {
     event.preventDefault();
     console.log("Filter Submited")
+
     submitForm();
   };
 
@@ -96,7 +97,7 @@ const FilterDiv = (props) => {
                 PG ?
               </label>
             </div>
-            <div className="form-div">
+            {/* <div className="form-div">
               <span>Available Things In Room</span>
               <label>
                 <input
@@ -154,7 +155,7 @@ const FilterDiv = (props) => {
                 />
                 Ventilation in Room
               </label>
-            </div>
+            </div> */}
             <div className="form-div">
               <span>Price is between 0 and {formData.price}</span>
               <input
@@ -206,6 +207,7 @@ const FilterDiv = (props) => {
                   type="radio"
                   name="sortBy"
                   value={1}
+                  checked
                   onChange={handelOnChange}
                 />
                 Price Low-High

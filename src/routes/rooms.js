@@ -29,20 +29,21 @@ Router.post("/filter", async (req, res) => {
       Famaly,
       sortBy,
     } = req.body;
-    console.log(`pg===${sortBy}`);
+    console.log(`pg===${typeof(Boys)}`);
     const result = await CreateRoomDetails.find({
       roomtype: { $regex: roomtype },
       price: { $lt: parseInt(price) },
       Boys: { $eq: Boys },
-      Girls: { $eq: Girls },
-      Famaly: { $eq: Famaly },
-      Bed: { $eq: Bed } ,
-      Table: { $eq: Table },
-      Almirah: { $eq: Almirah },
-      wifi: { $eq: wifi },
-      packing: { $eq: packing },
-      Ventilation: { $eq: Ventilation},
+      pg: { $eq: pg },
+      // Famaly: { $eq: Famaly },
+      // Bed: { $eq: Bed } ,
+      // Table: { $eq: Table },
+      // Almirah: { $eq: Almirah },
+      // wifi: { $eq: wifi },
+      // packing: { $eq: packing },
+      // Ventilation: { $eq: Ventilation},
     }).sort({ price: parseInt(sortBy) });
+    console.log(`pg===${(Boys)}`);
 
     res.send(result);
 

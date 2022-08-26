@@ -37,7 +37,7 @@ const Rooms = (props) => {
     setTimeout(function () {
       console.log(`setTimeout`);
       props.setLoderfun("100%", true);
-    }, 3000);
+    }, 1000);
 
     console.log(`data===== ${JSON.stringify(data)}`);
     console.log(`data===== ${JSON.stringify(data[0]._id)}`);
@@ -52,6 +52,7 @@ const Rooms = (props) => {
   const setBlockDatafun = (data) => {
     console.log(`data feom filter=${JSON.stringify(data)}`);
     setBlockData(data);
+    handleOnClick()
   };
 
   const handleOnClick = () => {

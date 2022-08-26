@@ -462,7 +462,7 @@ form {
 .form-div {
     display: grid;
     padding: 2px 1px;
-    margin: 5px 10px;
+    margin: 10px 10px;
 }
 
 
@@ -590,6 +590,7 @@ form {
     overflow: auto;
     font-size: large;
     font-family: system-ui;
+    z-index: 6;
 }
 
 /* Filter div end here*/
