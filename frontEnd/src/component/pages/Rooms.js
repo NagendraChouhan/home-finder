@@ -1,6 +1,6 @@
 import Block from "../Block";
 
-import Footer from "../src/component/Footer";
+import Footer from "../Footer";
 
 import React, { useEffect, useState } from "react";
 import FilterDiv from "../FilterDiv";
