@@ -4,7 +4,7 @@ const Block = (props) => {
   useEffect(() => {
     console.log(`inside useEffect`);
     if (props.imageKey !== undefined) {
-      // getData();
+      getData();
     }
   }, []);
   const [imageUrl, setImageUrl] = React.useState();
