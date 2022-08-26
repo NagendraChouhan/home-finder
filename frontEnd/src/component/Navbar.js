@@ -1,5 +1,4 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import logo from "../logo.svg";
 import React from "react";
 import { Cookies } from "react-cookie";
 

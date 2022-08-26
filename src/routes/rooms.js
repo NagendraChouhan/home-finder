@@ -31,11 +31,26 @@ Router.post("/filter", async (req, res) => {
     } = req.body;
     console.log(`pg===${sortBy}`);
     const result = await CreateRoomDetails.find({
-        $or: [
-            { roomtype: { $regex: roomtype } ,
-             price: { $lt: parseInt(price) } ,
-             $sort : { price : 1 } }
-      ],
+      roomtype: { $regex: roomtype },
+      price: { $lt: parseInt(price) },
+      Boys: { $eq: Boys },
+      Girls: { $eq: Girls },
+      Famaly: { $eq: Famaly },
+      Bed: { $eq: Bed } ,
+      Table: { $eq: Table },
+      Almirah: { $eq: Almirah },
+      wifi: { $eq: wifi },
+      packing: { $eq: packing },
+      Ventilation: { $eq: Ventilation},
+    }).sort({ price: parseInt(sortBy) });
+
+    res.send(result);
+
+    // $or: [
+    //     { roomtype: { $regex: roomtype } ,
+    //     price: { $lt: parseInt(price) } ,
+    //     $sort : { price : 1 } }
+    //   ],
     //   $or: [{ pg: { $eq: pg } }],
     //   $or: [
     //     { Bed: { $eq: Bed } },
@@ -50,10 +65,8 @@ Router.post("/filter", async (req, res) => {
     //     { Girls: { $eq: Girls } },
     //     { Famaly: { $eq: Famaly } },
     //   ],
-     
-    });
+
     // result.sort(price)
-    res.send(result);
     console.log(`result from room ${result}`);
   } catch (error) {
     console.log(`error from room ${error}`);

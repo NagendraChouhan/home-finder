@@ -8,11 +8,6 @@ import CategoryBox from "../CategoryBox";
 import StarRating from "../StarRating";
 import Gallery from "../Gallery";
 import OwnerSection from "../OwnerSection";
-import img from "../../john-schnobrich-FlPc9_VocJ4-unsplash.jpg";
-import aboutImg from "../../olga-serjantu-tqkDGqPW8Vo-unsplash.jpg";
-import aboutImg1 from "../../christin-hume-Hcfwew744z4-unsplash.jpg";
-import aboutImg2 from "../../christin-hume-hBuwVLcYTnA-unsplash.jpg";
-import aboutImg3 from "../../kobu-agency-7okkFhxrxNw-unsplash.jpg";
 
 var BlockDetails_img_div = document.getElementsByClassName(
   "BlockDetails-img-div"

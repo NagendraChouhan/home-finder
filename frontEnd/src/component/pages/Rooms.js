@@ -1,5 +1,5 @@
 import Block from "../Block";
-import Footer from "../Footer";
+
 
 import React, { useEffect, useState } from "react";
 import FilterDiv from "../FilterDiv";
@@ -51,6 +51,7 @@ const Rooms = (props) => {
   });
 
   const setBlockDatafun = (data) => {
+    console.log(`data feom filter=${JSON.stringify(data)}`)
     setBlockData(data);
   };
 
@@ -105,7 +106,7 @@ const Rooms = (props) => {
         }
       </div>
 
-      <Footer />
+      
     </>
   );
 };

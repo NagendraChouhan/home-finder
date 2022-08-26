@@ -1,6 +1,5 @@
 import React from "react";
 
-import { Cookies } from "react-cookie";
 
 const FilterDiv = (props) => {
   const [formData, setFormData] = React.useState({
@@ -43,6 +42,7 @@ const FilterDiv = (props) => {
   };
   const handleOnSubmit = (event) => {
     event.preventDefault();
+    console.log("Filter Submited")
     submitForm();
   };
 
@@ -78,12 +78,12 @@ const FilterDiv = (props) => {
             >
               <option value="">Type of Room*</option>
               <option value="Single Room">Single Room</option>
-              <option value="1 RK">1 RK</option>
-              <option value="1 BHK">1 BHK</option>
-              <option value="2 BHK">2 BHK</option>
-              <option value="2 BHK 2T">2 BHK 2T</option>
-              <option value="3 BHK 2T">3 BHK 2T</option>
-              <option value="3 BHK 3T">3 BHK 3T</option>
+              <option value="1RK">1 RK</option>
+              <option value="1BHK">1 BHK</option>
+              <option value="2BHK">2 BHK</option>
+              <option value="2BHK2T">2 BHK 2T</option>
+              <option value="3BHK2T">3 BHK 2T</option>
+              <option value="3BHK3T">3 BHK 3T</option>
             </select>
             <div className="form-div">
               <label>
