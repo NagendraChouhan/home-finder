@@ -2,7 +2,9 @@ import React from "react";
 
 const SkeletonBar = ({index}) => {
   console.log(`index==${JSON.stringify(index)}`);
-  return Array(index).fill(0).map((i) => {
+  var i=-1
+  return Array(index).fill(0).map(() => {
+    i++
     return (
       <div key={i} className="skeleton-bar-container">
         <div className="skeleton-bar-image"></div>

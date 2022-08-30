@@ -10,6 +10,7 @@ const Dashboard = (props) => {
   const navigate = useNavigate();
   tokenvarify("/login");
   const [roomData, setRoomData] = React.useState([]);
+  const [userData, setUserData] = React.useState([]);
   useEffect(() => {
     props.setLoderfun("60%")
 
@@ -22,20 +23,42 @@ const Dashboard = (props) => {
 
     const cookies = new Cookies();
     const token = cookies.get("token");
-    let data = await fetch("/bgetData/room", {
-      method: "GET",
-      headers: {
-        "content-Type": "application/json",
-        token: token,
-      },
-    });
+    const admin = cookies.get("admin");
+    console.log(`admin=${admin}`)
+    let data
+    if(admin==='login'){
+      console.log('in admin')
+      data = await fetch("/bgetData/admin", {
+        method: "GET",
+        headers: {
+          "content-Type": "application/json",
+          token: token,
+        },
+      });
+    }
+    else{
+      console.log('in else admin')
+
+      data = await fetch("/bgetData/room", {
+        method: "GET",
+        headers: {
+          "content-Type": "application/json",
+          token: token,
+        },
+      });
+    }
     props.setLoderfun("90%")
 
     data = await data.json();
     props.setLoderfun("100%")
 
     console.log(`data from dashborad ====${JSON.stringify(data)}`);
-    setRoomData(data);
+    setRoomData(data.rooms);
+    if(data.userdata){
+
+      setUserData(data.users)
+      console.log(`user data=${JSON.stringify(data.users)}`)
+    }
     props.setLoderfun("100%",true)
 
   };
@@ -46,7 +69,7 @@ const Dashboard = (props) => {
     console.log("handleOnChange")
     console.log(`roomstatus=${roomstatus}`)
     if(roomstatus){
-      if (window.confirm("Are you want to DEACTIVATE the HOME")) {
+      if (window.confirm("Are you want to DEACTIVATE your HOME")) {
         updateFun(id,false)
       } 
     }
@@ -131,6 +154,31 @@ const Dashboard = (props) => {
             </table>
           </div>
         </section>
+        { userData.length>0 &&<section className="section-container">
+          <div className="section-div-container">
+            <table style={{margin:'10px 0px'}}>
+              <thead>
+                <tr>
+                  {/* <th className="room-column">S.NO.</th> */}
+                  <th>Name</th>
+                  <th>Email</th>
+                </tr>
+              </thead>
+              <tbody>
+                {userData.map((data) => {
+                  const checked=data.roomstatus
+                  return (
+                    <tr key={data._id}>
+                      {/* <td>{data._id}</td> */}
+                      <td>{data.name}</td>
+                      <td>{data.email}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </section>}
       </div>
       {/* <Footer/> */}
     </>

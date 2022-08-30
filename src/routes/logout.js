@@ -1,11 +1,14 @@
 const express = require('express');
 const Router=express.Router();
 const userDetails = require('../models/userModel');
+const adminDetails=require('../models/adminModel')
+
 const jwt=require("jsonwebtoken");
 
 Router.delete('/',async(req,res)=>{
     try {
         const token=req.body.token
+        
         console.log(`token from delete===== ${token}`)
         const tokenvarify = jwt.verify(token, process.env.JWT_TOKEN);
         const id=tokenvarify._id

@@ -3,7 +3,7 @@ import RouterCom from "../routes/RouterCom";
 
 const Main = () => {
     return (
-        <section>
+        <section className="fotersection-container">
             <RouterCom></RouterCom>
         </section>
     )

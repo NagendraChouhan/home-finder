@@ -1,7 +1,8 @@
 const express = require('express');
 const Router=express.Router();
 const userDetails = require('../models/userModel');
-const adminDetails = require('../models/adminModel');
+const adminDetails=require('../models/adminModel')
+
 const bcryptjs = require('bcryptjs');
 
 
@@ -18,7 +19,7 @@ Router.post('/',async(req,res)=>{
             
             if(await bcryptjs.compare(password,adminresult.password)){
                 const token= await adminresult.generateToten();
-                        // res.cookie("token",token,{
+                        res.cookie("admin","login")
                         //     expires:new Date(Date.now()+6000000000),
                         //     httpOnly:true,
                         //     // secure:true

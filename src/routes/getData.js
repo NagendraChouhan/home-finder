@@ -2,6 +2,8 @@ const express = require("express");
 const Router = express.Router();
 const userDetails = require("../models/userModel");
 const CreateRoomDetails = require("../models/createRoomModel");
+const adminDetails=require('../models/adminModel')
+
 
 const { getFileStream } = require("../aws/s3");
 
@@ -45,11 +47,11 @@ Router.get("/room", async (req, res) => {
     console.log(`token from getdata room====#########======= ${token}`);
     //chech employe is authanticate or not
     const tokenvarify = jwt.verify(token, process.env.JWT_TOKEN);
-    console.log("token varify from getdata room");
+    console.log("token varify from getdata room"+tokenvarify);
     let rooms = await CreateRoomDetails.find({ id: tokenvarify._id });
     console.log(`useer token id varify`);
     console.log(`useer===##########====${rooms}`);
-    res.send(rooms);
+    res.send({rooms});
   } catch (error) {
     console.log(`err from getData/room =${error}`);
     res.send({ err: "Try After Same Time" });
@@ -153,5 +155,24 @@ Router.get("/addressData", async (req, res) => {
     res.send({ err: "Try After Same Time" });
   }
 });
+
+Router.get('/admin',async (req,res)=>{
+  try {
+    const token = req.headers.token;
+    console.log(`token from getdata admin====#########======= ${token}`);
+    //chech employe is authanticate or not
+    const tokenvarify = jwt.verify(token, process.env.JWT_TOKEN);
+    console.log("token varify from getdata room"+tokenvarify);
+    let rooms = await CreateRoomDetails.find({});
+    let users = await userDetails.find({});
+    console.log(`useer token id varify`);
+    console.log(`useer===##########====${rooms}`);
+    res.send({rooms,users,userdata:true});
+  } catch (error) {
+    console.log(`err from getData/admin =${error}`);
+    res.send({ err: "Try After Same Time" });
+  }
+
+})
 
 module.exports = Router;

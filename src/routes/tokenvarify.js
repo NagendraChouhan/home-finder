@@ -1,6 +1,8 @@
 const express = require('express');
 const Router=express.Router();
 const userDetails = require('../models/userModel');
+const adminDetails=require('../models/adminModel')
+
 const jwt=require("jsonwebtoken");
 
 Router.get('/',async(req,res)=>{
@@ -12,14 +14,14 @@ Router.get('/',async(req,res)=>{
          console.log("token varify");
          let user = await userDetails.findOne({_id:tokenvarify._id});
          let uservalue="owner"
-         if(user==null){
+         if(user===null){
             uservalue="admin"
             user = await adminDetails.findOne({_id:tokenvarify._id}); 
 
          }
-         console.log(`${uservalue} token id varify`);
-         console.log(`${uservalue} ===##########====${user}`);
-         res.send({result:true,email:user.email,name:user.name,dob:user.dob,phone:user.phone})
+         console.log(`${uservalue} token id varify from tokenvarify.js`);
+        //  console.log(`${uservalue} ===##########====${user}`);
+         res.send({result:true,email:user.email,name:user.name,dob:user.dob,phone:user.phone,uservalue:uservalue})
         
     } catch (error) {
         console.log(`Error from get profile token verify===${error}`)

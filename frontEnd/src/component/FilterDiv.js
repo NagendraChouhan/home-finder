@@ -75,7 +75,7 @@ const FilterDiv = (props) => {
               name="roomtype"
               value={formData.roomtype}
               onChange={handelOnChange}
-              style={{ width: "auto" }}
+              style={{ width: "90%" }}
             >
               <option value="">Type of Room*</option>
               <option value="Single Room">Single Room</option>
@@ -86,7 +86,7 @@ const FilterDiv = (props) => {
               <option value="3BHK2T">3 BHK 2T</option>
               <option value="3BHK3T">3 BHK 3T</option>
             </select>
-            <div className="form-div">
+            {/* <div className="form-div">
               <label>
                 <input
                   type="checkbox"
@@ -96,7 +96,7 @@ const FilterDiv = (props) => {
                 />
                 PG ?
               </label>
-            </div>
+            </div> */}
             {/* <div className="form-div">
               <span>Available Things In Room</span>
               <label>
@@ -156,7 +156,7 @@ const FilterDiv = (props) => {
                 Ventilation in Room
               </label>
             </div> */}
-            <div className="form-div">
+            <div className="form-div" >
               <span>Price is between 0 and {formData.price}</span>
               <input
                 className="price-range"
@@ -167,8 +167,10 @@ const FilterDiv = (props) => {
                 step={1}
                 onChange={handelOnChange}
                 value={formData.price}
+                style={{ width: "90%" }}
               />
             </div>
+            {/*
             <div className="form-div">
               <span>Room is Available For</span>
               <label>
@@ -198,7 +200,7 @@ const FilterDiv = (props) => {
                 />
                 Family
               </label>
-            </div>
+            </div> */}
             <div className="form-div">
               <span style={filterHeading}>Sort By</span>
               <label>
@@ -207,7 +209,6 @@ const FilterDiv = (props) => {
                   type="radio"
                   name="sortBy"
                   value={1}
-                  checked
                   onChange={handelOnChange}
                 />
                 Price Low-High

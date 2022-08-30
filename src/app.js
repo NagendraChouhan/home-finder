@@ -33,10 +33,6 @@ const port = process.env.PORT || 8000;
 
 app.use(cors());
 app.use(express.json())
-// bodyParser.json(true)
-// const fileUpload = require('express-fileupload');
-// app.use(fileUpload());
-// app.use(express.static(path.join(__dirname, '../frontEnd/public')))
 
 
 app.use('/blogout',logout)
@@ -47,6 +43,7 @@ app.use('/brooms/filter',rooms)
 app.use('/bgetData',getData)
 app.use('/bgetData/roomDetails',getData)
 app.use('/bgetData/room',getData)
+app.use('/bgetData/admin',getData)
 app.use('/bgetData/addressData',getData)
 app.use('/btokenvarify',tokenvarify)
 app.use('/bcreateRoom',createRoom)
@@ -59,12 +56,7 @@ app.use('/bcounseling',counseling)
 
 app.use('/',verify)
 
-// app.use(express.static(path.join(__dirname, 'public')));
-
-// app.get('*', function(req, res) {
-    //   res.sendFile(path.join(__dirname, 'public', 'index.html'));
-    // });
-    
+   
     if(process.env.NODE_ENV=="production"){
         app.use(express.static("frontEnd/build"));
     }
@@ -83,8 +75,6 @@ app.use('/',verify)
     console.log("app.get1('*')")
     
     app.listen(port, () => {
-        console.log(`path${__dirname}`)
-        console.log(`path${path.join(__dirname, '../frontEnd/build', 'index.html')}`)
         console.log(`Listing from port ${port}`);
 })
 

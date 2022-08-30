@@ -482,14 +482,15 @@ form {
 
 
 /* css for home create start here*/
-.home-main-div,
-.room-div-main {
+.home-main-div{
     top: 100px;
     position: relative;
+    margin-bottom: 10%
 }
 
 .room-div-main {
     top: 75px;
+    position: relative;
 }
 
 .home-main-div>.home-div-container>.img-div {
@@ -520,11 +521,12 @@ form {
     top: -30px;
     left: 0px;
     position: relative;
-    opacity: 0.8;
+    /* opacity: 0.8; */
 }
 
 .home-main-div>.home-div-container>.img-div>div>span {
     color: #ffff00;
+    text-shadow: 3px 1px 2px black;
 }
 
 /* css for home create end here*/
@@ -1012,20 +1014,28 @@ form>.inputBox {
 
 
 /*BlockDetails css end here*/
-
 /*Footer CSS start here*/
+.fotersection-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.footer-container {
+    margin-top: auto;
+    padding-top: 20%;
+}
 
 .footer-div {
+    margin-top: auto;
     background-color: black;
     color: white;
-    /* margin: 30% 0% 0% 0%; */
-    padding: 10% 5%;
+    padding: 1%;
     bottom: 0px;
     position: relative;
-    top: 150px;
     right: 0px;
     left: 0px;
-    /* width: 100%;*/
 }
 
 /*Footer CSS end here*/
@@ -1129,10 +1139,11 @@ form>.inputBox {
     z-index: 10;
     position: fixed;
     width: 0%;
-    top:0px;
+    top: 0px;
     animation: mymove 5s 1;
     animation-timing-function: ease;
 }
+
 /* @keyframes mymove {
     from {width: 0%;}
     to {width: 100%;}
@@ -1141,9 +1152,12 @@ form>.inputBox {
 /**/
 
 
+
 @media screen and (max-width: 980px) {
     .home-main-div>.home-div-container>.img-div>.centered {
-        bottom: 20%
+        bottom: 20%;
+        font-weight: bold;
+        text-shadow: 3px 1px 2px #bdbcbc;
     }
 }
 
@@ -1350,7 +1364,8 @@ form>.inputBox {
         width: 100%;
         height: 300px;
     }
-    .loding-bar{
+
+    .loding-bar {
         height: 4px;
     }
 
@@ -1442,10 +1457,28 @@ form>.inputBox {
     }
 }
 
+@media screen and (max-width: 400px) {
+    .block-div img {
+        height: auto;
+    }
+
+    .image {
+        height: 200px;
+    }
+
+    .BlockDetails-img-div-alter {
+        height: 230px !important;
+    }
+}
+
 @media screen and (max-width: 303px) {
     .home-main-div>.home-div-container>.img-div>.centered {
         bottom: 15%;
         font-size: x-large;
+    }
+
+    .BlockDetails-img-div-alter {
+        height: 200px !important;
     }
 }
 

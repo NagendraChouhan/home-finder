@@ -38,6 +38,7 @@ const Navbar = () => {
   console.log(`Token from navigation ${token}`);
   const navigate = useNavigate();
   const logout = async () => {
+    cookies.remove("admin");
     cookies.remove("token");
     let result = await fetch("/blogout", {
       method: "delete",
@@ -71,6 +72,7 @@ const Navbar = () => {
               alignSelf: "center",
               fontSize: "xxx-large",
               color: "#00beffd1",
+              cursor:"pointer",
             }}
             className="material-symbols-outlined"
           >

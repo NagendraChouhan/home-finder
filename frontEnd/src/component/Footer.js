@@ -5,7 +5,7 @@ const Footer = () => {
     <footer className='footer-container'>
         <div className='footer-div'>
             <div>
-                <h2>&#169; HF Private Limited</h2>
+                <h5>Copyright &#169; BLiveS Private Limited | All Rights Reserved</h5>
             </div>
         </div>
     </footer>
