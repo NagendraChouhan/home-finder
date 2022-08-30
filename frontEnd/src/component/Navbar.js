@@ -1,7 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import React from "react";
 import { Cookies } from "react-cookie";
-import img from '../pexels-anthony-133372.jpg'
+import img from "../pexels-anthony-133372.jpg";
 
 const Navbar = () => {
   const styles = ({ isActive }) => {
@@ -63,16 +63,18 @@ const Navbar = () => {
         <div className="nav-bar-name-div">
           <span
             onClick={() => {
-              var x = (document.getElementsByClassName(
-                "nav-bar-link-div"
-              )[0].style.display = "none");
+              if (window.innerWidth < 809) {
+                document.getElementsByClassName(
+                  "nav-bar-link-div"
+                )[0].style.display = "none";
+              }
               navigate("/");
             }}
             style={{
               alignSelf: "center",
               fontSize: "xxx-large",
               color: "#00beffd1",
-              cursor:"pointer",
+              cursor: "pointer",
             }}
             className="material-symbols-outlined"
           >
