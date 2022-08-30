@@ -5,7 +5,7 @@ import Footer from "../Footer";
 import img from "../../john-schnobrich-FlPc9_VocJ4-unsplash.jpg";
 import aboutImg from "../../olga-serjantu-tqkDGqPW8Vo-unsplash.jpg";
 import aboutImg2 from "../../christin-hume-hBuwVLcYTnA-unsplash.jpg";
-import aboutImg3 from "../../kobu-agency-7okkFhxrxNw-unsplash.jpg";
+import aboutImg3 from "../../help_img_page-0001.jpg";
 import findImage from "../../pexels-cottonbro-4065624.jpg"
 import registerImage from "../../pexels-sevenstorm-juhaszimrus-704767.jpg"
 
