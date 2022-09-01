@@ -1,12 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Footer from "../Footer";
 import PasswordChecklist from "react-password-checklist";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+
 
 import AlertBlock from "../AlertBlock";
 
 const ForgetPassword = (props) => {
   const navigate = useNavigate();
+  const useremail = new URLSearchParams(useLocation().search).get("email");
+  
+  useEffect(()=>{
+    window.scrollTo(0, 0);
+    if(useremail!==undefined){
+      setForgetFormData((preValue)=>({
+        ...preValue,
+        email:useremail,
+      }))
+    }
+  })
   const [forgetFormData, setForgetFormData] = React.useState({
     email: "",
     otp: "",
@@ -30,7 +43,6 @@ const ForgetPassword = (props) => {
       [name]: value,
     }));
   }
-  window.scrollTo(0, 0);
 
   // const readonlyfun = () => {
   //     console.log("readonlyfun")

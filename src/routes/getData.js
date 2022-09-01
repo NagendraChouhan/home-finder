@@ -33,7 +33,7 @@ Router.get("/", async (req, res) => {
         email: user.email.toLowerCase(),
         name: user.name,
         dob: user.dob,
-        phone: user.phone,
+        phone: user.mobile,
       });
     }
   } catch (error) {

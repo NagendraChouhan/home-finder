@@ -7,7 +7,7 @@ function otpsendfunction(username,uname,uotp){
     const msg = {
     to: username, // EMAIL SEND TO
     from: 'nikku200109@gmail.com', // EMAIL SEND BY
-    subject: 'HF OTP',
+    subject: 'BLiveS OTP',
     text: 'Hello'+uname+' Your otp is-'+uotp,
     html: 'Hello<strong>,'+uname+'</strong> Your otp is-'+uotp,
     }
@@ -47,8 +47,8 @@ function counselingFunction(email,name,textmessage,subject){
     text: `Hello ${name},\n 
     ${textmessage}\n
     ThankYou,\n
-    Team HF`,
-    html: `Hello ${name}, </br>${textmessage}</br> ThankYou,</br>Team HF`,
+    Team BLiveS`,
+    html: `Hello ${name}, </br>${textmessage}</br> ThankYou,</br>Team BLiveS`,
     }
     sgMail
     .send(msg)

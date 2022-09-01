@@ -258,7 +258,7 @@ select,
     font-size: 20px;
     border-radius: 5px;
     min-width: 90%;
-    justify-content: center;
+    /* justify-content: center; */
 }
 
 .block-div img {
@@ -485,7 +485,7 @@ form {
 .home-main-div{
     top: 100px;
     position: relative;
-    margin-bottom: 10%
+    margin-bottom: 5%
 }
 
 .room-div-main {
@@ -1024,7 +1024,7 @@ form>.inputBox {
 
 .footer-container {
     margin-top: auto;
-    padding-top: 20%;
+    padding-top: 10%;
 }
 
 .footer-div {
@@ -1150,14 +1150,29 @@ form>.inputBox {
   } */
 
 /**/
+/*Block.js CSS Start here*/
+.Block-BlockDetails-img-div
+{
+    width: 100%;
+    height: 350px;
+    /* border-radius: 10px; */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    
+    /* box-shadow: "2px 2px 15px 2px gray", */
+}
 
-
+/*Block.js CSS End here*/
 
 @media screen and (max-width: 980px) {
     .home-main-div>.home-div-container>.img-div>.centered {
         bottom: 20%;
         font-weight: bold;
         text-shadow: 3px 1px 2px #bdbcbc;
+    }
+    .footer-container{
+        padding-top: 15%;
     }
 }
 
@@ -1171,6 +1186,9 @@ form>.inputBox {
         margin-left: 0%;
         margin-right: 0%;
     }
+    /* .footer-container{
+        padding-top: 15%;
+    } */
 }
 
 @media screen and (max-width:831.5px) {
@@ -1312,6 +1330,9 @@ form>.inputBox {
     .box-div-container {
         display: inline;
     }
+    .footer-container{
+        padding-top: 20%;
+    }
 }
 
 @media screen and (max-width:620px) {
@@ -1377,6 +1398,9 @@ form>.inputBox {
 
         .rating-div-container {
             justify-content: center;
+        }
+        .footer-container{
+            padding-top: 25%;
         }
     }
 
@@ -1455,6 +1479,9 @@ form>.inputBox {
         margin: 0px 12px;
         font-size: larger;
     }
+    .footer-container{
+        padding-top: 30%;
+    }
 }
 
 @media screen and (max-width: 400px) {
@@ -1469,6 +1496,9 @@ form>.inputBox {
     .BlockDetails-img-div-alter {
         height: 230px !important;
     }
+    .footer-container{
+        padding-top: 37%;
+    }
 }
 
 @media screen and (max-width: 303px) {
@@ -1480,11 +1510,17 @@ form>.inputBox {
     .BlockDetails-img-div-alter {
         height: 200px !important;
     }
+    .footer-container{
+        padding-top: 45%;
+    }
 }
 
 @media screen and (max-width:320px) {
     .block-value-div {
         font-size: large;
+    }
+    .footer-container{
+        padding-top: 55%;
     }
 }
 

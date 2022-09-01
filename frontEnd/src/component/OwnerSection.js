@@ -40,7 +40,7 @@ const OwnerSection = (props) => {
     console.log(JSON.stringify(ownerFormData));
     if (ownerFormData.name !== "") {
       if (ownerFormData.email !== "") {
-        if (ownerFormData.number !== "" && ownerFormData.number.length >= 10) {
+        if (ownerFormData.number.length === 10) {
           if (ownerFormData.message !== "") {
             let result = await fetch(`/bcounseling/owner`, {
               method: "POST",
@@ -66,7 +66,7 @@ const OwnerSection = (props) => {
           }
         } else {
           console.log("Enter Valid  Number");
-          setConsoleErr("Please Enter Number");
+          setConsoleErr("Please Enter Valid Number");
         }
       } else {
         console.log("Enter Email");

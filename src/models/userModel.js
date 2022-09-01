@@ -19,6 +19,12 @@ const userSchema = mongoose.Schema({
         type: Date,
         default: Date.now()
     },
+    dob : {
+        type:Date,
+    },
+    mobile: {
+        type:Number
+    },
     address:[{
         country:String,
         state:String,

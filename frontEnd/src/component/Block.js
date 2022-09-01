@@ -11,26 +11,32 @@ const Block = (props) => {
   async function getData() {
     console.log(`roomId===${props.roomId}`);
     console.log(`useEffect`);
-    console.log(`window.sessionStorage.getItem(props.imageKey)${window.sessionStorage.getItem(props.imageKey)}`)
-    const sessionStorageuImageUrl=window.sessionStorage.getItem(props.imageKey)
+    console.log(
+      `window.sessionStorage.getItem(props.imageKey)${window.sessionStorage.getItem(
+        props.imageKey
+      )}`
+    );
+    const sessionStorageuImageUrl = window.sessionStorage.getItem(
+      props.imageKey
+    );
     // if (sessionStorageuImageUrl=== undefined ||sessionStorageuImageUrl==="" || sessionStorageuImageUrl===null) {
     console.log(`useEffect datadata`);
 
-      let data = await fetch(
-        `/bgetData/roomDetails?roomId=${props.roomId}&imageKey=${props.imageKey}`,
-        {
-          method: "GET",
-          headers: {
-            "content-Type": "application/json",
-          },
-        }
-      );
-      console.log(`data`);
+    let data = await fetch(
+      `/bgetData/roomDetails?roomId=${props.roomId}&imageKey=${props.imageKey}`,
+      {
+        method: "GET",
+        headers: {
+          "content-Type": "application/json",
+        },
+      }
+    );
+    console.log(`data`);
 
-      data = await data.json();
-      console.log(`data from getdata of block=${JSON.stringify(data)}`);
-      setImageUrl(data.imagesUrl);
-      window.sessionStorage.setItem(props.imageKey, data.imagesUrl);
+    data = await data.json();
+    console.log(`data from getdata of block=${JSON.stringify(data)}`);
+    setImageUrl(data.imagesUrl);
+    window.sessionStorage.setItem(props.imageKey, data.imagesUrl);
     // }
     // else{
     //   setImageUrl(sessionStorageuImageUrl);
@@ -108,11 +114,17 @@ const Block = (props) => {
         style={displaycss}
         onClick={() => handleOnClick(props.id)}
       >
-        <img
-          src={props.imgValue === undefined ? imageUrl : props.imgValue}
-          alt="Room Image"
-          style={displaycssimag}
-        />
+        {props.imgValue === undefined ? (
+          <div
+            className="Block-BlockDetails-img-div"
+            style={{
+              backgroundImage: "url(" + imageUrl + ")",
+            }}
+          ></div>
+        ) : (
+          <img src={props.imgValue} alt="Room Image" style={displaycssimag} />
+        )}
+
         {display && (
           <span style={locationCSS} className="location">
             <b style={{ textTransform: "capitalize" }}>{props.location}</b>

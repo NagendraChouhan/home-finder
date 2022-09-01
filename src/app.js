@@ -24,6 +24,7 @@ const createRoom=require('./routes/createRoom');
 const rooms=require('./routes/rooms');
 const roomReview=require('./routes/roomReview');
 const counseling=require('./routes/counseling');
+const profile=require('./routes/profile');
 const adminDetails = require('./models/adminModel');
 
 //Routes end here
@@ -51,6 +52,7 @@ app.use('/bcreateRoom/image',createRoom)
 app.use('/bcreateRoom/deleteImage',createRoom)
 app.use('/bcreateRoom/update',createRoom)
 app.use('/broomReview',roomReview)
+app.use('/bprofileupdate',profile)
 app.use('/broomReview/breviewData',roomReview)
 app.use('/bcounseling',counseling)
 
