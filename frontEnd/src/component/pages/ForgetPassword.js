@@ -19,7 +19,7 @@ const ForgetPassword = (props) => {
         email:useremail,
       }))
     }
-  })
+  },[])
   const [forgetFormData, setForgetFormData] = React.useState({
     email: "",
     otp: "",
@@ -60,6 +60,7 @@ const ForgetPassword = (props) => {
 
       if (!forgetFormData.isValidPassWord) {
         props.setLoderfun("80%");
+        console.log(`email=${forgetFormData.email}`)
 
         var result = await fetch(
           forgetFormData.verifyEmail ? "/bverifyotp" : "/bverifyEmail",

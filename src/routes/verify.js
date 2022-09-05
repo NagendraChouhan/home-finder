@@ -12,8 +12,8 @@ const {
 Router.post('/bverifyEmail',async(req,res)=>{
     try {
         const {email}=req.body.forgetFormData
-        const result =await userDetails.findOne({email})
-        console.log(`result=${result}`)
+        const result =await userDetails.findOne({email:email.toLowerCase()})
+        console.log(`result from bverifyEmail=${result}`)
         if(result!=null){
             var useremail = await verifyuser.findOne({ email: email });
             //delete data which is exist with same email
