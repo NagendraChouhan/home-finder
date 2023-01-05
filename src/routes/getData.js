@@ -2,8 +2,7 @@ const express = require("express");
 const Router = express.Router();
 const userDetails = require("../models/userModel");
 const CreateRoomDetails = require("../models/createRoomModel");
-const adminDetails=require('../models/adminModel')
-
+const adminDetails = require("../models/adminModel");
 
 const { getFileStream } = require("../aws/s3");
 
@@ -47,11 +46,11 @@ Router.get("/room", async (req, res) => {
     console.log(`token from getdata room====#########======= ${token}`);
     //chech employe is authanticate or not
     const tokenvarify = jwt.verify(token, process.env.JWT_TOKEN);
-    console.log("token varify from getdata room"+tokenvarify);
+    console.log("token varify from getdata room" + tokenvarify);
     let rooms = await CreateRoomDetails.find({ id: tokenvarify._id });
     console.log(`useer token id varify`);
     console.log(`useer===##########====${rooms}`);
-    res.send({rooms});
+    res.send({ rooms });
   } catch (error) {
     console.log(`err from getData/room =${error}`);
     res.send({ err: "Try After Same Time" });
@@ -62,10 +61,11 @@ Router.get("/roomDetails", async (req, res) => {
   try {
     const roomId = req.query.roomId;
     const imageKey = req.query.imageKey;
-
     console.log(`from roomDetails imageKey=${imageKey}`);
     if (imageKey === undefined) {
-      let roomDetail = await CreateRoomDetails.findOne({ _id: roomId });
+      let roomDetail = await CreateRoomDetails.findOne({
+        _id: roomId,
+      }).populate("userId", "name email");
       console.log(`useer token id varify from roomDetails`);
       console.log(`useer from roomDetails===##########====${roomDetail}`);
 
@@ -81,7 +81,7 @@ Router.get("/roomDetails", async (req, res) => {
 
       res.send({ roomDetail: roomDetail, images: readStream });
     } else {
-      let imagesUrl = await getFileStream(imageKey);
+      let imagesUrl = await getFileStream(imageKey); // using for image url of room now we are not using
       res.send({ imagesUrl });
     }
   } catch (error) {
@@ -118,21 +118,14 @@ Router.get("/addressData", async (req, res) => {
     console.log(`addressDetails==== ${addressDetails.name}`);
     console.log(`addressDetails==== ${addressDetails.email}`);
     let addressValue;
-    let flag=true;
+    let flag = true;
     for (let i = 0; i < addressDetails.address.length; i++) {
-    console.log(`addressDetails for i==== ${i}`);
-    console.log(`addressDetails.address[i] if i==== ${addressDetails.address[i]._id}`);
+      console.log(`${i}== ${addressDetails.address[i]._id}`);
 
-      if (addressDetails.address[i]._id == addressId) {
-        console.log(`addressDetails if i==== ${i}`);
-        console.log(`addressDetails if i==== ${addressDetails}`);
-        console.log(`addressValue if i==== ${addressValue}`);
-        flag=false
+      if (addressDetails.address[i]._id.equals(addressId)) {
+        flag = false;
         addressValue = addressDetails.address[i];
         res.send({
-          name: addressDetails.name,
-          email: addressDetails.email,
-          ownerId: addressDetails._id,
           country: addressValue.country,
           state: addressValue.state,
           district: addressValue.district,
@@ -144,11 +137,13 @@ Router.get("/addressData", async (req, res) => {
         });
       }
     }
-    console.log(`addressValue =${addressValue}`);
-    console.log(`addressDetails if i==== ${addressDetails}`);
+    console.log(`addressId== ${addressId}`);
 
-    if(flag){
-      res.send({ result: 'Succses' });    
+    console.log(`addressValue =${addressValue}`);
+    // console.log(`addressDetails if i==== ${addressDetails}`);
+
+    if (flag) {
+      res.send({ result: "Succses" });
     }
   } catch (error) {
     console.log(`err from getData/addressData =${error}`);
@@ -156,23 +151,22 @@ Router.get("/addressData", async (req, res) => {
   }
 });
 
-Router.get('/admin',async (req,res)=>{
+Router.get("/admin", async (req, res) => {
   try {
     const token = req.headers.token;
     console.log(`token from getdata admin====#########======= ${token}`);
     //chech employe is authanticate or not
     const tokenvarify = jwt.verify(token, process.env.JWT_TOKEN);
-    console.log("token varify from getdata room"+tokenvarify);
+    console.log("token varify from getdata room" + tokenvarify);
     let rooms = await CreateRoomDetails.find({});
     let users = await userDetails.find({});
     console.log(`useer token id varify`);
     console.log(`useer===##########====${rooms}`);
-    res.send({rooms,users,userdata:true});
+    res.send({ rooms, users, userdata: true });
   } catch (error) {
     console.log(`err from getData/admin =${error}`);
     res.send({ err: "Try After Same Time" });
   }
-
-})
+});
 
 module.exports = Router;

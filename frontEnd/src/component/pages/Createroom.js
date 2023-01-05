@@ -293,10 +293,33 @@ const CreateRoom = (props) => {
     }));
   };
 
-  const submitForm = async () => {
+  const latLon = async () => {
+    //get latitude and longitude of an address
+    let latitude = undefined;
+    let longitude = undefined;
+    if (formData.addAddress) {
+      const address = `${formData.houseNo} ${formData.colony} ${formData.district} ${formData.state} ${formData.country} ${formData.pinCode}`;
+
+      const hereAPIURL = `https://geocode.search.hereapi.com/v1/geocode?q=${address}&apiKey=1SHAUvZj4vnhzO0csXq_seR4PI2BaxL17AN32OkKORc`;
+
+      const responseMap = await axios.get(hereAPIURL);
+      console.log("res==" + JSON.stringify(responseMap));
+      console.log("res==" + responseMap.data.items.length);
+      if (responseMap.data.items.length > 0) {
+        latitude = responseMap.data.items[0].position.lat;
+        longitude = responseMap.data.items[0].position.lng;
+        console.log("latitude=" + latitude);
+        console.log("longitude=" + longitude);
+        submitForm(latitude, longitude);
+      } else {
+        console.log("Please Enter Valid Address");
+        setConsoleErr("Please Enter Valid Address");
+      }
+    }
+  };
+  const submitForm = async (latitude, longitude) => {
     setDisabledButton(true);
     props.setLoderfun("50%");
-
 
     console.log("Form is ready to submit");
     console.log(`from CreateRoom=====${JSON.stringify(formData)}`);
@@ -309,21 +332,25 @@ const CreateRoom = (props) => {
       //this id we send is an an room _id
 
       //send req to /bcreateRoom/updateAllData for update the room data and save to the Data base
-    props.setLoderfun("60%");
+
+      props.setLoderfun("60%");
 
       console.log(`req to /bcreateRoom/updateAllData`);
-      result = await fetch(`/bcreateRoom/updateAllData?id=${id}`, {
-        method: "put",
-        body: JSON.stringify({ formData }),
-        headers: {
-          "Content-Type": "application/json",
-          token: token,
-        },
-      });
-    props.setLoderfun("70%");
+      result = await fetch(
+        `/bcreateRoom/updateAllData?id=${id}&latitude=${latitude}&longitude${longitude}`,
+        {
+          method: "put",
+          body: JSON.stringify({ formData }),
+          headers: {
+            "Content-Type": "application/json",
+            token: token,
+          },
+        }
+      );
+      props.setLoderfun("70%");
 
       result = await result.json();
-    props.setLoderfun("80%");
+      props.setLoderfun("80%");
 
       console.log(`req to /bcreateRoom/image id=${JSON.stringify(result)}`);
       console.log(
@@ -334,11 +361,11 @@ const CreateRoom = (props) => {
       );
 
       if (Object.keys(formData.imageFile).length === 0) {
-    props.setLoderfun("100%");
+        props.setLoderfun("100%");
 
         console.log(`formData.imageFile length=${formData.imageFile.length}`);
         console.log(`navigate`);
-        props.setLoderfun("100%",true);
+        props.setLoderfun("100%", true);
 
         navigate(`/blockDetails?id=${id}`);
       }
@@ -351,17 +378,23 @@ const CreateRoom = (props) => {
       console.log(`req to /bcreateRoom`);
 
       //send req to /bcreateRoom for create and save the room data to the Data base
-      props.setLoderfun("60%");
 
-      result = await fetch("/bcreateRoom", {
-        method: "post",
-        body: JSON.stringify({ formData }),
-        headers: {
-          "content-Type": "application/json",
-          token: token,
-        },
-      });
-    props.setLoderfun("70%");
+      props.setLoderfun("60%");
+      console.log("latitude in fun=" + latitude);
+      console.log("longitude in fun=" + longitude);
+
+      result = await fetch(
+        `/bcreateRoom?latitude=${latitude}&longitude=${longitude}`,
+        {
+          method: "post",
+          body: JSON.stringify({ formData }),
+          headers: {
+            "content-Type": "application/json",
+            token: token,
+          },
+        }
+      );
+      props.setLoderfun("70%");
 
       result = await result.json();
       console.log(`req to /bcreateRoom id=${result.result._id}`);
@@ -387,6 +420,7 @@ const CreateRoom = (props) => {
         for (let i = 0; i < formData.images.length; i++) {
           formData1.append("imageFile", formData.imageFile[i]);
         }
+
         result = await axios.post(
           `/bcreateRoom/image?roomId=${roomId}`,
           formData1,
@@ -395,7 +429,7 @@ const CreateRoom = (props) => {
           }
         );
       }
-    props.setLoderfun("100%");
+      props.setLoderfun("100%");
 
       if (id !== null && formData.updateFlag) {
         //send req to /bcreateRoom/deleteImages for deleting images to bucket  and update the in Data base
@@ -419,10 +453,15 @@ const CreateRoom = (props) => {
           }
         );
       }
-      console.log(`navigate1`);
-      props.setLoderfun("100%",true);
+      if (result.data.result == "success") {
+        console.log(`navigate1`);
+        props.setLoderfun("100%", true);
 
-      navigate(`/blockDetails?id=${roomId}`);
+        navigate(`/blockDetails?id=${roomId}`);
+      } else {
+        console.log(`############== ${JSON.stringify(result)}`);
+        props.setLoderfun("100%", true);
+      }
 
       // navigate(`/dashboard`);
     }
@@ -472,7 +511,11 @@ const CreateRoom = (props) => {
                                     if (formData.colony !== "") {
                                       if (formData.landmark !== "") {
                                         if (formData.pinCode !== "") {
-                                          submitForm();
+                                          if (formData.addAddress) {
+                                            latLon();
+                                          } else {
+                                            submitForm();
+                                          }
                                         } else {
                                           setConsoleErr("Please Enter pinCode");
                                           console.log("Enter pinCode");
@@ -503,7 +546,11 @@ const CreateRoom = (props) => {
                             }
                           } else {
                             if (formData.addressIdRadio !== "") {
-                              submitForm();
+                              if (formData.addAddress) {
+                                latLon();
+                              } else {
+                                submitForm();
+                              }
                             } else {
                               setConsoleErr("Please Select or Add New Address");
                               console.log("Select or Add New Address");

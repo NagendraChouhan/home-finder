@@ -87,7 +87,12 @@ const Navbar = () => {
               fontSize: "30px",
               fontFamily: "fangsong",
 
-              margin: "25px 10px 10px 10px",
+              margin: "0px 10px 0px 10px",
+              textTransform: "capitalize",
+              /* align-self: end; */
+              alignSelf: "end",
+              textDecorationLine: "underline",
+              display: "flex",
 
               textTransform: "capitalize",
             }}

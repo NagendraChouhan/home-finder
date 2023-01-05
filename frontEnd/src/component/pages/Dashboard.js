@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import tokenvarify from "../../function/function";
 import addImage from "../../add-image.png";
+import AlertBlock from "../AlertBlock";
 
 import Block from "../Block";
 import { useNavigate } from "react-router-dom";
@@ -11,6 +12,7 @@ const Dashboard = (props) => {
   tokenvarify("/login");
   const [roomData, setRoomData] = React.useState([]);
   const [userData, setUserData] = React.useState([]);
+  const [consoleErr, setConsoleErr] = React.useState();
   useEffect(() => {
     props.setLoderfun("60%")
 
@@ -90,7 +92,13 @@ const Dashboard = (props) => {
           },
         });
         data = await data.json();
-        getData();
+        if(data.err){
+          setConsoleErr(data.err)
+        }
+        else{
+
+          getData();
+        }
         console.log(`data from dashborad ====${JSON.stringify(data)}`);
   };
   const handleOnClickEdit=(_id)=>{
@@ -99,8 +107,15 @@ const Dashboard = (props) => {
     navigate(`/createroom?id=${_id}`);
     //send room _id
   }
+const showErrFunc = () => {
+    setConsoleErr(null);
+  };
+
   return (
     <>
+    {consoleErr && (
+        <AlertBlock consoleErr={consoleErr} showErrFunc={showErrFunc} />
+      )}
       <div className="ceate-room-main-div">
         <div className="div-container">
           <div className="heading-div">Your Rooms</div>

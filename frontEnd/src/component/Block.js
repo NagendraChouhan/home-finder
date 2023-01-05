@@ -4,44 +4,46 @@ const Block = (props) => {
   useEffect(() => {
     console.log(`inside useEffect`);
     if (props.imageKey !== undefined) {
-      getData();
+      // getData();
+      setImageUrl(props.imageurl);
     }
   }, []);
   const [imageUrl, setImageUrl] = React.useState();
-  async function getData() {
-    console.log(`roomId===${props.roomId}`);
-    console.log(`useEffect`);
-    console.log(
-      `window.sessionStorage.getItem(props.imageKey)${window.sessionStorage.getItem(
-        props.imageKey
-      )}`
-    );
-    const sessionStorageuImageUrl = window.sessionStorage.getItem(
-      props.imageKey
-    );
-    // if (sessionStorageuImageUrl=== undefined ||sessionStorageuImageUrl==="" || sessionStorageuImageUrl===null) {
-    console.log(`useEffect datadata`);
+  // async function getData() {
+  //   console.log(`roomId===${props.roomId}`);
+  //   console.log(`useEffect`);
+  //   console.log(`imageurl===${props.imageurl}`);
 
-    let data = await fetch(
-      `/bgetData/roomDetails?roomId=${props.roomId}&imageKey=${props.imageKey}`,
-      {
-        method: "GET",
-        headers: {
-          "content-Type": "application/json",
-        },
-      }
-    );
-    console.log(`data`);
+  //   console.log(
+  //     `window.sessionStorage.getItem(props.imageKey)${window.sessionStorage.getItem(
+  //       props.imageKey
+  //     )}`
+  //   );
+  //   const sessionStorageuImageUrl = window.sessionStorage.getItem(
+  //     props.imageKey
+  //   );
+  //   console.log(`useEffect datadata`);
 
-    data = await data.json();
-    console.log(`data from getdata of block=${JSON.stringify(data)}`);
-    setImageUrl(data.imagesUrl);
-    window.sessionStorage.setItem(props.imageKey, data.imagesUrl);
-    // }
-    // else{
-    //   setImageUrl(sessionStorageuImageUrl);
-    // }
-  }
+  //   let data = await fetch(
+  //     `/bgetData/roomDetails?roomId=${props.roomId}&imageKey=${props.imageKey}`,
+  //     {
+  //       method: "GET",
+  //       headers: {
+  //         "content-Type": "application/json",
+  //       },
+  //     }
+  //   );
+  //   console.log(`data`);
+
+  //   data = await data.json();
+  //   console.log(`data from getdata of block=${JSON.stringify(data)}`);
+  //   setImageUrl(data.imagesUrl);
+  //   window.sessionStorage.setItem(props.imageKey, data.imagesUrl);
+  //   // }
+  //   // else{
+  //   //   setImageUrl(sessionStorageuImageUrl);
+  //   // }
+  // }
   const display = props.display === undefined ? true : false;
   const border = props.border === undefined ? true : false;
   let displaycss = {};

@@ -1,3 +1,35 @@
+/* .typing{
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 1px solid black;
+    padding-right: 5px;
+    animation: typing 2s steps(20) infinite alternate ,blink;
+    margin: auto;
+    width: fit-content;
+}
+@keyframes typing {
+    0%{
+        width: 0%;
+        visibility: hidden;
+    }
+    100%{
+        width: 100%;
+    }
+    
+}
+@keyframes blink {
+    50%{
+        border-color: transparent;
+    }
+    100%{
+        background-color: black;
+    }
+    
+} */
+
+
+
+
 /*Header nav-bar css Start from here*/
 .nav-bar {
     position: fixed;
@@ -8,11 +40,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1px 10px;
+    padding: 5px 25px;
+    margin: 10px;
     box-shadow: 0px 0px 7px gray;
     margin-bottom: 30px;
     z-index: 9;
     /* padding: 1.5% 1%; */
+    border-radius: 5px;
 }
 
 .nav-bar-name-div>img {
@@ -43,7 +77,7 @@
 .nav-bar-link-div-mobile {
     font-size: larger;
     display: none;
-    margin: 2%;
+    margin: 0px 2% 0% 0%;
     font-size: 24px;
     border: 2px solid gray;
     padding: 2px 8px;
@@ -252,7 +286,7 @@ select,
     width: fit-content;
     display: grid;
     /* box-shadow: 2px 2px 13px grey; */
-    border: 1px solid lightgrey;
+    /* border: 1px solid lightgrey; */
     margin: 6% 3%;
     padding-bottom: 2%;
     font-size: 20px;
@@ -482,7 +516,7 @@ form {
 
 
 /* css for home create start here*/
-.home-main-div{
+.home-main-div {
     top: 100px;
     position: relative;
     margin-bottom: 5%
@@ -503,30 +537,40 @@ form {
 
 .home-main-div>.home-div-container>.img-div>.centered {
     position: absolute;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    left: 0px;
+    right: 0px;
+    /* transform: translate(-50%, -50%); */
     font-size: xxx-large;
-    bottom: 40%;
+    bottom: 50%;
     color: black;
     /* text-shadow: 3px -2px 1px red; */
     font-variant: small-caps;
     /* color: currentcolor; */
-    border-bottom-style: solid;
+    /* border-bottom-style: solid; */
     font-family: -webkit-body;
     width: auto;
+    text-shadow: 1px 1px 1px white;
+    font-size: xxx-large;
+    margin: 20px;
+    color: black;
+    /*color:"#98fffd";*/
+
 }
 
 .home-main-div>.home-div-container>.img-div>img {
-    width: 100%;
+    width: 98%;
     top: -30px;
     left: 0px;
     position: relative;
     /* opacity: 0.8; */
+    height: 700px;
+    object-fit: cover;
+    padding: 10px;
 }
 
 .home-main-div>.home-div-container>.img-div>div>span {
-    color: #ffff00;
-    text-shadow: 3px 1px 2px black;
+    /* color: #ffff00;
+    text-shadow: 3px 1px 2px black; */
 }
 
 /* css for home create end here*/
@@ -609,7 +653,7 @@ form {
     background-color: azure;
     z-index: 7;
     border: 2px solid black;
-    top: 75px;
+    top: 80px;
     font-weight: bold;
     justify-content: center;
     align-items: center;
@@ -1151,27 +1195,41 @@ form>.inputBox {
 
 /**/
 /*Block.js CSS Start here*/
-.Block-BlockDetails-img-div
-{
+.Block-BlockDetails-img-div {
     width: 100%;
-    height: 350px;
+    height: 300px;
     /* border-radius: 10px; */
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    
+
     /* box-shadow: "2px 2px 15px 2px gray", */
 }
 
 /*Block.js CSS End here*/
 
+.find-room-btn {
+    background: #2ecaff;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: larger;
+    margin-top: 1rem;
+    text-align: center;
+    border: none;
+    width: 400px;
+    border-radius: 4px;
+    padding: 15px;
+}
+
+.find-room-btn:hover {
+    opacity: 0.5;
+}
+
 @media screen and (max-width: 980px) {
-    .home-main-div>.home-div-container>.img-div>.centered {
-        bottom: 20%;
-        font-weight: bold;
-        text-shadow: 3px 1px 2px #bdbcbc;
-    }
-    .footer-container{
+
+
+    .footer-container {
         padding-top: 15%;
     }
 }
@@ -1186,6 +1244,7 @@ form>.inputBox {
         margin-left: 0%;
         margin-right: 0%;
     }
+
     /* .footer-container{
         padding-top: 15%;
     } */
@@ -1210,6 +1269,7 @@ form>.inputBox {
 }
 
 @media screen and (max-width:808px) {
+
     .nav-bar-link-div {
         display: initial;
         position: absolute;
@@ -1224,6 +1284,8 @@ form>.inputBox {
         display: none;
         padding-bottom: 5%;
         z-index: 99;
+        left: 0px;
+        right: 0px;
     }
 
     .nav-bar-link-div-span {
@@ -1236,7 +1298,7 @@ form>.inputBox {
     }
 
     .nav-bar {
-        padding: 0px;
+        /* padding: 0px; */
         z-index: 9;
         justify-content: start;
     }
@@ -1262,6 +1324,16 @@ form>.inputBox {
 }
 
 @media screen and (max-width:800px) {
+    .home-main-div>.home-div-container>.img-div>.centered {
+        bottom: 40%;
+        /* font-weight: bold; */
+        /* text-shadow: 3px 1px 2px #bdbcbc; */
+    }
+
+    .home-main-div>.home-div-container>.img-div>img {
+        height: 450px;
+    }
+
     .BlockDetails-detail-container {
         width: 100%;
     }
@@ -1330,8 +1402,16 @@ form>.inputBox {
     .box-div-container {
         display: inline;
     }
-    .footer-container{
+
+    .footer-container {
         padding-top: 20%;
+    }
+}
+
+@media screen and (max-width:635px) {
+    .home-main-div>.home-div-container>.img-div>.centered {
+        bottom: 30%;
+
     }
 }
 
@@ -1392,14 +1472,15 @@ form>.inputBox {
 
     @media screen and (max-width: 580px) {
         .home-main-div>.home-div-container>.img-div>.centered {
-            font-size: xx-large;
+            /* font-size: xx-large; */
             font-weight: bold;
         }
 
         .rating-div-container {
             justify-content: center;
         }
-        .footer-container{
+
+        .footer-container {
             padding-top: 25%;
         }
     }
@@ -1439,7 +1520,8 @@ form>.inputBox {
         .address-btn,
         .button-div button,
         .address-div,
-        .forget-container button {
+        .forget-container button,
+        .find-room-btn {
 
             border-radius: 3px;
             width: 85%;
@@ -1479,7 +1561,8 @@ form>.inputBox {
         margin: 0px 12px;
         font-size: larger;
     }
-    .footer-container{
+
+    .footer-container {
         padding-top: 30%;
     }
 }
@@ -1496,21 +1579,27 @@ form>.inputBox {
     .BlockDetails-img-div-alter {
         height: 230px !important;
     }
-    .footer-container{
+
+    .footer-container {
         padding-top: 37%;
     }
 }
 
-@media screen and (max-width: 303px) {
+@media screen and (max-width:340px) {
     .home-main-div>.home-div-container>.img-div>.centered {
-        bottom: 15%;
-        font-size: x-large;
+        bottom: 20%;
+
     }
+}
+
+@media screen and (max-width: 303px) {
+
 
     .BlockDetails-img-div-alter {
         height: 200px !important;
     }
-    .footer-container{
+
+    .footer-container {
         padding-top: 45%;
     }
 }
@@ -1519,8 +1608,17 @@ form>.inputBox {
     .block-value-div {
         font-size: large;
     }
-    .footer-container{
+
+    .footer-container {
         padding-top: 55%;
+    }
+}
+
+@media screen and (max-width:280px) {
+    .nav-bar {
+        /* padding: 5px; */
+        justify-content: center;
+
     }
 }
 

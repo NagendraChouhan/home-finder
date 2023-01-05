@@ -1,10 +1,12 @@
 const mongoose = require("mongoose");
 console.log("mongose=" + mongoose);
 const CreateRoom = new mongoose.Schema({
-  id: {
+  
+  userId: {
     //user ID
-    type: String,
-    require: true,
+    type: mongoose.Schema.ObjectId,
+    ref: "userDetail",
+    required: true,
   },
   roomtype: {
     type: String,
@@ -98,11 +100,21 @@ const CreateRoom = new mongoose.Schema({
     type: Boolean,
     required: true,
   },
+  adminroomstatus: {
+    type: Boolean,
+    required: true,
+  },
   roomImagesKey: [
     {
       type: String,
     },
   ],
+  roomImagesUrl: [
+    {
+      type: String,
+    },
+  ],
+  
 });
 
 const CreateRoomDetails = new mongoose.model("CreateRoomDetail", CreateRoom);

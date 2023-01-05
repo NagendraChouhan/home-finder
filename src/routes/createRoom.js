@@ -84,7 +84,7 @@ Router.post("/image", upload.array("imageFile", 31), async (req, res) => {
       `updateCreateRoomDetails=${JSON.stringify(updateCreateRoomDetails)}`
     );
 
-    res.send({ result: "Updated" });
+    res.send({ result: "success" });
   } catch (error) {
     console.log(`err from /bcreateRoom/image err==${error}`);
     res.send({ err: "try after some time" });
@@ -125,6 +125,8 @@ Router.post("/", async (req, res) => {
     let city = district;
     const tokenvarify = await jwt.verify(token, process.env.JWT_TOKEN);
     let AddressId = addressIdRadio;
+    console.log("req.query=" + JSON.stringify(req.query));
+
     if (addAddress) {
       const addressResult = await userDetails.findOneAndUpdate(
         { _id: tokenvarify._id },
@@ -138,13 +140,21 @@ Router.post("/", async (req, res) => {
               colony,
               landmark,
               pinCode,
+              location: {
+                type: "Point",
+                coordinates: [
+                  parseFloat(req.query.latitude),
+                  parseFloat(req.query.longitude),
+                ],
+                // locationDate: Date.now(),
+              },
             },
             //inserted data is the object to be inserted
           },
         }
       );
       const user = await userDetails.findOne({ _id: tokenvarify._id });
-      AddressId = JSON.stringify(user.address[user.address.length - 1]._id);
+      AddressId = user.address[user.address.length - 1]._id;
       console.log(`city==${city}`);
     } else {
       //finding city of an address
@@ -165,6 +175,8 @@ Router.post("/", async (req, res) => {
         }
       }
     }
+    console.log("######################");
+    console.log(`AddressId== ${AddressId}`);
     let bedroomsVlaue = 0;
     let bathroomsVlaue = 1;
     if (roomtype === "1BHK") {
@@ -182,7 +194,7 @@ Router.post("/", async (req, res) => {
       bathroomsVlaue = 3;
     }
     const newCreateRoomDetails = new CreateRoomDetails({
-      id: tokenvarify._id, //user ID
+      userId: tokenvarify._id, //user ID
       roomtype,
       bedrooms: bedroomsVlaue,
       bathrooms: bathroomsVlaue,
@@ -204,6 +216,7 @@ Router.post("/", async (req, res) => {
       Famaly,
       district: city,
       roomstatus: false,
+      adminroomstatus: false,
     });
     const result = await newCreateRoomDetails.save();
     console.log(`result from createRoom ====######===== ${result}`);
@@ -226,16 +239,45 @@ Router.put("/update", async (req, res) => {
     console.log(`roomstatus=${roomstatus}`);
     console.log(`id=${id}`);
     const tokenvarify = await jwt.verify(token, process.env.JWT_TOKEN);
-    const updateCreateRoomDetails = await CreateRoomDetails.updateOne(
-      { _id: id },
+    const updateCreateRoomDetails = await CreateRoomDetails.updateMany(
+      {},
       {
-        $set: { roomstatus: roomstatus },
+        $set: { adminroomstatus: true },
       }
     );
-    console.log(
-      `updateCreateRoomDetails=${JSON.stringify(updateCreateRoomDetails)}`
-    );
-    res.send({ result: updateCreateRoomDetails });
+    if (roomstatus === "false") {
+      console.log(`roomstatus=${typeof roomstatus}`);
+
+      const updateCreateRoomDetails = await CreateRoomDetails.updateOne(
+        { _id: id },
+        {
+          $set: { roomstatus: roomstatus },
+        }
+      );
+      console.log(
+        `updateCreateRoomDetails=${JSON.stringify(updateCreateRoomDetails)}`
+      );
+      res.send({ result: updateCreateRoomDetails });
+    } else {
+      const adminVerify = await CreateRoomDetails.findOne({ _id: id });
+      if (adminVerify.adminroomstatus) {
+        const updateCreateRoomDetails = await CreateRoomDetails.updateOne(
+          { _id: id },
+          {
+            $set: { roomstatus: roomstatus },
+          }
+        );
+        console.log(
+          `updateCreateRoomDetails=${JSON.stringify(updateCreateRoomDetails)}`
+        );
+        res.send({ result: updateCreateRoomDetails });
+      } else {
+        console.log(`adminVerify==${adminVerify}`);
+        res.send({
+          err: "Your room is under verification, So you can't Activate it",
+        });
+      }
+    }
   } catch (error) {
     console.log("error from CreateRoom=" + error);
     res.send({ err: "Try After Some Time" });
@@ -293,6 +335,14 @@ Router.put("/updateAllData", async (req, res) => {
               colony,
               landmark,
               pinCode,
+              location: {
+                type: "Point",
+                coordinates: [
+                  parseFloat(req.query.latitude),
+                  parseFloat(req.query.longitude),
+                ],
+                // locationDate: Date.now(),
+              },
             },
             //inserted data is the object to be inserted
           },

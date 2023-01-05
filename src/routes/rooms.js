@@ -1,11 +1,23 @@
 const express = require("express");
 const Router = express.Router();
 const CreateRoomDetails = require("../models/createRoomModel");
+const { getFileStream } = require("../aws/s3");
+
 
 Router.get("/", async (req, res) => {
   try {
     const result = await CreateRoomDetails.find();
-    console.log(`result from room ${result}`);
+    for(let i=0;i<result.length;i++){
+      
+      console.log(`result from room ${JSON.stringify(result[i].roomImagesKey[0])}`);
+      result[i].roomImagesUrl[0] = await getFileStream(result[i].roomImagesKey[0]);
+      // console.log(`result from room roomImagesUrl ${JSON.stringify(result[i].roomImagesUrl[0])}`);
+
+    }
+    for(let i=0;i<result.length;i++){
+      console.log(`result from room roomImagesUrl== ${JSON.stringify(result[i].roomImagesUrl[0])}`);
+
+    }
     res.send(result);
   } catch (error) {
     console.log(`error from room ${error}`);
@@ -29,9 +41,8 @@ Router.post("/filter", async (req, res) => {
       Famaly,
       sortBy,
     } = req.body;
-    console.log(`pg===${typeof(Boys)}`);
-    if(Boys){
-
+    console.log(`pg===${typeof Boys}`);
+    if (Boys) {
     }
     const result = await CreateRoomDetails.find({
       roomtype: { $regex: roomtype },
@@ -47,7 +58,7 @@ Router.post("/filter", async (req, res) => {
       // packing: { $eq: packing },
       // Ventilation: { $eq: Ventilation},
     }).sort({ price: parseInt(sortBy) });
-    console.log(`pg===${(Boys)}`);
+    console.log(`pg===${Boys}`);
 
     res.send(result);
 

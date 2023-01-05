@@ -69,7 +69,7 @@ const BlockDetails = (props) => {
     console.log(`data===== ${JSON.stringify(data.roomDetail)}`);
     console.log(`data.images===== ${JSON.stringify(data.images)}`);
     // console.log(`data===== ${JSON.stringify(data)}`);
-    const userId = data.roomDetail.id;
+    const userId = data.roomDetail.userId._id;
     const addressIdRadio = data.roomDetail.addressIdRadio;
     // console.log(`userId====${userId}`);
     // console.log(`addressIdRadio====${addressIdRadio}`);
@@ -321,11 +321,11 @@ const BlockDetails = (props) => {
               </section>
             </div>
             <section className="owner-section-top">
-              <OwnerSection
-                name={userDetails.name}
-                email={userDetails.email}
-                ownerId={userDetails.ownerId}
-              />
+              {roomData.userId &&<OwnerSection
+                name={roomData.userId.name}
+                email={roomData.userId.email}
+                ownerId={roomData.userId._id}
+              />}
             </section>
           </div>
 

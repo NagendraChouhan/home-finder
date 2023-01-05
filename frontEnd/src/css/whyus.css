@@ -1,0 +1,69 @@
+.whyus-section-container {
+    background-color: white;
+    padding: 5%;
+}
+
+.whyus-point-div-container {
+    display: flex;
+    flex-direction: column;
+    margin: 1% 5%;
+    text-align: start;
+    font-size: x-large;
+    font-family: system-ui;
+    line-height: 40px;
+    /* letter-spacing: 2px; */
+    font-weight: bold;
+}
+
+.whyus-point-div-container span {
+    padding: 3%;
+    border-bottom: 2px solid #cfcfcf;
+}
+
+.whyus-div-contaier {
+    display: flex;
+    margin: 4% 0%;
+
+}
+
+.whyus-image-div-container {
+    flex: 1;
+    /* position: relative; */
+    align-self: center;
+    display: flex;
+}
+
+/* .whyus-ima-text-div span{
+    position: absolute;
+    bottom: 4px;
+    /* right: 7px; 
+    background-color: #000000;
+    padding: 10%;
+    font-size: xx-large;
+    color: #ffffff;
+    text-align: left;
+    font-family: system-ui;
+    font-weight: bold;
+} */
+.whyus-reason-container {
+    flex: 1;
+    margin: auto 2%;
+}
+
+.whyus-point-div-container p {
+    color: rgb(145, 147, 246);
+    font-size: medium;
+    line-height: 22px;
+}
+
+
+@media screen and (max-width:775px) {
+    .whyus-div-contaier {
+        display: grid;
+        margin: 3% 0px;
+    }
+
+    .whyus-reason-container {
+        margin: 5%;
+    }
+}

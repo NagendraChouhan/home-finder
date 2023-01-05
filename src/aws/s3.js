@@ -34,7 +34,7 @@ function uploadFile(fileBuffer, fileName, mimetype) {
     };
     console.log("from uploadFile1");
 
-    return s3.send(new PutObjectCommand(uploadParams));
+    return s3.send(new PutObjectCommand(uploadParams)).array;
   } catch (error) {
     console.log(`error from uploadFile s1=${error}`);
   }

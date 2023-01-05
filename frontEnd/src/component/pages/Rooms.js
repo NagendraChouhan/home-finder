@@ -89,6 +89,7 @@ const Rooms = (props) => {
               return (
                 <Block
                   imageKey={data.roomImagesKey[0]}
+                  imageurl={data.roomImagesUrl[0]}
                   roomId={data.id}
                   price={data.price}
                   id={data._id}
