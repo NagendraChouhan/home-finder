@@ -1,4 +1,4 @@
-# place-finding
+# home-finder
 
 A full-stack web application for finding and listing rooms online. Tenants can browse, filter and review rooms; owners can list their property with photos and receive enquiries by email.
 
