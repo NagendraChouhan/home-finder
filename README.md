@@ -2,7 +2,7 @@
 
 A full-stack web application for finding and listing rooms online. Tenants can browse, filter and review rooms; owners can list their property with photos and receive enquiries by email.
 
-Built with a React (CRA) frontend and an Express + MongoDB backend, with room photos stored on AWS S3 and transactional email sent through SendGrid.
+Built with a React frontend and an Express + MongoDB backend, with room photos stored on AWS S3 and transactional email sent through SendGrid.
 
 ---
 
